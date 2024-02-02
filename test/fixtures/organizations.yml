@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  otype: 1
+  subject: one
+  description: MyText
+  website: MyString
+  phone: MyString
+  whatsapp: MyString
+  email: MyString
+  instagram: MyString
+  tiktok: MyString
+  twitter: MyString
+  facebook: MyString
+  snapchat: MyString
+  other_network: MyString
+  address: MyString
+  state: 1
+  region: 1
+  zone: 1
+  volunteers_description: MyText
+  volunteers_url: MyString
+  donations: MyString
+
+two:
+  name: MyString
+  otype: 1
+  subject: two
+  description: MyText
+  website: MyString
+  phone: MyString
+  whatsapp: MyString
+  email: MyString
+  instagram: MyString
+  tiktok: MyString
+  twitter: MyString
+  facebook: MyString
+  snapchat: MyString
+  other_network: MyString
+  address: MyString
+  state: 1
+  region: 1
+  zone: 1
+  volunteers_description: MyText
+  volunteers_url: MyString
+  donations: MyString

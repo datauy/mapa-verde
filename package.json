@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@codevise/activeadmin-searchable_select": "^1.8.0"
+  }
+}

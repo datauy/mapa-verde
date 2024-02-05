@@ -12,6 +12,9 @@ class Organization < ApplicationRecord
   has_many :zone_relations
   has_many :zones, through: :zone_relations
 
+  has_many :actitvity_organizations
+  has_many :activities, through: :actitvity_organizations
+
   enum region: [
     'Región Centro',      
 		'Región Este',

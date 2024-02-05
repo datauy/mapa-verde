@@ -4,10 +4,8 @@ class CreateActivities < ActiveRecord::Migration[7.1]
       t.string :title
       t.text :description
       t.string :address
-      t.integer :state
-      t.integer :municipality
-      t.time :start
-      t.time :end
+      t.datetime :starts
+      t.datetime :ends
 
       t.timestamps
     end

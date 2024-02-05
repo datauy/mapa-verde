@@ -350,4 +350,5 @@ ActiveAdmin.setup do |config|
   #
   # config.use_webpacker = true
   config.register_javascript "//cdn.ckeditor.com/4.5.6/full/ckeditor.js"
+  config.register_stylesheet 'activeadmin-mv.css'
 end

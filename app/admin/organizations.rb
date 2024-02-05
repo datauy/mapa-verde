@@ -16,14 +16,19 @@ ActiveAdmin.register Organization do
   # end
   
   form :html => { :multipart => true } do |f|
-      f.inputs do
+    f.inputs do
       f.input :name
       f.input :otype
       f.input :logo, as: :file
       if f.object.logo.attached?
-        span 
-          #image_tag(f.object.logo)
-          #a "Borrar", href: delete_image_admin_organization_path, method: :delete, "data-confirm": "Confirme que desea eliminarla"
+        li do
+          div do
+            image_tag(f.object.logo)
+          end
+          div do
+            a "Borrar", href: delete_image_admin_organization_path, method: :delete, "data-confirm": "Confirme que desea eliminarla"
+          end
+        end
       end
       f.input :subject, as: :searchable_select, label: "Actividad principal"
       f.input :subjects, as: :searchable_select, input_html: { multiple: true }, label: "Otras actividades"
@@ -49,10 +54,11 @@ ActiveAdmin.register Organization do
     f.actions
   end
   member_action :delete_image, method: [:delete, :get] do
-    #@pic = ActiveStorage::Attachment.find(params[:id])
-    #@pic.purge_later
+    if resource.logo.attached?
+      resource.logo.delete
+    end
     puts "\n\nPASA MEMBER DELETE\n\n"
-    #edirect_to collection_path, notice: "Imagen borrada"
+    redirect_to edit_resource_path, notice: "Imagen borrada"
   end
 
   before_save do |object|

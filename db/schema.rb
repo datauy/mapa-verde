@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_01_195147) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_11_120033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,12 +60,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_195147) do
     t.string "title"
     t.text "description"
     t.string "address"
-    t.integer "state"
-    t.integer "municipality"
     t.time "start"
     t.time "end"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "starts"
+    t.datetime "ends"
   end
 
   create_table "activity_organizations", force: :cascade do |t|
@@ -87,6 +87,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_195147) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "operation_relations", force: :cascade do |t|
@@ -128,6 +135,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_195147) do
     t.string "donations"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "enabled"
     t.index ["subject_id"], name: "index_organizations_on_subject_id"
   end
 

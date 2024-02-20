@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap');
+
+body {
+  color: #000;
+  font-family: "Inter";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; 
+  margin: 0;
+}
+h1 {
+  font-family: "Work Sans";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 40px;
+}
+h2 {
+  font-family: "Work Sans";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #000;
+  font-family: "Work Sans";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+}
+.title-section {
+  margin-bottom: 50px;
+}
+.section-image {
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+#main-content {
+  max-width: 960px;
+  padding: 50px 120px;
+  margin: auto;
+}
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+}
+
+.main-button {
+  display: flex;
+  height: 44px;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; 
+  border-radius: 4px;
+  background: #0F57FB;
+  color: #FFF;
+  border: none;
+}

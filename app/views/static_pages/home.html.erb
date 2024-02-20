@@ -1,0 +1,80 @@
+<div class="title-section">
+  <div class="title">¿Qué es el <h1>Mapa Verde</h1>?</div>
+  <p class="title-desc">
+    Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.
+    Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin vitae facilisis nisi, ac posuere leo.
+  </p>
+  <div class="buttons">
+    <button class="main-button" href="/">Más información del proyecto</button>
+    <button class="main-button" href="/">Quiero sumar mi organización</button>
+    <button class="main-button" href="/">Quiero sumar mi actividad</button>
+  </div>
+</div>
+<div class="backdrop"></div>
+<div id="mapa-section"  data-controller="map">
+  <div id="map-wrapper">
+    <div id="filters">
+      <div class="filters-top wrapper">
+        <div class="wrapper select-wrapper">
+          <i class="fas fa-users"></i>
+          <div id="objetivo-trigger" class="select-filter" onclick="toggleOptions('objetivo')">Población objetivo</div>
+          <ul id="objetivo" class="select-options"></ul>
+          <i class="fas fa-chevron-down right"></i>
+        </div>
+        <div class="wrapper">
+          <i class="fas fa-cake"></i>
+          <input type="text" id="edad" value="" placeholder="Edad"></input>
+        </div>
+        <div class="wrapper select-wrapper">
+          <i class="fas fa-hand-holding-hand"></i>
+          <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Tipo</div>
+          <ul id="otype" class="select-options"></ul>
+          <i class="fas fa-chevron-down right"></i>
+        </div>
+        <div class="wrapper">
+          <i class="fas fa-filter-circle-xmark"></i>
+          <div id="clear" class="button" onclick="clearFilters()">Borrar filtros</div>
+        </div>
+      </div>
+      <div class="wrapper filters-bottom">
+        <label><input type="checkbox" id="extendido" value="false"> Horario extendido</label>
+        <label><input type="checkbox" id="verano" value="false"> Funciona en verano</label>
+      </div>
+      <div id="results" class="button"></div>
+    </div>
+    <div id="search">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="search-res" name="search-res" placeholder="Buscar..."></input>
+    </div>
+    <div id="map" style="height: 500px;"></div>
+    <div id="no-results" style="display:none;">
+      <span>No hay resultados para los filtros seleccionados</span>
+      <i onclick="jQuery('#no-results').hide();" class="fa fa-close"></i>
+    </div>
+  </div>
+  <div id="list"></div>
+</div>
+<div>
+  <h2>Próximas actividades</h2>
+  <div id="activities">
+    <%= render @activities %>
+  </div>
+  <div class="pager-wrapper activities-pager">
+    <%= paginate @activities, :remote => true, :param_name => "acts_page" %>
+  </div>
+</div>
+<div>
+  <h2>Novedades</h2>
+  <div id="news">
+    <%= render @news %>
+  </div>
+  <div class="pager-wrapper news-pager">
+    <%= paginate @news, :remote => true, :param_name => "news_page" %>
+  </div>
+</div>
+
+
+
+<script>
+var data = <%= "#{@organizations}".html_safe %>;//JSON.parse(resources);
+</script>

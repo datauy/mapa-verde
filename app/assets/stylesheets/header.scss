@@ -1,0 +1,320 @@
+/* TopBar */
+header {
+  position: relative;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1340px;
+  margin: auto;
+  padding: 20px 50px;
+  /* Logo */
+  .logo {
+      width: 30px;
+      height: 30px;
+      position: relative;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+  }
+  .menu-container {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: flex-end;
+      width: 100%;
+  }
+  .menu {
+    list-style: none;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 14px; /* 116.667% */
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #000;
+    gap: 20px;
+    a, a:visited, a:active {
+      text-decoration: none;
+      color: #000;
+    }
+  }
+
+  a.involucrarme, a.involucrarme:visited {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 4px;
+    background: #F5C32F;
+    color: #FFF;
+  }
+
+
+
+  /* Titulo Apelatron */
+  h2, h1 {
+    height: 22px;
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #2D3473;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+
+
+  /* Menu Icon */
+  .hamb {
+    display: none;
+      cursor: pointer;
+      float: right;
+      width: 20px;
+      height: 54px;
+      padding: 20px 0px;
+  }
+
+  /* Style label tag */
+
+  .hamb-line {
+      background: white;
+      display: block;
+      height: 2px;
+      position: relative;
+      width: 24px;
+
+  }
+
+  /* Style span tag */
+
+  /* .hamb-line::before,
+  .hamb-line::after {
+      background: white;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      transition: all .2s ease-out;
+      width: 100%;
+  }
+
+  .hamb-line::before {
+      top: 5px;
+  }
+
+  .hamb-line::after {
+      top: -5px;
+  }
+
+  .side-menu {
+      display: none;
+  } */
+
+  /* Hide checkbox */
+
+  /* Toggle menu icon */
+  /* .side-menu:checked~nav {
+      max-height: 100%;
+  }
+
+  .side-menu:checked~.hamb .hamb-line {
+      background: transparent;
+  }
+
+  .side-menu:checked~.hamb .hamb-line::before {
+      transform: rotate(-45deg);
+      top: 0;
+  }
+
+  .side-menu:checked~.hamb .hamb-line::after {
+      transform: rotate(45deg);
+      top: 0;
+  } */
+
+  /*---------Menu desplegable----------*/
+
+  /* Nav menu */
+  #myNav {
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        height: 0;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        background-color: rgb(42, 146, 232);
+        border-bottom-right-radius: 5em;
+        overflow-y: hidden;
+        /* Disable horizontal scroll */
+        transition: 0.5s;
+        box-sizing: border-box;
+      }
+    
+      .menu {
+          position: relative;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          flex-direction: column;
+          padding: 0px;
+      }
+    
+      .part-1 {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          padding: 24px 20px 0px;
+      }
+      .part-1 #part-1-row {
+          display: flex;
+      }
+    
+      .menu a:hover {
+          background-color: gray;
+      }
+    
+      hr {
+          position: flex;
+          left: 20px;
+          width: 35%;
+          margin: 0;
+          margin-top: 24px;
+          margin-bottom: 24px;
+          color: #FFF;
+      }
+    
+      .brandImg {
+          width: 216px;
+          height: 153px;
+      }
+    
+      .part-3 {
+          height: 224px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 24px 20px 0px;
+          gap: 16px;
+      }
+    
+      .part-3 #extra {
+    
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 14px;
+          display: flex;
+          align-items: center;
+          text-decoration-line: underline;
+          color: #FFFFFF;
+      }
+    
+      .part-3 #network {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 0px;
+          gap: 8px;
+      }
+    
+      .part-3 #networkTitle {
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+          display: flex;
+          align-items: center;
+          margin: 0;
+          color: #FFFFFF;
+      }
+    
+      .part-3 #networkImg {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          padding: 0px;
+          gap: 8px;
+      }
+    
+    
+      .part-3 .terms {
+          width: 279px;
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 10px;
+          line-height: 16px;
+          color: #FFFFFF;
+      }
+    
+    
+      .nav .dropBar {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 16px 24px 16px 20px;
+          gap: 10px;
+      }
+    
+      .nav .dropBar .dropTitle {
+          width: 72px;
+          height: 20px;
+          font-family: 'Inter';
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          color: #FFFFFF;
+      }
+    
+      .nav .dropBar .closeMenu {
+          width: 20px;
+          height: 32px;
+          color: #FFFFFF;
+          font-family: 'Font Awesome 6 Pro';
+          font-style: normal;
+          font-weight: 300;
+          font-size: 32px;
+          line-height: 32px;
+          font-size: 60px;
+          text-decoration: none;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 0px;
+      }
+    
+      .menu-aviso {
+          font-family: 'Work Sans';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 28px;
+          display: flex;
+          align-items: center;
+          color: #2D3473;
+    
+      }
+  }
+}

@@ -17,12 +17,13 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
 
   def html_template_for_nested_set(options)
     options[:collection].map{|menu|
-      html_for_nested(menu)
-    }.join("\n").html_safe
-  end
+    html_for_nested(menu)
+  }.join("\n").html_safe
+end
 
-  def html_for_nested(menu, from_nested=false, select_all=true, with_parents=false )
-    choice = [menu.name , menu.id]
+def html_for_nested(menu, from_nested=false, select_all=true, with_parents=false )
+  choice = [menu.name , menu.id]
+  Rails.logger.debug "\n\nNESTED MENU\n #{options[:collection].inspect} \n"
     template.content_tag(:li, class: "choice #{from_nested ? "" : "collapsable-section"}") do
       if from_nested
         choice_html(choice)

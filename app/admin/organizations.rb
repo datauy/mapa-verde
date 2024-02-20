@@ -5,7 +5,7 @@ ActiveAdmin.register Organization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :otype, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :state, :region, :zone, :volunteers_description, :volunteers_url, :donations, :logo, zone_ids: [], subject_ids: [], operation_ids: []
+  permit_params :name, :otype, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :state, :region, :zone, :volunteers_description, :volunteers_url, :donations, :logo, :enabled, zone_ids: [], subject_ids: [], operation_ids: []
   #
   # or
   #
@@ -14,7 +14,7 @@ ActiveAdmin.register Organization do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
   form :html => { :multipart => true } do |f|
     f.inputs do
       f.input :name
@@ -50,6 +50,7 @@ ActiveAdmin.register Organization do
       f.input :volunteers_description, as: :ckeditor
       f.input :volunteers_url
       f.input :donations
+      f.input :enabled
     end
     f.actions
   end

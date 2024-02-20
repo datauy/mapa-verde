@@ -1,0 +1,135 @@
+<footer>
+  <div class="content">
+    <div class="module">
+      <div class="inline"><i class="fa-solid fa-share-from-square"></i><h3 id="share">Compartí este proyecto</h3></div>
+      <p>Si te fue útil o le puede ser útil a alguien más, tu ayuda en difusión hace una enorme diferencia. ¡Gracias!</p>
+      <% share_msg = "Mapa Verde nuclea toda la información de organizaciones de jóvenes que trabajan por el ambiente en Uruguay, conocelas y sumate a la revolución verde." %>
+      <div class="inline">
+        <a class="dropdown-item" href="https://mastodonshare.com/?text=<%= share_msg %>&url=<%= request.base_url %>" target="_blank">
+          <i class="fa-brands fa-mastodon"></i>
+        </a>
+        <a class="dropdown-item" href="https://twitter.com/intent/tweet?text=<%= share_msg %>&amp;url=<%= request.base_url %>&amp;via=Apelatrón" onclick="if(!document.getElementById('td_social_networks_buttons')){window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;}">
+          <i class="fa-brands fa-twitter"></i>
+        </a>
+        <a class="dropdown-item" href="https://www.facebook.com/sharer.php?u=<%= request.base_url %>" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a class="dropdown-item" target="_blank" href="https://api.whatsapp.com/send?text=<%= share_msg %> <%= request.base_url %>">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a class="dropdown-item" href="https://www.linkedin.com/sharing/share-offsite/?url=<%= request.base_url %>" onclick="window.open(this.href, 'mywin','left=50,top=50,width=600,height=350,toolbar=0'); return false;">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a class="dropdown-item" href="mailto:someone@example.com?Subject=Apelatrón: Asitente de apelación&amp;body=<%= share_msg %> <%= request.base_url %>">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div class="module">
+        <div class="group column">
+            <h2>Sobre el proyecto </h2>
+            <div id="info-group">
+                <p>
+                El asistente <b>Apelatrón</b> fue creado para asistir a los usuarios y usuarias de redes sociales a defender su derecho a expresarse en línea cuando entienden que ha habido una decisión de moderación injusta o ilegítima.
+                </p>
+                <a href="/sobre-el-proyecto" id="more-info">Más información ></a>
+            </div>
+        </div>
+        <div id="open-data" class="group">
+            <div id="open-title" class="toggle-data">
+                <h2>Datos abiertos y software libre </h2>
+                <%= image_tag("arrow-down.png", alt:"Imagen cambiar") %>
+            </div>
+            <p>
+                Los datos utilizados en esta aplicación se encuentran disponibles para su reutilización como
+                datos
+                abiertos y el código del software es libre bajo licencia GPLv3.
+            </p>
+            <a href="https://catalogodatos.gub.uy/organization/data" class="support-button toggle-content" target="_blank">
+                Datos abiertos en Catálogo Nacional
+                <i class="fa-solid fa-database"></i>
+            </a>
+            <a href="https://github.com/datauy/mapa-verde" class="support-button toggle-content" target="_blank">
+                Código de la aplicación en GitHub
+                <i class="fa-brands fa-github"></i>
+            </a>
+        </div>
+        <div id="ask-frame">
+            <a href="http://soporte.data.org.uy/es/customer/create-ticket/" class="btn btn-transparent" target="_blank">
+                <%= image_tag("support.png", alt:"Imagen cambiar") %>
+                ¿Problemas, dudas?
+            </a>
+        </div>
+        <a class="support-button" href='mailto:soporte@data.org.uy' >Escribí a Soporte</a>
+    </div>
+    <div class="module" class="group column center">
+      <div id="we-are-header" class="toggle-data">
+        <h2>¿Quiénes somos?</h2>
+        <%= image_tag("arrow-down.png", alt:"Flecha abrir/cerrar") %>
+      </div>
+      <div class="logos-frame">
+        <a href="https://data.org.uy" target="_blank">
+          <%= image_tag("data.png", alt:"DATA Uruguay") %>
+        </a>
+        <div class="toggle-content">
+          <p>
+            Data Uruguay es una organización de la sociedad civil que trabaja en temas de Gobierno Abierto, Datos Abiertos, Tecnología Cívica, Transparencia, Acceso a la Información y co-creación de política pública. Tiene como misión contribuir a una sociedad más justa a través del uso de datos abiertos y tecnología cívica, en base a tres pilares: Herramientas, Comunidad y Activismo.
+          </p>
+          <div class="inline">
+            <a class="social-link" href="https://mastodon.uy/@datauy" target="_blank">
+              <i class="fa-brands fa-mastodon"></i>
+            </a>
+            <a class="social-link" href="https://twitter.com/datauy" target="_blank">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a class="social-link"  href="https://www.instagram.com/datauy" target="_blank">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a class="social-link" href="https://www.facebook.com/DATAuruguay" target="_blank">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a class="social-link" href="https://uy.linkedin.com/company/datauy" target="_blank">
+              <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <!--<a class="social-link" href="https://uy.linkedin.com/company/datauy" target="_blank">
+              <i class="fa-brands fa-meetup"></i>
+            </a>-->
+            <a class="social-link" href="https://github.com/datauy" target="_blank">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a class="social-link" href="mailto:contacto@data.org.uy?Subject=Consulta sobre Apelatrón">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <h2>Con el apoyo de:</h2>
+    </div>
+  </div>
+  <div class="carousel">
+    <h3>Conocé otros proyectos de DATA:</h3>
+    <div class="logos-frame">
+      <%= image_tag("atuservicio.png", alt:"Imagen cambiar") %>
+      <%= image_tag("dondereciclo.png", alt:"Imagen cambiar") %>
+      <%= image_tag("datysoc.png", alt:"Imagen cambiar") %>
+    </div>
+  </div>
+  <hr>
+  <div id="credits">
+      <%= image_tag("Shape.png", alt:"Imagen cambiar") %>
+      <%= image_tag("cc.png", alt:"Imagen cambiar") %>
+      <div class="group">
+          <p>El contenido original de este sitio, está bajo licencia Creative Commons Atribución 4.0
+              Internacional. Por otras atribuciones ver sobre el proyecto.</p>
+      </div>
+  </div>
+</footer>
+<script>
+  /*
+  jQuery('#open-title').click(() => {
+    jQuery('#open-title').parent().toggleClass('active');
+  });
+  jQuery('#we-are-header').click(() => {
+    jQuery('#we-are-header').parent().toggleClass('active');
+  });*/
+</script>

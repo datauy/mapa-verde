@@ -10,7 +10,7 @@ namespace :importer do
     end
     CSV.foreach("db/data/localidades.csv", headers: true) do |feature|
       p "Import localidad #{feature["localidad"]}"
-      parent = Zone.search_name(feature["departamento"]).first
+      parent = Zone.search_name(feature["departamen"]).first
       if parent.present?
         Zone.find_or_create_by({
           ztype: 3,
@@ -19,7 +19,7 @@ namespace :importer do
           parent_zone: parent
         })
       else
-        p "PARENT NOT FOUND #{feature["departamento"]}"
+        p "PARENT NOT FOUND #{feature["departamen"]}"
       end
     end
   end

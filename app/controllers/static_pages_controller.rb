@@ -1,18 +1,32 @@
 class StaticPagesController < ApplicationController
   def home
-    organizations = []
+    @organizations = []
+    zone_ids = []
+    @zones = {}
+    @otypes = []
     Organization.
     includes(:zones).
     where(enabled: true).
     each do |o|
       org = o.as_json
-      org.merge!(zones: o.zones.as_json)
-      logger.debug org.inspect
-      organizations.push org
+      org.merge!(zones: o.zones.ids)
+      zone_ids = zone_ids | o.zones.ids
+      #logger.debug org.inspect
+      @organizations.push org
+      @otypes.push o.otype unless @otypes.include? o.otype
     end
-    @organizations = organizations.to_json
-    @activities = Activity.where('starts > ?', Date.today).order(:starts).page(params[:acts_page]).per(6)
-    @news = New.order(:created_at).page(params[:news_page]).per(3)
+    Zone.find(zone_ids).each do |z|
+      @zones[z.id] = z
+    end
+    logger
+    @pagy_acts, @activities = pagy(Activity.where('starts > ?', Date.today).order(:starts), items: 3, page_param: :page_acts)
+    @pagy_news, @news = pagy(New.order(:created_at), items: 3, page_param: :page_news)
+    respond_to do |format|
+      format.html
+      format.turbo_stream {
+        logger.info "JSJSJSJSJS"
+      }
+  end
   end
   def about
   end

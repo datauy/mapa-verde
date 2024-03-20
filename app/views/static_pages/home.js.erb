@@ -1,4 +1,0 @@
-$('#news').html('<%= escape_javascript render(@news) %>');
-$('.news-pager').html('<%= escape_javascript(paginate(@news, :remote => true).to_s) %>');
-$('#activities').html('<%= escape_javascript render(@activities) %>');
-$('.activities-pager').html('<%= escape_javascript(paginate(@activities, :remote => true).to_s) %>');

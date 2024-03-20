@@ -11,11 +11,13 @@ export default class extends Controller {
 
   connect() {
     window.Map = this;
-    this.renderMap();
+    console.log("Map controller");
+    if (typeof(data) !== 'undefined' && data.length) {
+      this.renderMap();
+    }
   }
   renderMap() {
     //Obtain data from the json file
-    console.log(data);
     window.currentLayer = new L.FeatureGroup();
     window.allLayers = new L.FeatureGroup();
     //window.elements = data;
@@ -80,5 +82,24 @@ export default class extends Controller {
       map.flyToBounds(window.currentLayer.getBounds());
     }
     window.currentLayer.addTo(map);
+  }
+  toggleDesc(orgId) {
+    var srv = jQuery('#org-'+orgId);
+    if ( !srv.hasClass('active') ) {
+      var position = jQuery('#org-'+orgId).offset().top - jQuery('#org-0').offset().top;
+      jQuery("#list").animate({
+        scrollTop: position
+      }, 1000, 'linear' );
+      //document.getElementById('srv-'+id).scrollIntoView({behavior: 'smooth'});
+      jQuery('.org').removeClass('active');
+      srv.addClass("active");
+      //map.flyTo( [currentList[id].lat, currentList[id].lng], 18);
+
+    }
+    else {
+      jQuery('.org').removeClass('active');
+      orgId = undefined;
+    }
+    window.Map.renderZones(orgId);
   }
 }

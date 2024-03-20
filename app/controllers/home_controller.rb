@@ -1,5 +1,5 @@
-class OrganizationsController < ApplicationController
-  def list
+class HomeController < ApplicationController
+  def index
     @organizations = []
     zone_ids = []
     @zones = {}

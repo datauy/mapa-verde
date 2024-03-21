@@ -10,10 +10,10 @@ export default class extends Controller {
   static currentLayer
 
   connect() {
-    window.Map = this;
     this.change();
     console.log("Map controller");
-    if (typeof(data) !== 'undefined' && data.length) {
+    if (typeof(data) !== 'undefined' && data.length &&  typeof(window.Mapa) === 'undefined' ) {
+      window.Mapa = this;
       this.renderMap();
     }
   }
@@ -75,7 +75,7 @@ export default class extends Controller {
       if ( initial ) {
         L.geoJSON(zonesData).addTo(window.allLayers);
       }
-      //document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
+      document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
     });
     var bounds = window.currentLayer.getBounds();
     console.log("BOUNDS: ", bounds);
@@ -108,5 +108,17 @@ export default class extends Controller {
     console.log("CHANGE MAP");
     //frame.src = "/search.turbo_stream";
     //frame.reload(); // there is no need to reload
+  }
+  search(event) {
+    console.log("SEARCH", event);
+    event.target
+    fetch("/search", {
+      method: "GET",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html"
+      }
+    })
+      .then(r => r.text())
+      .then(html => Turbo.renderStreamMessage(html))
   }
 }

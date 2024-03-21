@@ -1,28 +1,31 @@
 <div class="filters-top wrapper">
   <div class="wrapper select-wrapper">
-    <i class="fas fa-users"></i>
-    <div id="objetivo-trigger" class="select-filter" >Tipo</div>
-    <ul id="objetivo" class="select-options"></ul>
-    <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper">
-    <i class="fas fa-cake"></i>
-    
+    <div id="otype-trigger" class="select-filter" onclick="document.getElementById('otype').classList.toggle('active');">
+    <img class="icon" src="/images/type.svg"/>
+    <span>Tipo</span>
+    </div>
+    <ul id="otype" class="select-options">
+    <% @otype_options.each do |otype| %>
+      <%= content_tag :li, data: { controller: "map", action: 'click->map#search'} do %>
+      <%= otype%>
+      <% end %>
+    <% end %>
+    </ul>
   </div>
   <div class="wrapper select-wrapper">
-    <i class="fas fa-hand-holding-hand"></i>
+    <img class="icon" src="/images/subject.svg"/>
     <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Temática</div>
     <ul id="otype" class="select-options"></ul>
     <i class="fas fa-chevron-down right"></i>
   </div>
   <div class="wrapper select-wrapper">
-    <i class="fas fa-hand-holding-hand"></i>
+    <img class="icon" src="/images/action.svg"/>
     <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Acciones</div>
     <ul id="otype" class="select-options"></ul>
     <i class="fas fa-chevron-down right"></i>
   </div>
   <div class="wrapper select-wrapper">
-    <i class="fas fa-hand-holding-hand"></i>
+    <img class="icon" src="/images/zone.svg"/>
     <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Zonas</div>
     <ul id="otype" class="select-options"></ul>
     <i class="fas fa-chevron-down right"></i>
@@ -30,8 +33,8 @@
 </div>
 <div class="wrapper filters-bottom">
   <div class="wrapper">
-    <i class="fas fa-filter-circle-xmark"></i>
+    <img class="icon" src="/images/clear-filters.svg"/>
     <div id="clear" class="button" onclick="clearFilters()">Borrar filtros</div>
   </div>
-  <div id="results" class="button"></div>
+  <div id="results" class="button">Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
 </div>

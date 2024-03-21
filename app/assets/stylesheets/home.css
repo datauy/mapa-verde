@@ -26,9 +26,20 @@
       background: #F5F5F5;
     }
   }
-  .select-options li {
-    padding-right: 30px;
-    padding-left: 44px;
+  .select-options {
+    display: none;
+    background: #fff;
+    top: 0px;
+    margin: 0 5px;
+    z-index: 402;
+    &.active {
+      display: block;
+    }
+    li {
+      padding-right: 30px;
+      padding-left: 44px;
+      color: #00AA47;
+    }
   }
 }
 .backdrop {
@@ -39,9 +50,6 @@
   width: 100%;
   height: 100%;
   z-index: 401;
-}
-.select-options {
-  display: none;
 }
 .wrapper {
   display: flex;
@@ -70,15 +78,6 @@
   z-index: 402;
   max-width: calc(100% - 54px);
 }
-#filters i {
-  color: #FFF;
-  font-size: 16px;
-  margin: 14px 20px;
-  position: absolute;
-}
-#filters .select-options i {
-  left: 0;
-}
 #filters i.fa-cake {
   color: #753CE1;
 }
@@ -87,11 +86,10 @@
 }
 
 .button,
-#filters .select-filter,
+#filters .select-wrapper,
 #filters label {
   margin: 5px;
   padding: 5px;
-  /* Violeta feminista */
   background: #00AA47;
   border-bottom: 1px solid #DEDEDE;
   color: #FFF;
@@ -100,16 +98,7 @@
   align-items: center;
   border: none;
 }
-#filters .select-filter {
-  height: 44px;
-  font-family: Barlow Condensed;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  padding: 12px 44px;
-}
+
 #servicio-trigger {
   width: 260px;
 }
@@ -133,6 +122,9 @@
   padding: 12px 16px;
   width: max-content;
 }
+#showing {
+  margin: 0 4px;
+}
 #filters li.active::after {
   content: "";
   width: 9px;
@@ -145,14 +137,6 @@
 }
 #edad {
   max-width: 94px;
-}
-.select-options {
-  position: absolute;
-  background: #fff;
-  top: 48px;
-  margin: 0 5px;
-  z-index: 402;
-  width: calc(100% - 10px);
 }
 #search {
   position: absolute;

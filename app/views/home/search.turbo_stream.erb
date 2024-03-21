@@ -1,8 +1,11 @@
+<%= turbo_stream.update("showing") do %>
+<%= @showing %>
+<% end %>
 <%= turbo_stream.update("orgs_list") do %>
 <ul id="list">
   <% @organizations.each_with_index do |element, eid| %>
     <li 
-      onclick="Map.toggleDesc(<%= eid %>)"
+      onclick="Mapa.toggleDesc(<%= eid %>)"
       class="org"
       id="<%= "org-#{eid}" %>"
     >

@@ -1,6 +1,6 @@
 class Organization < ApplicationRecord
   has_one_attached :logo
-  
+
   belongs_to :subject
 
   has_many :subject_relations
@@ -16,17 +16,20 @@ class Organization < ApplicationRecord
   has_many :activities, through: :activity_organizations
 
   enum region: [
-    'Región Centro',      
+    'Región Centro',
 		'Región Este',
-		'Región Litoral Norte',      
+		'Región Litoral Norte',
 		'Región Litoral Sur',
 		'Región Metropolitana',
 		'Región Noreste'
   ]
 
   enum otype: [
-    'Tipo 1 (federada)',
-    'Tipo 2',
-    'Tipo 3'
+    'Otra',
+    'Asociación Civil',
+    'Red de organizaciones',
+    'Capítulo de organización internacional',
+    'Empresa',
+    'Agrupación barrial/vecinal',
   ]
 end

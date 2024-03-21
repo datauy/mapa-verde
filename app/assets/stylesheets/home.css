@@ -26,21 +26,6 @@
       background: #F5F5F5;
     }
   }
-  .select-options {
-    display: none;
-    background: #fff;
-    top: 0px;
-    margin: 0 5px;
-    z-index: 402;
-    &.active {
-      display: block;
-    }
-    li {
-      padding-right: 30px;
-      padding-left: 44px;
-      color: #00AA47;
-    }
-  }
 }
 .backdrop {
   display: none;
@@ -77,26 +62,53 @@
   left: 10px;
   z-index: 402;
   max-width: calc(100% - 54px);
-}
-#filters i.fa-cake {
-  color: #753CE1;
-}
-#filters i.right {
-  right: 0;
+  .select-filter {
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .select-options {
+    display: none;
+    background: #fff;
+    top: 0px;
+    margin: 0;
+    z-index: 402;
+    position: relative;
+    &.active {
+      display: block;
+    }
+    li {
+      padding-right: 30px;
+      color: #00AA47;
+    }
+  }
 }
 
-.button,
-#filters .select-wrapper,
-#filters label {
+.button {
+  background: #00AA47;
+  border-bottom: 1px solid #DEDEDE;
+  color: #FFF;
+  height: 16px;
+  display: block;
+  align-items: center;
+  border: none;
+  width: 120px;
   margin: 5px;
-  padding: 5px;
+}
+#filters .select-wrapper {
+  margin: 5px;
   background: #00AA47;
   border-bottom: 1px solid #DEDEDE;
   color: #FFF;
   height: 44px;
-  display: flex;
+  display: block;
   align-items: center;
   border: none;
+  width: 120px;
+  position: relative;
+  cursor: pointer;
 }
 
 #servicio-trigger {
@@ -116,7 +128,6 @@
   text-align: left;
 }
 #clear {
-  padding: 12px 16px 12px 44px;
 }
 #results {
   padding: 12px 16px;

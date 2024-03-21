@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @otype_options = Organization.otypes.keys
-    @zone_options = Organization.includes(:zones).distinct.pluck(:'zones.name', :'zones.id')
+    @otype_options = Organization.includes(:organization_type).distinct.pluck(:'organization_types.name', :'organization_types.id')
+    @zone_options = Organization.includes(:zones).where.not(zones: nil).distinct.pluck(:'zones.name', :'zones.id')
     @subject_options = Organization.includes(:subjects).distinct.pluck(:'subjects.name', :'subjects.id')
-    @action_options = Organization.includes(:activities).distinct.pluck(:'activities.title', :'activities.id')
+    @action_options = Organization.includes(:operations).distinct.pluck(:'operations.name', :'operations.id')
     @total = Organization.all.count
     self.search
   end
@@ -14,18 +14,18 @@ class HomeController < ApplicationController
     orgs = Organization.
     includes(:zones)
     logger.info " \n\n\n PASA PARAMS \n\n\n\n #{params.inspect}"
-    if params['otype'].present?
+    if params['otypes'].present?
       logger.info "\n\n\n PASA OTYPE \n\n\n\n"
-      orgs = orgs.where(otype: params['otype'])
+      orgs = orgs.where(organization_type: params['otypes'].split(','))
     end
-    if params['subject'].present?
-      orgs = orgs.where(otype: params['subject'])
+    if params['subjects'].present?
+      orgs = orgs.where(subject: params['subjects'].split(','))
     end
     if params['actions'].present?
-      orgs = orgs.where(otype: params['actions'])
+      orgs = orgs.where(operations: params['actions'].split(','))
     end
     if params['zones'].present?
-      orgs = orgs.where(otype: params['zones'])
+      orgs = orgs.where(zones: params['zones'].split(','))
     end
     orgs.each do |o|
       org = o.as_json
@@ -40,9 +40,7 @@ class HomeController < ApplicationController
     @showing = orgs.count
     respond_to do |format|
       format.html
-      format.turbo_stream {
-        logger.info "\n\nTURBO HOME SEARCH\n\n"
-      }
+      format.turbo_stream
     end
   end
 end

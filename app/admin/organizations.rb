@@ -5,7 +5,7 @@ ActiveAdmin.register Organization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :otype, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :state, :region, :zone, :volunteers_description, :volunteers_url, :donations, :logo, :enabled, zone_ids: [], subject_ids: [], operation_ids: []
+  permit_params :name, :organization_type_id, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :state, :region, :zone, :volunteers_description, :volunteers_url, :donations, :logo, :enabled, zone_ids: [], subject_ids: [], operation_ids: []
   #
   # or
   #
@@ -18,7 +18,7 @@ ActiveAdmin.register Organization do
   form :html => { :multipart => true } do |f|
     f.inputs do
       f.input :name
-      f.input :otype
+      f.input :organization_type
       f.input :logo, as: :file
       if f.object.logo.attached?
         li do

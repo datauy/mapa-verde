@@ -5,36 +5,44 @@
     <span>Tipo</span>
     </div>
     <ul id="otype" class="select-options">
-    <% @otype_options.each do |otype| %>
-      <%= content_tag :li, data: { controller: "map", action: 'click->map#search'} do %>
-      <%= otype%>
-      <% end %>
-    <% end %>
+      <%= search_options(@otype_options, 'otypes') %>
     </ul>
   </div>
   <div class="wrapper select-wrapper">
-    <img class="icon" src="/images/subject.svg"/>
-    <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Temática</div>
-    <ul id="otype" class="select-options"></ul>
+    <div id="subject-trigger" class="select-filter" onclick="document.getElementById('subject').classList.toggle('active');">
+      <img class="icon" src="/images/subject.svg"/>
+      Temática
+    </div>
+    <ul id="subject" class="select-options">
+      <%= search_options(@subject_options, 'subjects') %>
+    </ul>
     <i class="fas fa-chevron-down right"></i>
   </div>
   <div class="wrapper select-wrapper">
-    <img class="icon" src="/images/action.svg"/>
-    <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Acciones</div>
-    <ul id="otype" class="select-options"></ul>
+    <div id="action-trigger" class="select-filter" onclick="document.getElementById('action').classList.toggle('active');">
+      <img class="icon" src="/images/action.svg"/>
+      Acciones
+    </div>
+    <ul id="action" class="select-options">
+      <%= search_options(@action_options, 'actions') %>
+    </ul>
     <i class="fas fa-chevron-down right"></i>
   </div>
   <div class="wrapper select-wrapper">
-    <img class="icon" src="/images/zone.svg"/>
-    <div id="otype-trigger" class="select-filter" onclick="toggleOptions('otype')">Zonas</div>
-    <ul id="otype" class="select-options"></ul>
+    <div id="zone-trigger" class="select-filter" onclick="document.getElementById('zone').classList.toggle('active');">
+      <img class="icon" src="/images/zone.svg"/>
+      Zonas
+    </div>
+    <ul id="zone" class="select-options">
+      <%= search_options(@zone_options, 'zones') %>
+    </ul>
     <i class="fas fa-chevron-down right"></i>
   </div>
 </div>
 <div class="wrapper filters-bottom">
-  <div class="wrapper">
+  <div class="select-filter button">
     <img class="icon" src="/images/clear-filters.svg"/>
-    <div id="clear" class="button" onclick="clearFilters()">Borrar filtros</div>
+    <div id="clear" class="button" onclick="Mapa.clearFilters()">Borrar filtros</div>
   </div>
   <div id="results" class="button">Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
 </div>

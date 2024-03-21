@@ -1,6 +1,5 @@
 <script>
   var data = <%= "#{@organizations.to_json}".html_safe %>;//JSON.parse(resources);
-  var otypes = <%= "#{@otypes.to_json}".html_safe %>;
   var zones = <%= "#{@zones.to_json}".html_safe %>;
 </script>
 <div class="title-section">

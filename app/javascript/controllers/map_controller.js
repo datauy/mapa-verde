@@ -10,12 +10,26 @@ export default class extends Controller {
   static currentLayer
 
   connect() {
-    this.change();
-    console.log("Map controller");
     if (typeof(data) !== 'undefined' && data.length &&  typeof(window.Mapa) === 'undefined' ) {
+      window.active_filters = {
+        'otypes': [],
+        'zones': [],
+        'subjects': [],
+        'actions': [],
+        };
       window.Mapa = this;
       this.renderMap();
     }
+  }
+  clearFilters() {
+    window.active_filters = {
+      'otypes': [],
+      'zones': [],
+      'subjects': [],
+      'actions': [],
+      };
+      this.search(null)
+      $('#filters li.active').toggleClass('active')
   }
   renderMap() {
     //Obtain data from the json file
@@ -23,19 +37,6 @@ export default class extends Controller {
     window.allLayers = new L.FeatureGroup();
     //window.elements = data;
     this.total = data.length;
-    const mapBounds = [];
-    const otype_options = [];
-    const obj_options = [];
-    var currentList = [];
-    var min_max_age = [];
-    var active_filters = {
-    'otype': [],
-    'obj': [],
-    'age': -1,
-    'summ': false,
-    'ext': false,
-    'search_res': ''
-    };
     //MAP
     window.map = L.map('map', {scrollWheelZoom: false}).setView([-34.897013, -56.171186], 13);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -78,7 +79,6 @@ export default class extends Controller {
       document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
     });
     var bounds = window.currentLayer.getBounds();
-    console.log("BOUNDS: ", bounds);
     if ( Object.keys(bounds).length ) {
       map.flyToBounds(window.currentLayer.getBounds());
     }
@@ -101,24 +101,46 @@ export default class extends Controller {
       jQuery('.org').removeClass('active');
       orgId = undefined;
     }
-    window.Map.renderZones(orgId);
+    this.renderZones(orgId);
   }
   change(event) {
     //const frame = document.getElementById("map_filters");
-    console.log("CHANGE MAP");
+    //console.log("CHANGE MAP");
     //frame.src = "/search.turbo_stream";
     //frame.reload(); // there is no need to reload
   }
   search(event) {
-    console.log("SEARCH", event);
-    event.target
-    fetch("/search", {
+    if ( event !== null ) {
+      //Handle filters
+      let cat = event.target.dataset.category;
+      let value = event.target.dataset.value;
+      if ( event.target.classList.contains('active') ) {
+        window.active_filters[cat].splice(window.active_filters[cat].indexOf(value), 1);
+      }
+      else {
+        window.active_filters[cat].push(value);
+      }
+      event.target.classList.toggle('active');
+    }
+    // Create URL
+    let url = new URL("http://localhost:3000/search");
+    Object.keys(window.active_filters).forEach( cat => {
+      if ( window.active_filters[cat].length ) {
+        url.searchParams.append(cat, window.active_filters[cat].join(','));
+      }
+    });
+    fetch(url.href, {
       method: "GET",
       headers: {
         Accept: "text/vnd.turbo-stream.html"
       }
     })
-      .then(r => r.text())
-      .then(html => Turbo.renderStreamMessage(html))
+    .then(r => r.text())
+    .then(html => {
+      Turbo.renderStreamMessage(html)
+      if (event !== null ) {
+        event.target.parentNode.classList.remove('active')
+      }
+    })
   }
 }

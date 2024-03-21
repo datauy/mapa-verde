@@ -19,6 +19,7 @@
 <div id="mapa-section"  data-controller="map">
   <div id="map-wrapper">
     <div id="filters">
+      <%= turbo_frame_tag "map_filters", src: search_url(format: :turbo_stream)%>
       <%= render partial: 'map_filters' %>
     </div>
     <div id="search">
@@ -32,7 +33,7 @@
     </div>
   </div>
   <div id="orgs-list" data-controller="list">
-    <%= turbo_frame_tag "orgs_list", src: organizations_list_url(format: :turbo_stream)%>
+    <%= turbo_frame_tag "orgs_list", src: search_url(format: :turbo_stream)%>
   </div>
 </div>
 <div>

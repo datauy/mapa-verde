@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     respond_to do |format|
       format.html
       format.turbo_stream {
-        logger.info "JSJSJSJSJS"
+        logger.info "\n\nACTIVITIES TURBO\n\n"
       }
     end
   end

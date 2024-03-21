@@ -11,6 +11,7 @@ export default class extends Controller {
 
   connect() {
     window.Map = this;
+    this.change();
     console.log("Map controller");
     if (typeof(data) !== 'undefined' && data.length) {
       this.renderMap();
@@ -74,7 +75,7 @@ export default class extends Controller {
       if ( initial ) {
         L.geoJSON(zonesData).addTo(window.allLayers);
       }
-      document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
+      //document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
     });
     var bounds = window.currentLayer.getBounds();
     console.log("BOUNDS: ", bounds);
@@ -101,5 +102,11 @@ export default class extends Controller {
       orgId = undefined;
     }
     window.Map.renderZones(orgId);
+  }
+  change(event) {
+    //const frame = document.getElementById("map_filters");
+    console.log("CHANGE MAP");
+    //frame.src = "/search.turbo_stream";
+    //frame.reload(); // there is no need to reload
   }
 }

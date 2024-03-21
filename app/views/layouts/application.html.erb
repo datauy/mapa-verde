@@ -10,14 +10,14 @@
     <%= javascript_importmap_tags %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Work+Sans:ital,wght@0,300..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Work+Sans:wght@300..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   </head>
 
   <body>
     <%= render 'layouts/header'%>
     <div class="section-image">
-      <%= content_for?(:image_section) ? yield(:image_section) : image_tag('logo_mapa_verde.svg') %>
+      <%= content_for?(:image_section) ? yield(:image_section) : image_tag('cabezal.svg') %>
     </div>
     <div id="main-content">
       <%= yield %>

@@ -9,22 +9,27 @@
 .uagb-block-07aeb560 {
   z-index: 10;
 }
-#mapa-ciudados ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 5px;
-}
-#mapa-ciudados li {
-  padding: 16px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #DEDEDE;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-#mapa-ciudados i {
-  color: #753CE1;
+#mapa-section {
+  margin: 50px 0;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 16px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #DEDEDE;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #F5F5F5;
+    }
+  }
+  .select-options li {
+    padding-right: 30px;
+    padding-left: 44px;
+  }
 }
 .backdrop {
   display: none;
@@ -37,10 +42,6 @@
 }
 .select-options {
   display: none;
-}
-#mapa-ciudados .select-options li {
-  padding-right: 30px;
-  padding-left: 44px;
 }
 .wrapper {
   display: flex;
@@ -91,7 +92,7 @@
   margin: 5px;
   padding: 5px;
   /* Violeta feminista */
-  background: #753CE1;
+  background: #00AA47;
   border-bottom: 1px solid #DEDEDE;
   color: #FFF;
   height: 44px;
@@ -185,58 +186,24 @@ input[type="radio"], input[type="checkbox"] {
   z-index: 401;
   margin-left: 16px;
 }
+#list {
+  max-height: calc(100vh - 500px);
+  overflow-y: scroll;
+  h3 {
+    margin: 0;
+  }
+}
 .srv-header {
   display: flex;
   align-items: center;
   width: 100%;
   cursor: pointer;
 }
-#list {
-  max-height: calc(100vh - 500px);
-  overflow-y: scroll;
-}
-#list h2 {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 23px;
-  color: #1F1F1F;
-  margin-right: auto;
-  margin-bottom: 0;
-}
 .srv-header i {
   margin-left: auto;
 }
 .srv-body {
   padding: 16px;
-}
-#list h3{
-  font-family: 'Barlow Condensed';
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-  color: #686868;
-}
-#list .row {
-  margin-top: 14px;
-  margin-bottom: 14px;
-}
-#list span {
-  font-family: 'Merriweather';
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  color: #1F1F1F;
-  margin-left: 16px;
-}
-#list p {
-  font-family: 'Barlow Condensed';
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 18px;
-  color: #1F1F1F;
-  margin-bottom: 0;
 }
 #no-results {
   position: fixed;
@@ -264,18 +231,34 @@ input[type="radio"], input[type="checkbox"] {
  @media (max-width: 782px) {
    #filters .filters-bottom {
      display: grid;
-   }
- }
-
- /* ACTIVITIES*/
+    }
+  }
+  
+  /* ACTIVITIES*/
+#acts_pagination p {
+  text-align: center;
+}
  
-#activities {
+#acts_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 10px;
+  align-self: stretch;
+  flex-wrap: wrap; 
   .activity-item {
+    padding: 24px;
     display: flex;
     flex-direction: column;
     margin: 10px 30px;
+    border: 1px solid #DEDEDE;
+    min-height: 360px;
     h3 {
-
+      font-family: "Work Sans";
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 24px; 
     }
     img {
       width: 300px;

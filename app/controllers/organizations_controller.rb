@@ -21,7 +21,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       format.html
       format.turbo_stream {
-        logger.info "JSJSJSJSJS"
+        logger.info "\n\nORGANIZATIONS TURBO\n\n"
       }
     end
   end

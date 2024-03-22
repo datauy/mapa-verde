@@ -123,7 +123,7 @@ export default class extends Controller {
       event.target.classList.toggle('active');
     }
     // Create URL
-    let url = new URL("http://localhost:3000/search");
+    let url = new URL(window.location.protocol+"//"+window.location.hostname+"/search");
     Object.keys(window.active_filters).forEach( cat => {
       if ( window.active_filters[cat].length ) {
         url.searchParams.append(cat, window.active_filters[cat].join(','));

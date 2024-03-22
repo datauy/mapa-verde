@@ -85,20 +85,16 @@ export default class extends Controller {
     window.currentLayer.addTo(map);
   }
   toggleDesc(orgId) {
-    var srv = jQuery('#org-'+orgId);
-    if ( !srv.hasClass('active') ) {
-      var position = jQuery('#org-'+orgId).offset().top - jQuery('#org-0').offset().top;
-      jQuery("#list").animate({
-        scrollTop: position
-      }, 1000, 'linear' );
+    var srv = document.getElementById('org-'+orgId);
+    if ( !srv.classList.contains('active') ) {
+      var position = srv.offsetTop - document.getElementById('org-0').offsetTop;
+      document.getElementById('list').scrollTo(0, position);
       //document.getElementById('srv-'+id).scrollIntoView({behavior: 'smooth'});
-      jQuery('.org').removeClass('active');
-      srv.addClass("active");
-      //map.flyTo( [currentList[id].lat, currentList[id].lng], 18);
-
+      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
+      srv.classList.add("active");
     }
     else {
-      jQuery('.org').removeClass('active');
+      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
       orgId = undefined;
     }
     this.renderZones(orgId);
@@ -123,7 +119,7 @@ export default class extends Controller {
       event.target.classList.toggle('active');
     }
     // Create URL
-    let url = new URL(window.location.protocol+"//"+window.location.hostname+"/search");
+    let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/search");
     Object.keys(window.active_filters).forEach( cat => {
       if ( window.active_filters[cat].length ) {
         url.searchParams.append(cat, window.active_filters[cat].join(','));

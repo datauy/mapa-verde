@@ -76,7 +76,7 @@ export default class extends Controller {
       if ( initial ) {
         L.geoJSON(zonesData).addTo(window.allLayers);
       }
-      document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" puntos";
+      document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" organizaciones";
     });
     var bounds = window.currentLayer.getBounds();
     if ( Object.keys(bounds).length ) {

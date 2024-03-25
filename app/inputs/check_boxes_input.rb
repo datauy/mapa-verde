@@ -17,13 +17,12 @@ class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
 
   def html_template_for_nested_set(options)
     options[:collection].map{|menu|
-    html_for_nested(menu)
+    html_for_nested(menu, false, false)
   }.join("\n").html_safe
 end
 
 def html_for_nested(menu, from_nested=false, select_all=true, with_parents=false )
   choice = [menu.name , menu.id]
-  Rails.logger.debug "\n\nNESTED MENU\n #{options[:collection].inspect} \n"
     template.content_tag(:li, class: "choice #{from_nested ? "" : "collapsable-section"}") do
       if from_nested
         choice_html(choice)
@@ -41,7 +40,11 @@ def html_for_nested(menu, from_nested=false, select_all=true, with_parents=false
             label_html_options.merge(:for => parent_id(options[:parent]) + choice_value(choice).to_s, :class => "select_all primary")
           )
         else
-          parent_label = template.content_tag( :label, choice_label(choice), label_html_options )
+          parent_label = template.content_tag(
+            :label,
+            all_checkbox(choice) + choice_label(choice),
+            label_html_options.merge(:for => parent_id(options[:parent]) + choice_value(choice).to_s, :class => "parent")
+          )
         end
         template.content_tag(
           :span,
@@ -54,7 +57,7 @@ def html_for_nested(menu, from_nested=false, select_all=true, with_parents=false
   def all_checkbox(choice)
     value = choice_value(choice)
     template.check_box_tag(
-      parent_id(options[:parent]) + value.to_s,
+      options[:parent],
       value,
       false,
       extra_html_options(choice).merge( :id => parent_id(options[:parent]) + value.to_s, :disabled => disabled?(value) )

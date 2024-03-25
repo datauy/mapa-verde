@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @subject_options = Organization.includes(:subjects).distinct.pluck(:'subjects.name', :'subjects.id')
     @action_options = Organization.includes(:operations).distinct.pluck(:'operations.name', :'operations.id')
     @total = Organization.all.count
-    self.search
+    #self.search
   end
   def search
     @organizations = []

@@ -10,15 +10,23 @@ export default class extends Controller {
   static currentLayer
 
   connect() {
-    if (typeof(data) !== 'undefined' && data.length &&  typeof(window.Mapa) === 'undefined' ) {
+    if ( typeof(window.mapa) === 'undefined' ) {
+      window.Mapa = this;
+      window.currentLayer = new L.FeatureGroup();
+      window.allLayers = new L.FeatureGroup();
       window.active_filters = {
         'otypes': [],
         'zones': [],
         'subjects': [],
         'actions': [],
         };
-      window.Mapa = this;
-      this.renderMap();
+      window.mapa = L.map('map', {scrollWheelZoom: false}).setView([-34.897013, -56.171186], 13);
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19,
+        subdomains: 'abcd',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+      }).addTo(window.mapa);
+      window.mapa.zoomControl.setPosition('topright');
     }
   }
   clearFilters() {
@@ -31,28 +39,12 @@ export default class extends Controller {
       this.search(null)
       $('#filters li.active').toggleClass('active')
   }
-  renderMap() {
-    //Obtain data from the json file
-    window.currentLayer = new L.FeatureGroup();
-    window.allLayers = new L.FeatureGroup();
-    //window.elements = data;
-    this.total = data.length;
-    //MAP
-    window.map = L.map('map', {scrollWheelZoom: false}).setView([-34.897013, -56.171186], 13);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      maxZoom: 19,
-      subdomains: 'abcd',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(map);
-    map.zoomControl.setPosition('topright');
-    // FILL DATA
-    this.renderZones(undefined, true);
-  }
   renderZones(org, initial = false) {
+    this.total = data.length;
     let orgs = data;
     var wkt = new Wkt.default.Wkt();
     if ( !initial ) {
-      map.removeLayer(window.currentLayer);
+      window.mapa.removeLayer(window.currentLayer);
       currentLayer.eachLayer(function (layer) {
         currentLayer.removeLayer(layer);
       });
@@ -62,15 +54,18 @@ export default class extends Controller {
     }
     orgs.forEach(org => {
       var zonesData = [];
+      console.log("ORG ZONEs:", org.zones);
       org.zones.forEach(zone_id => {
-        wkt.read(zones[zone_id].geometry);
-        zonesData.push({ 
-          "type": "Feature",
-          'properties': {
-            "name": "Coors Field",
-            "popupContent": "This is where the Rockies play!"
-          }, "geometry": wkt.toJson() 
-        }); 
+        if ( zones[zone_id].geometry !== null ) {
+          wkt.read(zones[zone_id].geometry);
+          zonesData.push({ 
+            "type": "Feature",
+            'properties': {
+              "name": "Coors Field",
+              "popupContent": "This is where the Rockies play!"
+            }, "geometry": wkt.toJson() 
+          }); 
+        }
       });
       L.geoJSON(zonesData).addTo(window.currentLayer);
       if ( initial ) {
@@ -80,9 +75,9 @@ export default class extends Controller {
     });
     var bounds = window.currentLayer.getBounds();
     if ( Object.keys(bounds).length ) {
-      map.flyToBounds(window.currentLayer.getBounds());
+      window.mapa.flyToBounds(window.currentLayer.getBounds());
     }
-    window.currentLayer.addTo(map);
+    window.currentLayer.addTo(window.mapa);
   }
   toggleDesc(orgId) {
     var srv = document.getElementById('org-'+orgId);

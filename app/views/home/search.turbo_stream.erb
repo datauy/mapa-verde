@@ -12,13 +12,25 @@
       <div class="org-element">  
         <div class="srv-header"><h3><%= element['name'] %></h3><i class="fas fa-<%= element['icon'].present? ? element['icon'] : 'org' %>"></i></div>
         <div class="srv-body">
+          <div class="subjects icons-wraper">
+          </div>
+          <div class="actions icons-wraper">
+          </div>
+          <div class="contact icons-wraper">
+          </div>
+          <div class="information">
+          <div class="row"><p><%= element['description'].html_safe %></p></div>
+          </div>
+          <div class="volunteers">
+          </div>
+          <div class="activities">
+          </div>
           <div class="row"><h4><%= "#{element['organization_type']} - #{element['tipo_centro']}" %></h4></div>
           <div class="row"><i class="fas fa-location-dot"></i><span><%= "#{element['region']}, #{element['address']}"%></span></div>
           <div class="row"><i class="fas fa-phone"></i><span><%= element['phone']%></span></div>
           <div class="row"><i class="fas fa-link"></i><span><%= element['website']%></span></div>
           <div class="row"><i class="fas fa-envelope"></i><span><%= element['email']%></span></div>
           <div class="row"><i class="fas fa-users"></i><span><%= element['subject_id']%></span></div>
-          <div class="row"><p><%= element['description'].html_safe %></p></div>
         </div>
       </div>
     </li>
@@ -27,6 +39,8 @@
 <script>
   window.data = <%= "#{@organizations.to_json}".html_safe %>;//JSON.parse(resources);
   window.zones = <%= "#{@zones.to_json}".html_safe %>;
-  window.Mapa.renderZones();
+  if (typeof(window.Mapa) !== 'undefined') {
+    window.Mapa.renderZones();
+  }
 </script>
 <% end %>

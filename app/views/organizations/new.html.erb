@@ -1,0 +1,12 @@
+<%= form_with(model: @organization, url: organization_path,  data: {turbo: false}) do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <%= form.submit "Enviar" %>
+<% end %>

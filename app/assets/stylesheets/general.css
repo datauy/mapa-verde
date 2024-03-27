@@ -61,6 +61,14 @@ img {
   border-radius: 4px;
   border: 2px solid #0F57FB;
   width: max-content;
+  text-decoration: none;
+}
+.main-button {
+  padding: 16px;
+  gap: 10px;
+  background: #0F57FB;
+  color: #FFF;
+  border: none;
 }
 .icons-wraper {
   display: flex;
@@ -105,16 +113,6 @@ img {
   gap: 10px;
   margin: 20px 0;
 }
-
-.main-button {
-  display: flex;
-  padding: 16px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; 
-  border-radius: 4px;
-  background: #0F57FB;
-  color: #FFF;
-  border: none;
-  text-decoration: none;
+.right {
+  justify-content: right;
 }

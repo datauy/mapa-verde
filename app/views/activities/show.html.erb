@@ -1,0 +1,8 @@
+<div class="activity-item">
+  <h3 class="title"><%= @activity.title %></h3>
+  <% if @activity.image.attached? %>
+    <%= image_tag @activity.image %>
+  <% else %>
+    <p><%= @activity.description %></p>
+  <% end %>
+</div>

@@ -1,23 +1,20 @@
 <ul class="menu">
     <li>
-        <%= link_to "Mapa", "/" %>
+        <%= link_to "Mapa", root_path, data: {turbo: "false"} %>
     </li>
     <li>
-        <%= link_to "Calendario", "/" %>
+        <%= link_to "Calendario", calendar_path %>
     </li>
     <li>
-        <%= link_to "Reccursos", "/" %>
+        <%= link_to "Recursos", "/", data: {turbo: "false"} %>
     </li>
     <li>
-        <%= link_to "Novedades", "/" %>
+        <%= link_to "Sobre el proyecto", about_path %>
     </li>
     <li>
-        <%= link_to "Sobre el proyecto", "/" %>
+        <%= link_to "Contacto", contact_path %>
     </li>
     <li>
-        <%= link_to "Contacto", "/" %>
-    </li>
-    <li>
-        <%= link_to "Quiero involucrarme", "/", class: "involucrarme" %>
+        <%= link_to "Quiero involucrarme", involved_path, class: "involucrarme" %>
     </li>
 </ul>

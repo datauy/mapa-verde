@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
   def about
   end
-  def faqs
+  def contact
   end
-  def thank_you
+  def get_involved
   end
 end

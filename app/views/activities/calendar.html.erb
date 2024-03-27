@@ -1,0 +1,9 @@
+<div>
+  <h2>Próximas actividades</h2>
+  <%= turbo_frame_tag "acts_list", src: activities_list_url(format: :turbo_stream) do %>
+    <% 3.times do %>
+      <%= render "/layouts/article_placeholder" %>
+    <% end %>
+  <% end %>
+  <%= turbo_frame_tag "acts_pagination" %>
+</div>

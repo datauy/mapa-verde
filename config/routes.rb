@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   get "search" => "home#search"
   get "activities-list" => "activities#list"
   get "organizations-list" => "organizations#list"
-  get '/activity/:id', to: 'activities#show', as: 'activity'
-
+  get 'actividad/:id' => 'activities#show', as: 'activity'
+  get 'contacto' => 'static_pages#contact', as: 'contact'
+  get 'sobre-el-proyecto' => 'static_pages#about', as: 'about'
+  get 'nueva-organizacion' => 'organizations#new', as: 'organization'
+  get 'nueva-actividad' => 'activities#new', as: 'new_activity'
+  get 'calendario' => 'activities#calendar', as: 'calendar'
+  get 'involucrarme' => 'static_pages#get_involved', as: 'involved'
 end

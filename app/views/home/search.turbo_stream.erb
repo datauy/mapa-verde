@@ -18,7 +18,7 @@
         <div class="srv-body">
           <div class="subjects">
             <div class="org-title">
-              <i class="fa-solid fa-comments"></i>
+              <img class="icon" src="images/subjects.svg"/>
               <span>Temáticas</span>
             </div>
             <div class="icons-wraper">
@@ -29,7 +29,7 @@
           </div>
           <div class="actions">
             <div class="org-title">
-              <i class="fa-solid fa-comments"></i>
+              <img class="icon" src="images/actions.svg"/>
               <span>Acciones</span>
             </div>
             <div class="icons-wraper">
@@ -89,13 +89,13 @@
           </div>
           <div class="volunteers">
             <div class="org-title">
-              <i class="fa-solid fa-comments"></i>
+              <img class="icon" src="images/volunteers.svg"/>
               <span>Voluntariado y colaboración</span>
             </div>
+            <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
             <div class="icons-wraper">
-              <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
-              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url']) : '' %>
-              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['volunteers_url']) : '' %>
+              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url'], target: "_blank") : '' %>
+              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['donations'], target: "_blank") : '' %>
             </div>
           </div>
           <div class="activities">
@@ -103,6 +103,7 @@
             <div class="org-acts icons-wraper">
               <%= acts_tags(element[:activities]) %>
             </div>
+            <div class="row icon-tag right"><a class="btn act-tag" href="/contacto" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a></div>
           </div>
         </div>
       </div>

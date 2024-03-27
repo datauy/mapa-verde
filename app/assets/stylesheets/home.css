@@ -71,7 +71,18 @@
             fill: #123BA8;
           }
         }
-        .act-tag {
+        .information i {
+          color:#00AA47;
+        }
+        .org-acts {
+          padding: 10px 0;
+          border-bottom: 1px solid #000;
+          margin-bottom: 10px;
+        }
+        a.act-tag {
+          &:visited {
+            color:#123BA8;
+          }
           span {
             font-family: Inter;
             font-size: 12px;

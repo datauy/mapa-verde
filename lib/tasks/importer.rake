@@ -14,7 +14,7 @@ namespace :importer do
       if parent.present?
         Zone.find_or_create_by({
           ztype: 3,
-          geometry: feature["wkt"],
+          geometry: feature["WKT"],
           name: feature["localidad"],
           parent_zone: parent
         })

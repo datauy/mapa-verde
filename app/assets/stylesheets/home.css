@@ -1,7 +1,6 @@
 #myNav {
   display: none;
 }
-
 /*  MAPA  */
 .dummmy {
   width: 100%;
@@ -24,8 +23,70 @@
       flex-direction: column;
       justify-content: center;
       background: #F5F5F5;
+      &.active {
+        background: none;
+        border: none;
+        .srv-header {
+          .sub-header {
+            display: block;
+          }
+          .org-logo {
+            display: block;
+          }
+        }
+        .srv-body {
+          display: flex;
+        }
+      }
+      h3 {
+        justify-content: center;
+        display: flex;
+        gap: 10px;
+      }
+      .srv-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        cursor: pointer;
+        gap: 10px;
+        i {
+          margin-left: auto;
+        }
+        .org-logo {
+          display: none;
+        }
+        .sub-header {
+          display: none;
+          margin: 10px 0 0 0;
+        }
+      }
+      .srv-body {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 0;
+        .org-title {
+          i {
+            color: #123BA8;
+            fill: #123BA8;
+          }
+        }
+        .act-tag {
+          span {
+            font-family: Inter;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 14px; 
+            color:#0F57FB;
+          }
+        }
+      }
     }
   }
+}
+.contact i {
+  color: #00AA47;
 }
 .backdrop {
   display: none;
@@ -43,12 +104,6 @@
   position: relative;
   cursor: pointer;
   flex-wrap: wrap;
-}
-.srv-body {
-  display: none;
-}
- .active .srv-body{
-  display: block;
 }
 #map-wrapper {
   position: relative;
@@ -127,8 +182,6 @@
   letter-spacing: 0em;
   text-align: left;
 }
-#clear {
-}
 #results {
   padding: 12px 16px;
   width: max-content;
@@ -187,18 +240,6 @@ input[type="radio"], input[type="checkbox"] {
   h3 {
     margin: 0;
   }
-}
-.srv-header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  cursor: pointer;
-}
-.srv-header i {
-  margin-left: auto;
-}
-.srv-body {
-  padding: 16px;
 }
 #no-results {
   position: fixed;

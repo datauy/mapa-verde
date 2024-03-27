@@ -82,11 +82,11 @@ export default class extends Controller {
   toggleDesc(orgId) {
     var srv = document.getElementById('org-'+orgId);
     if ( !srv.classList.contains('active') ) {
+      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
+      srv.classList.add("active");
       var position = srv.offsetTop - document.getElementById('org-0').offsetTop;
       document.getElementById('list').scrollTo(0, position);
       //document.getElementById('srv-'+id).scrollIntoView({behavior: 'smooth'});
-      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
-      srv.classList.add("active");
     }
     else {
       document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))

@@ -4,33 +4,106 @@
 <%= turbo_stream.update("orgs_list") do %>
 <ul id="list">
   <% @organizations.each_with_index do |element, eid| %>
-    <li 
-      onclick="Mapa.toggleDesc(<%= eid %>)"
-      class="org"
-      id="<%= "org-#{eid}" %>"
-    >
+    <li class="org" id="<%= "org-#{eid}" %>">
       <div class="org-element">  
-        <div class="srv-header"><h3><%= element['name'] %></h3><i class="fas fa-<%= element['icon'].present? ? element['icon'] : 'org' %>"></i></div>
+        <div class="srv-header" onclick="Mapa.toggleDesc(<%= eid %>)" >
+          <% if element[:logo].present? %>
+            <img src="<%= element[:logo] %>" class="org-logo" />
+          <% end %>
+          <div class="row">
+            <h3><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
+            <h4 class="sub-header"><%= "#{element[:organization_type]}" %></h4>
+          </div>
+        </div>
         <div class="srv-body">
-          <div class="subjects icons-wraper">
+          <div class="subjects">
+            <div class="org-title">
+              <i class="fa-solid fa-comments"></i>
+              <span>Temáticas</span>
+            </div>
+            <div class="icons-wraper">
+              <% element[:subjects].each do |subj| %>
+                <%= icon_tag([@subjects[subj]]) %>
+              <% end %>
+            </div>
           </div>
-          <div class="actions icons-wraper">
+          <div class="actions">
+            <div class="org-title">
+              <i class="fa-solid fa-comments"></i>
+              <span>Acciones</span>
+            </div>
+            <div class="icons-wraper">
+              <% element[:actions].each do |act| %>
+                <%= icon_tag([@actions[act]]) %>
+              <% end %>
+            </div>
           </div>
-          <div class="contact icons-wraper">
+          <div class="contact">
+            <div class="org-title">
+              <i class="fa-solid fa-comments"></i>
+              <span>Contacto</span>
+            </div>
+            <div class="icons-wraper">
+              <% if element['website'] != '' %>
+                <div class="row icon-tag"><i class="fas fa-link"></i><span><%= element['website']%></span></div>
+              <% end %>
+              <% if element['phone'] != '' %>
+                <div class="row icon-tag"><i class="fas fa-envelope"></i><span><%= element['email']%></span></div>
+              <% end %>
+              <% if element['whatsapp'] != '' %>
+                <div class="row icon-tag"><i class="fa-brands fa-whatsapp"></i><span><%= element['whatsapp']%></span></div>
+              <% end %>
+              <% if element['email'] != '' %>
+                <div class="row icon-tag"><i class="fas fa-envelope"></i><span><%= element['email']%></span></div>
+              <% end %>
+              <% if element['instagram'] != '' %>
+                <div class="row icon-tag"><i class="fa-brands fa-instagram"></i><span><%= element['instagram']%></span></div>
+                <% end %>
+              <% if element['twitter'] != '' %>
+                <div class="row icon-tag"><i class="fa-brands fa-x-twitter"></i><span><%= element['twitter']%></span></div>
+              <% end %>
+              <% if element['facebook'] != '' %>
+                <div class="row icon-tag"><i class="fa-brands fa-facebook"></i><span><%= element['facebook']%></span></div>
+                <% end %>
+              <% if element['snapchat'] != '' %>
+                <div class="row icon-tag"><i class="fa-brands fa-snapchat"></i><span><%= element['snapchat']%></span></div>
+              <% end %>
+              <% if element['other_network'] != '' %>
+                <div class="row icon-tag"><i class="fa-solid fa-share-nodes"></i><span><%= element['other_network']%></span></div>
+              <% end %>
+            </div>
           </div>
           <div class="information">
-          <div class="row"><p><%= element['description'].html_safe %></p></div>
+            <div class="org-title">
+              <i class="fa-solid fa-circle-info"></i>
+              <span>Información</span>
+            </div>
+            <div class="icons-wraper">
+              <div class="row icon-tag"><i class="fas fa-location-dot icon-tag"></i><span><%= "#{element['address']}"%></span></div>
+              <% element[:zones].each do |z| %>
+                <div class="row icon-tag"><i class="fas fa-map-location-dot icon-tag"></i><span><%= "#{@zones[z].name}"%></span></div>
+              <% end %>
+              <div class="row icon-tag"><i class="fas fa-map icon-tag"></i><span><%= "#{element['region']}"%></span></div>
+            </div>
+            <div class="row"><p><%= element['description'].html_safe %></p></div>
           </div>
           <div class="volunteers">
+            <div class="org-title">
+              <i class="fa-solid fa-comments"></i>
+              <span>Voluntariado y colaboración</span>
+            </div>
+            <div class="icons-wraper">
+              <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
+              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url']) : '' %>
+              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['volunteers_url']) : '' %>
+            </div>
           </div>
           <div class="activities">
+            <div class="row icon-tag"><img src="/images/activities.svg" class="icon"><span>Actividades</span></div>
+            <div class="org-acts icons-wraper">
+              <%= acts_tags(element[:activities]) %>
+            </div>
           </div>
-          <div class="row"><h4><%= "#{element['organization_type']} - #{element['tipo_centro']}" %></h4></div>
-          <div class="row"><i class="fas fa-location-dot"></i><span><%= "#{element['region']}, #{element['address']}"%></span></div>
-          <div class="row"><i class="fas fa-phone"></i><span><%= element['phone']%></span></div>
-          <div class="row"><i class="fas fa-link"></i><span><%= element['website']%></span></div>
-          <div class="row"><i class="fas fa-envelope"></i><span><%= element['email']%></span></div>
-          <div class="row"><i class="fas fa-users"></i><span><%= element['subject_id']%></span></div>
         </div>
       </div>
     </li>

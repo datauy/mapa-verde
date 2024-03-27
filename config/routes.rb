@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "search" => "home#search"
   get "activities-list" => "activities#list"
   get "organizations-list" => "organizations#list"
+  get '/activity/:id', to: 'activities#show', as: 'activity'
+
 end

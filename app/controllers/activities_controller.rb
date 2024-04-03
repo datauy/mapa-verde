@@ -29,7 +29,7 @@ class ActivitiesController < ApplicationController
 
   private
 
-  def contact_params
-    params.require(:activity).permit(:name, :email, :message)
+  def activity_params
+    params.require(:activity).permit(:title, :description, :address, :starts, :ends, :subject_id, :image, state_ids: [], location_ids: [], organization_ids: [], subject_ids: [], operation_ids: [])
   end
 end

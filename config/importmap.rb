@@ -8,3 +8,4 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "jquery" # @3.7.1
 pin "wicket" # @1.3.8
 pin "leaflet" # @1.9.4
+pin "flatpickr" # @4.6.13

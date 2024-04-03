@@ -1,0 +1,6 @@
+<%= turbo_stream.update "message" do %>
+  <%= @message %>
+<% end %>
+<%= turbo_stream.update "activity_form" do %>
+  <%= render partial: "activity_form" %>
+<% end %>

@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
+import SlimSelect from "slim-select"
 // Connects to data-controller="form"
 export default class extends Controller {
   connect() {
@@ -14,6 +15,20 @@ export default class extends Controller {
         enableTime: true,
         dateFormat: 'Y/m/d h:i',
         time_24hr: true
+      })
+      new SlimSelect({
+        select: "#activity_zone_ids",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          allowDeselect: true   // allow deselecting (x) option
+        }
+      })
+      new SlimSelect({
+        select: "#activity_organization_ids",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          allowDeselect: true   // allow deselecting (x) option
+        }
       })
     }
   }

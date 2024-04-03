@@ -2,34 +2,7 @@
 <p>Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.</p>
 <p>Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin vitae facilisis nisi, ac posuere leo.</p>
 <h2>Completá este formulario</h2>
-<%= form_with(model: @activity, url: create_activity_path,  data: {controller: "form"}, id: "new-activity") do |form| %>
-<div class="section">
-  <h3>Organizaciones responsables</h3>
-  <%= form.select :organizations, Organization.all.pluck(:name, :id), include_blank: "Organizaciones" %>
-  <div class="disclaimer">¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", organization_path %>.</div>
-</div>
-<div class="section">
-  <h3>Dónde y cuando</h3>
-  <%= form.text_field :address, placeholder: "Dirección o enlace" %>
-  <%= form.select :state, Zone.where(ztype: 1).pluck(:name, :id), include_blank: "Departamento", data: {controller: 'form', action: 'select->form#location_selected', value: 'locationId'}, class:"state-select" %>
-  <%= form.select :location, [], include_blank: "Localidad" %>
-  <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio" %>
-  <%= form.datetime_field :ends, class: "ends", placeholder: "Fecha de finalización" %>
-</div>
-<div class="section">
-  <h3>Nombre de la actividad</h3>
-  <%= form.text_field :title, placeholder: "Nombre" %>
-  <h3>Descripción general</h3>
-  <%= form.text_area :description, placeholder: "Descripción general de la actividad" %>
-  <%= form.file_field :image %>
-</div>
-<div class="section">
-  <h3>Temáticas y acciones</h3>
-  <%= form.select :subject, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
-  <h3>Otras temáticas</h3>
-  <%= collection_check_boxes :activity, :subject_ids, Subject.all, :id, :name %>
-  <h3>Acciones</h3>
-  <%= collection_check_boxes :activity, :operation_ids, Operation.all, :id, :name %>
-</div>
-  <%= form.submit "Enviar" %>
+<%= turbo_frame_tag "message" %>
+<%= turbo_frame_tag "activity_form" do %>
+  <%= render partial: "activity_form" %>
 <% end %>

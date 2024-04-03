@@ -3,6 +3,9 @@ class Organization < ApplicationRecord
 
   belongs_to :subject
 
+  belongs_to :state, class_name: "Zone"
+  belongs_to :location, class_name: "Zone"
+
   has_many :subject_relations
   has_many :subjects, through: :subject_relations
 

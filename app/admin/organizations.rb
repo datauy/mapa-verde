@@ -5,7 +5,7 @@ ActiveAdmin.register Organization do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :organization_type_id, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :state, :region, :zone, :volunteers_description, :volunteers_url, :donations, :logo, :enabled, zone_ids: [], subject_ids: [], operation_ids: []
+  permit_params :name, :organization_type_id, :subject_id, :description, :website, :phone, :whatsapp, :email, :instagram, :tiktok, :twitter, :facebook, :snapchat, :other_network, :address, :region, :volunteers_description, :volunteers_url, :donations, :logo, :enabled, :state_id, :location_id, zone_ids: [], subject_ids: [], operation_ids: []
   #
   # or
   #
@@ -45,6 +45,8 @@ ActiveAdmin.register Organization do
       f.input :snapchat
       f.input :other_network
       f.input :address
+      f.input :state, as: :select, collection: Zone.where(ztype: 1).order(:name).map{|s| [s.name, s.id]}
+      f.input :location,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}
       f.input :region
       f.input :zones, as: :check_boxes, nested_set: true, parent: "organization[zone_ids][]", parent_ids: resource.zone_ids, collection: Zone.where(ztype: 1)
       f.input :volunteers_description, as: :ckeditor

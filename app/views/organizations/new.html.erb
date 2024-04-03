@@ -1,12 +1,53 @@
+<h1>Sumate al mapa Verde</h1>
+<p>Jorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in elementum tellus.</p>
+<p>Curabitur tempor quis eros tempus lacinia. Nam bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem. Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna. Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat turpis sed lacinia. Nam eget mi in purus lobortis eleifend. Sed nec ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin vitae facilisis nisi, ac posuere leo.</p>
+<h2>Completá este formulario</h2>
 <%= form_with(model: @organization, url: organization_path,  data: {turbo: false}) do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-
-  <%= form.label :email %>
-  <%= form.email_field :email %>
-
-  <%= form.label :description %>
-  <%= form.text_area :description %>
+<div class="section">
+  <h3>Nombre y tipo de organización</h3>
+  <%= form.text_field :name, placeholder: "Nombre de la organización" %>
+  <%= form.select :organization_type, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización" %>
+  <%= form.select :subject, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
+  <%= form.file_field :logo %>
+</div>
+<div class="section">
+  <h3>Otras temáticas</h3>
+  <%= collection_check_boxes :organization, :subject_ids, Subject.all, :id, :name %>
+</div>
+<div class="section">
+  <h3>Acciones</h3>
+  <%= collection_check_boxes :organization, :operation_ids, Operation.all, :id, :name %>
+</div>
+<div class="section">
+  <h3>Contacto</h3>
+  <%= form.text_field :website, placeholder: "Sitio web" %>
+  <%= form.text_field :phone, placeholder: "Teléfono" %>
+  <%= form.text_field :whatsapp, placeholder: "Whatsapp" %>
+  <%= form.email_field :email, placeholder: "Email" %>
+  <%= form.text_field :instagram, placeholder: "instagram" %>
+  <%= form.text_field :name, placeholder: "Tiktok" %>
+  <%= form.text_field :name, placeholder: "Twitter" %>
+  <%= form.text_field :name, placeholder: "Facebook" %>
+  <%= form.text_field :other_network, placeholder: "Otras" %>
+</div>
+<div class="section">
+  <h3>Información general</h3>
+  <%= form.text_field :address, placeholder: "Dirección" %>
+  <%= form.select :region, Organization.regions, include_blank: "Región" %>
+  <%= form.select :state, Zone.where(ztype: 1).pluck(:name, :id), include_blank: "Departamento" %>
+  <%= form.select :location, [], include_blank: "Localidad" %>
+  <%= form.text_area :description,  placeholder: "Descripción general de la organización" %>
+</div>
+<div class="section">
+  <h3>Zonas de trabajo de la organización</h3>
+  <%= form.select :state, Zone.all.pluck(:name, :id), include_blank: "Escribir o buscar en el listado" %>
+</div>
+<div class="section">
+  <h3>Oportunidades de voluntariado</h3>
+  <%= form.text_area :volunteers_description, placeholder: "Información sobre voluntariado en la organización y forma de contacto." %>
+  <%= form.text_field :volunteers_url, placeholder: "Enlace para más información y sumarse a voluntariado" %>
+  <%= form.text_field :donations, placeholder: "Enlace para donaciones" %>
+</div>
 
   <%= form.submit "Enviar" %>
 <% end %>

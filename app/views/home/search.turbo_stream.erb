@@ -7,9 +7,13 @@
     <li class="org" id="<%= "org-#{eid}" %>">
       <div class="org-element">  
         <div class="srv-header" onclick="Mapa.toggleDesc(<%= eid %>)" >
-          <% if element[:logo].present? %>
-            <img src="<%= element[:logo] %>" class="org-logo" />
-          <% end %>
+          <div class="logo-wraper">
+            <% if element[:logo].present? %>
+              <img src="<%= element[:logo] %>" class="org-logo" />
+            <% else %>
+              <img src="/images/default_logo.svg" class="org-logo" />
+            <% end %>
+          </div>
           <div class="row">
             <h3><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
             <h4 class="sub-header"><%= "#{element[:organization_type]}" %></h4>

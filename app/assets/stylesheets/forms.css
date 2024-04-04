@@ -55,6 +55,12 @@
       width: 100%;
     }
   }
+  &.where-when {
+    .ss-main {
+      width: calc(50% - 40px);
+    }
+  }
+  #activity_image,
   #organization_logo {
     opacity: 0;
     position: absolute;
@@ -65,5 +71,10 @@
     .ss-single {
       color: black;
     }
+  }
+  .ss-main .ss-values .ss-value {
+    border-bottom: 1px solid #DEDEDE;
+    background: #00AA47;
+    padding: 8px 12px;
   }
 }

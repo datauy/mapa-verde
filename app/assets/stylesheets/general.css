@@ -74,6 +74,7 @@ h5 {
   border-radius: 4px;
   color: #FFF;
   border: none;
+  font-size: 16px;
 }
 .org-title {
   color: #1F1F1F;
@@ -85,6 +86,13 @@ h5 {
   border-bottom: 1px solid #00786C;
   margin-bottom: 7px;
   padding: 5px;
+}
+.logo-wraper {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  border-radius: 50%;
+  overflow: hidden;
 }
 img {
   max-width: 100%;
@@ -152,4 +160,15 @@ img {
 }
 .right {
   justify-content: right;
+}
+.disclaimer {
+  display: flex;
+  padding: 10px;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 8px;
+  background: #F5F5F5;
+  color: #878787;
+  align-items: center;
+  font-size: 14px;
 }

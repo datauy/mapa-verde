@@ -30,8 +30,8 @@
           .sub-header {
             display: block;
           }
-          .org-logo {
-            display: block;
+          .logo-wraper {
+            display: flex;
           }
         }
         .srv-body {
@@ -52,7 +52,7 @@
         i {
           margin-left: auto;
         }
-        .org-logo {
+        .logo-wraper {
           display: none;
         }
         .sub-header {
@@ -291,16 +291,15 @@ input[type="radio"], input[type="checkbox"] {
   justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
-  row-gap: 10px;
-  align-self: stretch;
+  gap: 20px;
   flex-wrap: wrap; 
   .activity-item {
     padding: 24px;
     display: flex;
     flex-direction: column;
-    margin: 10px 30px;
     border: 1px solid #DEDEDE;
-    min-height: 360px;
+    min-height: 280px;
+    width: 25%;
     h3 {
       font-family: "Work Sans";
       font-size: 20px;

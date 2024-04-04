@@ -1,30 +1,39 @@
 <%= form_with(model: @activity, url: create_activity_path,  data: {controller: "form"}, id: "new-activity") do |form| %>
 <div class="section">
   <h3>Organizaciones responsables</h3>
-  <%= form.select :organization_ids, Organization.all.pluck(:name, :id), multiple: true, include_blank: "Organizaciones" %>
-  <div class="disclaimer">¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", organization_path %>.</div>
+  <%= form.select :organization_ids, Organization.all.pluck(:name, :id), multiple: true %>
+  <div class="disclaimer"><i class="fa fa-circle-info"></i>¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", new_organization_path %>.</div>
 </div>
-<div class="section">
+<div class="section where-when">
   <h3>Dónde y cuando</h3>
-  <%= form.text_field :address, placeholder: "Dirección o enlace" %>
-  <%= form.select :zone_ids, Zone.all.map {|z| ["#{z.name} - #{z.ztype}", z.id]}, id: "zones", multiple: true, include_blank: "Departamento" %>
-  <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio" %>
-  <%= form.datetime_field :ends, class: "ends", placeholder: "Fecha de finalización" %>
+  <div class="row">
+    <%= form.text_field :address, placeholder: "Dirección o enlace" %>
+    <%= form.select :zone_ids, Zone.all.map {|z| ["#{z.name} - #{z.ztype}", z.id]}, id: "zones", multiple: true, class: "half" %>
+  </div>
+  <div class="row">
+    <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio" %>
+    <%= form.datetime_field :ends, class: "ends", placeholder: "Fecha de finalización" %>
+  </div>
 </div>
 <div class="section">
   <h3>Nombre de la actividad</h3>
   <%= form.text_field :title, placeholder: "Nombre" %>
   <h3>Descripción general</h3>
   <%= form.text_area :description, placeholder: "Descripción general de la actividad" %>
+  <label class="input-file-label" for="activity_image"><i class="fas fa-image"></i><span>Subir imagen</span></label>
   <%= form.file_field :image %>
 </div>
 <div class="section">
   <h3>Temáticas y acciones</h3>
   <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
   <h3>Otras temáticas</h3>
-  <%= collection_check_boxes :activity, :subject_ids, Subject.all, :id, :name %>
+  <div class="row">
+    <%= collection_check_boxes :activity, :subject_ids, Subject.all, :id, :name %>
+  </div>
   <h3>Acciones</h3>
-  <%= collection_check_boxes :activity, :operation_ids, Operation.all, :id, :name %>
+  <div class="row">
+    <%= collection_check_boxes :activity, :operation_ids, Operation.all, :id, :name %>
+  </div>
 </div>
-  <%= form.submit "Enviar" %>
+  <%= form.submit "Enviar", class: "input-file-label" %>
 <% end %>

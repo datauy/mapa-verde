@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   get 'actividad/:id' => 'activities#show', as: 'activity'
   get 'contacto' => 'static_pages#contact', as: 'contact'
   get 'sobre-el-proyecto' => 'static_pages#about', as: 'about'
-  get 'nueva-organizacion' => 'organizations#new', as: 'organization'
+  get 'nueva-organizacion' => 'organizations#new', as: 'new_organization'
+  post 'crear-organizacion' => 'organizations#create', as: 'create_organization'
   get 'nueva-actividad' => 'activities#new', as: 'new_activity'
   post 'crear-actividad' => 'activities#create', as: 'create_activity'
   get 'calendario' => 'activities#calendar', as: 'calendar'
   get 'involucrarme' => 'static_pages#get_involved', as: 'involved'
+  get 'state_locations' => 'organizations#state_locations'
 end

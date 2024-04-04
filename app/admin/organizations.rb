@@ -45,10 +45,10 @@ ActiveAdmin.register Organization do
       f.input :snapchat
       f.input :other_network
       f.input :address
-      f.input :state, as: :select, collection: Zone.where(ztype: 1).order(:name).map{|s| [s.name, s.id]}
-      f.input :location,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}
+      f.input :state_id, as: :select, collection: Zone.where(ztype: 1).order(:name).map{|s| [s.name, s.id]}
+      f.input :location_id,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}
       f.input :region
-      f.input :zones, as: :check_boxes, nested_set: true, parent: "organization[zone_ids][]", parent_ids: resource.zone_ids, collection: Zone.where(ztype: 1)
+      f.input :zone_ids, as: :searchable_select, input_html: { multiple: true }, collection: Zone.all
       f.input :volunteers_description, as: :ckeditor
       f.input :volunteers_url
       f.input :donations

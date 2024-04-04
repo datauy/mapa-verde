@@ -7,6 +7,9 @@ body {
   line-height: normal; 
   margin: 0;
   scroll-behavior: smooth;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 }
 h1 {
   font-family: "Work Sans";
@@ -37,6 +40,40 @@ h4 {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #686868;
+}
+h5 {
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  margin: 10px 0;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  &.column {
+    flex-direction: column;
+    align-items: inherit;
+  }
+}
+.half {
+  width: 50% !important;
+}
+.input-file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #0F57FB;
+  width: max-content;
+  border-radius: 4px;
+  color: #FFF;
+  border: none;
 }
 .org-title {
   color: #1F1F1F;

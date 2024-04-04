@@ -4,52 +4,78 @@
 <h2>Completá este formulario</h2>
 <%= form_with(model: @organization, url: create_organization_path, data: {turbo: false, controller: 'form'}, id: "organization-form") do |form| %>
 <div class="section">
-  <h3>Nombre y tipo de organización</h3>
-  <%= form.text_field :name, placeholder: "Nombre de la organización" %>
-  <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización" %>
-  <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
-  <%= form.file_field :logo %>
+  <h5>Nombre y tipo de organización</h5>
+  <div class="row">
+    <%= form.text_field :name, placeholder: "Nombre de la organización", class: 'half' %>
+    <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización", class: 'half' %>
+  </div>
+  <div class="row column">
+    <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
+    <label class="input-file-label" for="organization_logo"><i class="fas fa-image"></i><span>Subir logo</span></label>
+    <%= form.file_field :logo %>
+  </div>
 </div>
 <div class="section">
-  <h3>Otras temáticas</h3>
-  <%= collection_check_boxes :organization, :subject_ids, Subject.all, :id, :name %>
+  <h5>Otras temáticas</h5>
+  <div class="row">
+    <%= collection_check_boxes :organization, :subject_ids, Subject.all, :id, :name %>
+  </div>
 </div>
 <div class="section">
-  <h3>Acciones</h3>
-  <%= collection_check_boxes :organization, :operation_ids, Operation.all, :id, :name %>
+  <h5>Acciones</h5>
+  <div class="row">
+    <%= collection_check_boxes :organization, :operation_ids, Operation.all, :id, :name %>
+  </div>
 </div>
 <div class="section">
-  <h3>Contacto</h3>
-  <%= form.text_field :website, placeholder: "Sitio web" %>
-  <%= form.text_field :phone, placeholder: "Teléfono" %>
-  <%= form.text_field :whatsapp, placeholder: "Whatsapp" %>
-  <%= form.email_field :email, placeholder: "Email" %>
-  <%= form.text_field :instagram, placeholder: "instagram" %>
-  <%= form.text_field :tiktok, placeholder: "Tiktok" %>
-  <%= form.text_field :twitter, placeholder: "Twitter" %>
-  <%= form.text_field :facebook, placeholder: "Facebook" %>
-  <%= form.text_field :other_network, placeholder: "Otras" %>
+  <h5>Contacto</h5>
+  <div class="row">
+    <%= form.text_field :website, placeholder: "Sitio web", class: 'half' %>
+    <%= form.text_field :phone, placeholder: "Teléfono", class: 'half' %>
+  </div>
+  <div class="row">
+    <%= form.text_field :whatsapp, placeholder: "Whatsapp", class: 'half' %>
+    <%= form.email_field :email, placeholder: "Email", class: 'half' %>
+  </div>
+  <div class="row">
+    <%= form.text_field :instagram, placeholder: "instagram", class: 'half' %>
+    <%= form.text_field :tiktok, placeholder: "Tiktok", class: 'half' %>
+  </div>
+  <div class="row">
+    <%= form.text_field :twitter, placeholder: "Twitter", class: 'half' %>
+    <%= form.text_field :snapchat, placeholder: "Sanpchat", class: 'half' %>
+  </div>
+  <div class="row">
+    <%= form.text_field :facebook, placeholder: "Facebook", class: 'half' %>
+    <%= form.text_field :other_network, placeholder: "Otras", class: 'half' %>
+  </div>
+</div>
+<div class="section general-info">
+  <h5>Información general</h5>
+  <div class="row">
+    <%= form.text_field :address, placeholder: "Dirección" %>
+    <%= form.select :region, Organization.regions, include_blank: "Región" %>
+    <%= select_tag :state_id, options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), data: { action: 'change->form#select_state', target: 'form.stateId' } %>
+    <%= turbo_frame_tag "locations" do %>
+      <%= form.select :location_id, [], include_blank: "Localidad" %>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= form.text_area :description,  placeholder: "Descripción general de la organización" %>
+  </div>
 </div>
 <div class="section">
-  <h3>Información general</h3>
-  <%= form.text_field :address, placeholder: "Dirección" %>
-  <%= form.select :region, Organization.regions, include_blank: "Región" %>
-  <%= select_tag :state_id, options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), data: { action: 'change->form#select_state', target: 'form.stateId' } %>
-  <%= turbo_frame_tag "locations" do %>
-    <%= form.select :location_id, [], include_blank: "Localidad" %>
-  <% end %>
-  <%= form.text_area :description,  placeholder: "Descripción general de la organización" %>
+  <h5>Zonas de trabajo de la organización</h5>
+  <%= form.select :zone_ids, zone_search_options(Zone.all), id: "zones", multiple: true %>
 </div>
-<div class="section">
-  <h3>Zonas de trabajo de la organización</h3>
-  <%= form.select :zone_ids, zone_search_options(Zone.all), id: "zones", multiple: true, include_blank: "Departamento" %>
-</div>
-<div class="section">
-  <h3>Oportunidades de voluntariado</h3>
-  <%= form.text_area :volunteers_description, placeholder: "Información sobre voluntariado en la organización y forma de contacto." %>
-  <%= form.text_field :volunteers_url, placeholder: "Enlace para más información y sumarse a voluntariado" %>
-  <%= form.text_field :donations, placeholder: "Enlace para donaciones" %>
+<div class="section volunteers">
+  <h5>Oportunidades de voluntariado</h5>
+  <div class="row column">
+    <%= form.text_area :volunteers_description, placeholder: "Información sobre voluntariado en la organización y forma de contacto." %>
+    <%= form.text_field :volunteers_url, placeholder: "Enlace para más información y sumarse a voluntariado" %>
+    <%= form.text_field :donations, placeholder: "Enlace para donaciones" %>
+  </div>
 </div>
 
-  <%= form.submit "Enviar" %>
+  <%= form.submit "Enviar", class: "input-file-label" %>
 <% end %>

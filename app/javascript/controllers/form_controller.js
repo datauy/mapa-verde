@@ -40,7 +40,13 @@ export default class extends Controller {
           allowDeselect: true   // allow deselecting (x) option
         }
       })
-      
+      new SlimSelect({
+        select: "#organization_subject_id",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          allowDeselect: true   // allow deselecting (x) option
+        }
+      })
     }
   }
   select_state(e) {

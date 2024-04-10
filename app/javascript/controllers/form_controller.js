@@ -85,7 +85,7 @@ export default class extends Controller {
   select_image() {
     let image_holder = 'organization_logo'
     if ( this.element.id == 'new-activity') {
-      image_holder = 'organization_logo'
+      image_holder = 'activity_image'
     }
     document.getElementById('image-name').innerHTML = document.getElementById(image_holder).value.split('\\').pop()
   }

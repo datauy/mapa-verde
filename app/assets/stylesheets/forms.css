@@ -78,3 +78,17 @@
     padding: 8px 12px;
   }
 }
+
+#new-activity {
+  .section {
+    select {
+      width: inherit;
+    }
+  }
+  #state_id {
+    width: inherit;
+  }
+  .ss-main {
+    width: 100%;
+  }
+}

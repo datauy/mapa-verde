@@ -8,7 +8,10 @@
   <h3>Dónde y cuando</h3>
   <div class="row">
     <%= form.text_field :address, placeholder: "Dirección o enlace" %>
-    <%= form.select :zone_ids, Zone.all.map {|z| ["#{z.name} - #{z.ztype}", z.id]}, id: "zones", multiple: true, class: "half" %>
+    <%= select_tag :'activity[state_id]', options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), data: { action: 'change->form#select_state', target: 'form.stateId' }, include_blank: "Departamento" %>
+    <%= turbo_frame_tag "locations" do %>
+      <%= form.select :location_id, [], include_blank: "Localidad" %>
+    <% end %>
   </div>
   <div class="row">
     <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio" %>

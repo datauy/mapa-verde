@@ -5,7 +5,7 @@ ActiveAdmin.register Activity do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :image, :address, :starts, :ends, zone_ids: [], subject_ids: [], operation_ids: [], organization_ids: []
+  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, subject_ids: [], operation_ids: [], organization_ids: []
   #
   # or
   #
@@ -14,7 +14,7 @@ ActiveAdmin.register Activity do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+
   form :html => { :multipart => true } do |f|
     f.inputs do
       f.input :title
@@ -23,7 +23,7 @@ ActiveAdmin.register Activity do
       if f.object.image.attached?
         li do
           div do
-            Rails.logger.debug "\n\nACTIVITY IMAGE ATTACHED: \n #{image_tag f.object.image} \n" 
+            Rails.logger.debug "\n\nACTIVITY IMAGE ATTACHED: \n #{image_tag f.object.image} \n"
             image_tag f.object.image
             #a "Borrar", href: delete_image_admin_activity_path, method: :delete, "data-confirm": "Confirme que desea eliminarla"
           end
@@ -34,7 +34,8 @@ ActiveAdmin.register Activity do
       end
       f.input :organizations, as: :searchable_select
       f.input :address
-      f.input :zones, as: :check_boxes, nested_set: true, parent: "zone[zone_ids][]", parent_ids: resource.zone_ids, collection: Zone.where(ztype: 1)
+      f.input :state_id, as: :select, collection: Zone.where(ztype: 1).order(:name).map{|s| [s.name, s.id]}
+      f.input :location_id,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}
       f.input :starts, as: :date_time_picker
       f.input :ends, as: :date_time_picker
       f.input :subjects, as: :searchable_select, input_html: { multiple: true }, label: "Otras actividades"

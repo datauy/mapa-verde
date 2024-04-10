@@ -18,8 +18,8 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
   def create
+    logger.info "CREATE: #{activity_params.inspect}"
     @activity = Activity.new(activity_params)
-    logger.info activity_params.inspect
     if @activity.save
       @activity = Activity.new
       @message = "Se ha creado la actividad, estamos revisando los detalles para su publicación, gracias. Cualquier inconveniente no dude en contactarse al correo..."
@@ -38,10 +38,11 @@ class ActivitiesController < ApplicationController
   private
 
   def activity_params
-    params["activity"]["zone_ids"].reject!{|a| a==""}
+
+    params["activity"]["location_id"] = params["location_id"] if params["location_id"].present?
     params["activity"]["organization_ids"].reject!{|a| a==""}
     params["activity"]["subject_ids"].reject!{|a| a==""}
     params["activity"]["operation_ids"].reject!{|a| a==""}
-    params.require(:activity).permit(:title, :description, :address, :starts, :ends, :subject_id, :image, state_ids: [], location_ids: [], zone_ids: [], organization_ids: [], subject_ids: [], operation_ids: [])
+    params.require(:activity).permit(:title, :description, :address, :starts, :ends, :subject_id, :image, :state_id, :location_id, organization_ids: [], subject_ids: [], operation_ids: [])
   end
 end

@@ -3,7 +3,7 @@ import flatpickr from "flatpickr"
 import SlimSelect from "slim-select"
 // Connects to data-controller="form"
 export default class extends Controller {
-  static targets = ["stateId"]
+  static targets = ["stateId", "image"]
   connect() {
     console.log("ELEM", this.element);
     if ( this.element.id == 'new-activity') {
@@ -81,9 +81,18 @@ export default class extends Controller {
       })
     })
   }
+  //
+  select_image() {
+    let image_holder = 'organization_logo'
+    if ( this.element.id == 'new-activity') {
+      image_holder = 'organization_logo'
+    }
+    document.getElementById('image-name').innerHTML = document.getElementById(image_holder).value.split('\\').pop()
+  }
+  //
   delay(milliseconds){
     return new Promise(resolve => {
-        setTimeout(resolve, milliseconds);
+        setTimeout(resolve, milliseconds)
     })
   }
 }

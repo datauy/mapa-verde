@@ -12,7 +12,7 @@
   <div class="row column">
     <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
     <label class="input-file-label" for="organization_logo"><i class="fas fa-image"></i><span>Subir logo</span></label>
-    <%= form.file_field :logo %>
+    <%= form.file_field :logo, data: { action: 'change->form#select_image', target: 'form.file' } %> <span id="image-name"></span>
   </div>
 </div>
 <div class="section">

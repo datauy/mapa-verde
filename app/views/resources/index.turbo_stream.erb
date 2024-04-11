@@ -1,0 +1,18 @@
+<!-- remove placeholders -->
+<%= turbo_stream.remove("articles_placeholder") %>
+<!-- append @articles to the #article_list turbo_frame -->
+  <div id="resources-list">
+  <%= turbo_stream.update("list") do %>
+      <%= render @resources %>
+  <% end %>
+  </div>
+<!-- update the pagination turbo_frame with the current pagination offset -->
+<%= turbo_stream.update "pagination" do %>
+  <% if @pagy.prev %>
+    <%= link_to "Prev", resources_url(page_acts: @pagy.prev), data: { turbo_stream: true }, class: "bg-white rounded px-6 py-3 border border-black shadow" %>
+  <% end %>
+  <% if @pagy.next %>
+    <%= link_to "Next", resources_url(page_acts: @pagy.next), data: { turbo_stream: true }, class: "bg-white rounded px-6 py-3 border border-black shadow" %>
+  <% end %> 
+  <p class="text-center mt-8 text-gray-500"><%== pagy_info @pagy %></p>
+<% end %> 

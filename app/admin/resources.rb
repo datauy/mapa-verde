@@ -5,7 +5,7 @@ ActiveAdmin.register Resource do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :link
+  permit_params :title, :description, :link, :summary
   #
   # or
   #
@@ -17,7 +17,9 @@ ActiveAdmin.register Resource do
   form do |f|
     f.inputs do
       f.input :title
+      f.input :summary, as: :ckeditor
       f.input :description, as: :ckeditor
+      f.input :subjects
       f.input :link
     end
     f.actions

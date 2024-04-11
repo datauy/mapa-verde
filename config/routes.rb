@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -22,4 +23,6 @@ Rails.application.routes.draw do
   get 'calendario' => 'activities#calendar', as: 'calendar'
   get 'involucrarme' => 'static_pages#get_involved', as: 'involved'
   get 'state_locations' => 'organizations#state_locations'
+  get 'recursos' => 'resources#index', as: 'resources'
+  get 'recurso/:id' => 'resources#show', as: 'resource'
 end

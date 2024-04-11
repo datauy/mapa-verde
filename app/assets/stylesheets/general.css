@@ -172,3 +172,18 @@ img {
   align-items: center;
   font-size: 14px;
 }
+
+.active .icon-tag span::after {
+  content: '\2713';
+  display: inline-block;
+  color: green;
+  padding: 0 0 0 6px;
+}
+.resources_subjects {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  gap: 20px;
+}

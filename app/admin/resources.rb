@@ -5,7 +5,7 @@ ActiveAdmin.register Resource do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :link, :summary
+  permit_params :title, :description, :link, :summary, subject_ids:[]
   #
   # or
   #

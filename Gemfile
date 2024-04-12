@@ -46,6 +46,8 @@ gem 'pg'
 gem 'devise'
 gem 'activeadmin'
 gem 'ckeditor', git: 'https://github.com/galetahub/ckeditor.git'
+gem "mini_magick"
+gem "image_processing"
 gem 'activeadmin-searchable_select'
 gem 'active_admin_datetimepicker'
 gem 'pagy'

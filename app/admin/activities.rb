@@ -5,7 +5,7 @@ ActiveAdmin.register Activity do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, subject_ids: [], operation_ids: [], organization_ids: []
+  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, :enabled, subject_ids: [], operation_ids: [], organization_ids: []
   #
   # or
   #
@@ -40,6 +40,7 @@ ActiveAdmin.register Activity do
       f.input :ends, as: :date_time_picker
       f.input :subjects, as: :searchable_select, input_html: { multiple: true }, label: "Otras actividades"
       f.input :operations, as: :searchable_select, input_html: { multiple: true }, label: "Acciones"
+      f.input :enabled
     end
     f.actions
   end

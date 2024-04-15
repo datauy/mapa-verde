@@ -285,14 +285,16 @@ input[type="radio"], input[type="checkbox"] {
 #acts_pagination p {
   text-align: center;
 }
- 
+
+#list,
 #acts_list {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
   gap: 20px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
+
   .activity-item {
     padding: 24px;
     display: flex;
@@ -309,6 +311,9 @@ input[type="radio"], input[type="checkbox"] {
     img {
       width: 300px;
       height: auto;
+    }
+    a {
+      text-decoration: none;
     }
   }
 }

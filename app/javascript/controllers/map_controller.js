@@ -54,7 +54,6 @@ export default class extends Controller {
     }
     orgs.forEach(org => {
       var zonesData = [];
-      console.log("ORG ZONEs:", org.zones);
       org.zones.forEach(zone_id => {
         if ( zones[zone_id].geometry !== null ) {
           wkt.read(zones[zone_id].geometry);
@@ -71,7 +70,6 @@ export default class extends Controller {
       if ( initial ) {
         L.geoJSON(zonesData).addTo(window.allLayers);
       }
-      document.getElementById("results").innerHTML = "Mostrando "+data.length+"/"+this.total+" organizaciones";
     });
     var bounds = window.currentLayer.getBounds();
     if ( Object.keys(bounds).length ) {

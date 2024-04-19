@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     #self.search
   end
   def search
+    @total = Organization.all.count
     @organizations = []
     zone_ids = []
     subjs_ids = []
@@ -16,19 +17,18 @@ class HomeController < ApplicationController
     @zones = {}
     @subjects = {}
     @actions = {}
-    orgs = Organization.
-    includes(:zones).includes(:subjects).includes(:operations).includes(:organization_type)
+    orgs = Organization.includes(:organization_type)
     if params['otypes'].present?
       orgs = orgs.where(organization_type: params['otypes'].split(','))
     end
     if params['subjects'].present?
-      orgs = orgs.where(subject: params['subjects'].split(','))
+      orgs = orgs.joins(:subjects).where(subjects: params['subjects'].split(','))
     end
     if params['actions'].present?
-      orgs = orgs.where(operations: params['actions'].split(','))
+      orgs = orgs.joins(:operations).where(operations: params['actions'].split(','))
     end
     if params['zones'].present?
-      orgs = orgs.where(zones: params['zones'].split(','))
+      orgs = orgs.joins(:zones).where(zones: params['zones'].split(','))
     end
     orgs.each do |o|
       org = o.as_json
@@ -39,7 +39,6 @@ class HomeController < ApplicationController
       org.merge!(logo: o.logo.attached? ? url_for(o.logo) : '/images/logo_mapa_verde.svg')
       org.merge!(activities: o.activities.order(starts: :desc))
       zone_ids = zone_ids | o.zones.ids
-      subjs_ids = subjs_ids | o.subjects.ids
       actions_ids = actions_ids | o.operations.ids
       #logger.debug org.inspect
       @organizations.push org
@@ -47,12 +46,13 @@ class HomeController < ApplicationController
     Zone.find(zone_ids).each do |z|
       @zones[z.id] = z
     end
-    Subject.find(subjs_ids).each do |z|
+    Subject.all.each do |z|
       @subjects[z.id] = {
         name: z.name,
         icon: z.icon.attached? ? z.icon.url : '/images/icon_default.svg'
       }
     end
+    logger.info("\n SUBJECTSS: \n#{subjs_ids}\n\n")
     Operation.find(actions_ids).each do |z|
       @actions[z.id] = {
         name: z.name,

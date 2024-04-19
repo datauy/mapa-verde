@@ -173,7 +173,7 @@ img {
   font-size: 14px;
 }
 
-.active .icon-tag span::after {
+#resources .active .icon-tag span::after {
   content: '\2713';
   display: inline-block;
   color: green;
@@ -186,4 +186,21 @@ img {
   list-style: none;
   padding: 0;
   gap: 20px;
+  li {
+    cursor: pointer;
+  }
+}
+#calendar {
+  height: 600px;
+}
+i.right {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 6px);
+}
+
+@media screen and (max-width: 600px) {
+  #main-content {
+    padding: 5px;
+  }
 }

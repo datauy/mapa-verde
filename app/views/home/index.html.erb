@@ -20,14 +20,14 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       <input type="text" id="search-res" name="search-res" placeholder="Buscar..."></input>
     </div>
-    <div id="map" style="height: 500px;"></div>
+    <div id="orgs-list">
+      <%= turbo_frame_tag "orgs_list", src: search_url(format: :turbo_stream)%>
+    </div>
     <div id="no-results" style="display:none;">
       <span>No hay resultados para los filtros seleccionados</span>
       <i onclick="jQuery('#no-results').hide();" class="fa fa-close"></i>
     </div>
-  </div>
-  <div id="orgs-list">
-    <%= turbo_frame_tag "orgs_list", src: search_url(format: :turbo_stream)%>
+    <div id="map" style="height: 500px;"></div>
   </div>
 </div>
 <div>

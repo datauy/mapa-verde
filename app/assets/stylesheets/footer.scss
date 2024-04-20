@@ -5,7 +5,7 @@ footer {
   box-sizing: border-box;
   width: 100%;
   gap: 20px;
-  background: #2D3473;
+  background: #00786C;
   margin-top: 20px;
   h2 {
     font-family: 'Inter';
@@ -63,6 +63,10 @@ footer {
       max-width: 960px;
       margin: auto;
   }
+  .inline {
+    display: flex;
+    gap: 12px;
+  }
   #text-module {
     display: flex;
     flex-direction: column;
@@ -90,16 +94,17 @@ footer {
     flex-direction: column;
     padding: 0px 0px 8px;
     gap: 10px;
+    width: 100%;
   }
 
-  #open-title {
+  .toggle-data {
     display: flex;
     flex-direction: row;
     justify-content: space-between;display: flex;
     width: 100%;
-    flex: 1 1 0;
     align-items: center;
     padding: 0px;
+    cursor: pointer;
   }
 
   .module {
@@ -121,6 +126,12 @@ footer {
     align-items: start;
     padding: 0px;
     gap: 20px;
+  }
+  .toggle-content {
+    display: none;
+  }
+  .active .toggle-content {
+    display: block;
   }
   .active .logos-frame,
   .active .logos-frame .toggle-content {

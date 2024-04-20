@@ -3,7 +3,7 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'mapa-verde.stage.data.org.uy', port: 443 }
-  
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
@@ -95,4 +95,15 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings
+  config.action_mailer.smtp_settings = {
+    :address              => "mail.data.org.uy",
+    :port                 =>  587,
+    :user_name            => Rails.application.credentials.mail[:user],
+    :password             => Rails.application.credentials.mail[:password],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
 end

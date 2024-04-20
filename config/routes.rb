@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  default_url_options :host => "mapa-verde.stage.data.org.uy"
   mount Ckeditor::Engine => '/ckeditor'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

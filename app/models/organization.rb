@@ -28,4 +28,7 @@ class Organization < ApplicationRecord
 		'Región Metropolitana',
 		'Región Noreste'
   ]
+  after_create do
+    SysMailer.with(organization: self).new_organization.deliver
+  end
 end

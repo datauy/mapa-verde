@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: 'no-responder@data.org.uy', host: 'mapa-verde.stage.data.org.uy'
   layout "mailer"
 end

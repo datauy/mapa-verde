@@ -15,4 +15,8 @@ class Activity < ApplicationRecord
 
     has_one :state, class_name: "Zone"
     has_one :location, class_name: "Zone"
+
+    after_create do
+        SysMailer.with(activity: self).new_activity.deliver
+    end
 end

@@ -10,3 +10,6 @@ pin "wicket" # @1.3.8
 pin "leaflet" # @1.9.4
 pin "flatpickr" # @4.6.13
 pin "slim-select" # @2.8.2
+pin "@toast-ui/calendar", to: "@toast-ui--calendar.js" # @2.1.3
+pin "tui-date-picker" # @4.3.3
+pin "tui-time-picker" # @2.1.6

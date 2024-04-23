@@ -27,12 +27,26 @@
     </div>
     <div class="module">
         <div class="group column">
-            <h2>Sobre el proyecto </h2>
+            <h2>Sobre el proyecto</h2>
             <div id="info-group">
                 <p>
-                El asistente <b>Mapa Verde</b> fue creado para asistir a los usuarios y usuarias de redes sociales a defender su derecho a expresarse en línea cuando entienden que ha habido una decisión de moderación injusta o ilegítima.
+                la plataforma de información y comunicación sobre la acción ambiental en Uruguay <b>“Mapa Verde”</b> es el resultado de un proceso de trabajo colaborativo de investigación y desarrollo, acompañado por instancias de formación en comunicación ambiental y espacios de vinculación entre jóvenes. 
                 </p>
                 <a href="/sobre-el-proyecto" id="more-info">Más información ></a>
+                <div class="inline">
+                    <a class="social-link"  href="https://www.instagram.com/mapaverdeuy" target="_blank">
+                      <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a class="social-link" href="https://www.facebook.com/p/Mapa-Verde-UY-61555910978823" target="_blank">
+                      <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+            <h2>Accesibilidad</h2>
+            <div id="info-group">
+                <p>
+                Este sitio web ha sido creado con estándares de accesibilidad web. Si encuentras algún problema de accesibilidad al utilizar la plataforma, o si tienes sugerencias sobre cómo podemos mejorar la accesibilidad, contáctanos. 
+                </p>
             </div>
         </div>
         <div id="open-data" class="group">
@@ -67,45 +81,49 @@
     <div class="module" class="group column center">
       <div id="we-are-header" class="toggle-data" onclick="this.parentNode.classList.toggle('active');">
         <h2>¿Quiénes somos?</h2>
-        <%= image_tag("arrow-down.png", alt:"Flecha abrir/cerrar") %>
+          
+          <h3>Presenta:</h3>
+      </div>
+      <div class="logos-frame">
+        <a href="https://um.edu.uy/facultad-de-comunicacion" target="_blank">
+          <%= image_tag("um.png", alt:"Facultad de Comunicación de la Universidad de Montevideo") %>
+        </a>
+      </div>
+      
+        <h3>Impulsan:</h3>
+      </div>
+      <div class="logos-frame">
+        <a href="https://www.unicef.org/uruguay/" target="_blank">
+          <%= image_tag("unicef.png", alt:"UNICEF Uruguay") %>
+        </a>
+        <a href="https://uy.usembassy.gov/es/" target="_blank">
+          <%= image_tag("usemb.png", alt:"Emabajada de los Estados Unidos en Uruguay") %>
+        </a>
+      </div>
+      <div class="logos-frame">
+        <a href="https://www.instagram.com/fridaysforfutureuy/" target="_blank">
+          <%= image_tag("fff.png", alt:"Fridays for Future Uruguay") %>
+        </a>
+        <a href="https://www.instagram.com/abejauy/" target="_blank">
+          <%= image_tag("abeja.png", alt:"Movimiento Abeja") %>
+        </a>
+        <a href="https://www.instagram.com/ecocity_uy/" target="_blank">
+          <%= image_tag("ecocity.png", alt:"EcoCity") %>
+        </a>
+      </div>
+      
+      <h3>Colaboran:</h3>
       </div>
       <div class="logos-frame">
         <a href="https://data.org.uy" target="_blank">
           <%= image_tag("data.png", alt:"DATA Uruguay") %>
         </a>
-        <div class="toggle-content">
-          <p>
-            Data Uruguay es una organización de la sociedad civil que trabaja en temas de Gobierno Abierto, Datos Abiertos, Tecnología Cívica, Transparencia, Acceso a la Información y co-creación de política pública. Tiene como misión contribuir a una sociedad más justa a través del uso de datos abiertos y tecnología cívica, en base a tres pilares: Herramientas, Comunidad y Activismo.
-          </p>
-          <div class="inline">
-            <a class="social-link" href="https://mastodon.uy/@datauy" target="_blank">
-              <i class="fa-brands fa-mastodon"></i>
-            </a>
-            <a class="social-link" href="https://twitter.com/datauy" target="_blank">
-              <i class="fa-brands fa-twitter"></i>
-            </a>
-            <a class="social-link"  href="https://www.instagram.com/datauy" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a class="social-link" href="https://www.facebook.com/DATAuruguay" target="_blank">
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a class="social-link" href="https://uy.linkedin.com/company/datauy" target="_blank">
-              <i class="fa-brands fa-linkedin"></i>
-            </a>
-            <!--<a class="social-link" href="https://uy.linkedin.com/company/datauy" target="_blank">
-              <i class="fa-brands fa-meetup"></i>
-            </a>-->
-            <a class="social-link" href="https://github.com/datauy" target="_blank">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a class="social-link" href="mailto:contacto@data.org.uy?Subject=Consulta sobre Mapa Verde">
-              <i class="fa-solid fa-envelope"></i>
-            </a>
-          </div>
-        </div>
+        <a href="https://inju.gub.uy" target="_blank">
+          <%= image_tag("inju.png", alt:"INJU") %>
+        </a>
       </div>
-      <h2>Con el apoyo de:</h2>
+        
+        
     </div>
   </div>
   <div class="carousel">

@@ -9,12 +9,18 @@
 <div id="calendar"></div>
 <div class="main-content">
   <h2>Próximas actividades</h2>
+    <p  class="desc">
+        Estás en el Calendario del Mapa Verde. Aquí encuentras un listado de  actividades relacionadas con la acción ambiental juvenil: desde eventos organizados por las iniciativas ambientales juveniles que forman parte de nuestra plataforma, hasta actividades convocadas por el equipo del Mapa Verde y sus socios, así como otros eventos de interés para jóvenes comprometidos con el ambiente. Explora nuestro calendario para mantenerte al tanto de las oportunidades de participación y aprendizaje.
+    </p>
   <%= turbo_frame_tag "acts_list", src: activities_list_url(format: :turbo_stream) do %>
     <% 3.times do %>
       <%= render "/layouts/article_placeholder" %>
     <% end %>
   <% end %>
   <%= turbo_frame_tag "acts_pagination" %>
+    <p  class="desc">
+        ¿Tienes una actividad que te gustaría agregar al calendario? ¡Completa el <a href="https://mapaverde.uy/nueva-actividad">formulario de nueva actividad</a> y comparte tu evento con toda la comunidad!
+    </p>
 </div>
 <script>
   window.data = <%= "#{@activities.to_json}".html_safe %>;//JSON.parse(resources);

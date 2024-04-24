@@ -42,6 +42,8 @@
         justify-content: center;
         display: flex;
         gap: 10px;
+        width: 100%;
+        justify-content: left;
       }
       .srv-header {
         display: flex;

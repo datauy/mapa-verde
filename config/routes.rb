@@ -26,4 +26,5 @@ Rails.application.routes.draw do
   get 'state_locations' => 'organizations#state_locations'
   get 'recursos' => 'resources#index', as: 'resources'
   get 'recurso/:id' => 'resources#show', as: 'resource'
+  post 'contacto' => 'static_pages#contact_submit'
 end

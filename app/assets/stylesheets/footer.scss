@@ -132,12 +132,6 @@ footer {
     padding: 0px;
     gap: 20px;
   }
-  .toggle-content {
-    display: none;
-  }
-  .active .toggle-content {
-    display: block;
-  }
   .active .logos-frame,
   .active .logos-frame .toggle-content {
     flex-direction: column;

@@ -1,3 +1,6 @@
+<% if notice.present? %>
+  <%= render partial: '/layouts/notification', locals: {msg: notice} %>
+<% end %>
 <div class="title-section">
   <div class="title">¿Qué es el <h1>Mapa Verde</h1>?</div>
   <p class="title-desc">

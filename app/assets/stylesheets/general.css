@@ -63,6 +63,48 @@ h5 {
 .half {
   width: 50% !important;
 }
+.message-wrapper {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 8px;
+  &.success {
+    border: 1px solid #3EB076;
+    background: #EEFBF6;
+    color: #3EB076;
+  }
+  &.error {
+    border: 1px solid #F63B3B;
+    background: #FFF5F5;
+    color: #F63B3B;
+  }
+  .message {
+    width: 100%;
+    .message-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+    .message-body {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: #2C2C2C;
+    }
+  }
+  i {
+    align-self: baseline;
+  }
+}
+.toggle-content {
+  display: none;
+}
+.active .toggle-content {
+  display: block;
+}
 .input-file-label {
   display: flex;
   align-items: center;

@@ -12,7 +12,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
   end
   def calendar
-    @activities = Activity.all
+    @activities = Activity.where(enabled: true)
     @subjects = Subject.all
   end
   def new

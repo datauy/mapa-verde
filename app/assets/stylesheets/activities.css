@@ -26,3 +26,6 @@
     gap: 10px;
   }
 }
+.toastui-calendar-section-button {
+  display: none;
+}

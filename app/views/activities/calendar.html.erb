@@ -25,5 +25,6 @@
 </div>
 <script>
   window.data = <%= "#{@activities.to_json}".html_safe %>;//JSON.parse(resources);
+  window.act_orgs = <%= "#{@organizations.to_json}".html_safe %>;
   window.subjects = <%= "#{@subjects.to_json}".html_safe %>;
 </script>

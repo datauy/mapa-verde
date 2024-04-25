@@ -33,28 +33,26 @@ export default class extends Controller {
 
     calendar = new Calendar('#calendar', {
       defaultView: 'month',
-      template: {
-        time(event) {
-          return `<span style="color: white;">${event.title}</span>`;
-        },
-        allday(event) {
-          return `<span style="color: gray;">${event.title}</span>`;
-        },
-      },
       //todo: calendars con colores por categoría
       calendars: calendars,
+      useDetailPopup: true
     });
     var events = []; 
     window.data.forEach(element => {
+      console.log("ACTIVIDAD", element)
+      let attend = []
       events.push({
         id: element.id,
         calendarId: element.subject_id,
         title: element.title,
-        body: element.state_id+location.id+'<p>'+element.description+'</p>',
+        body: '<p>'+element.description+'</p>',
         //category: 'time',
         //dueDateClass: '',
         start: element.starts,
         end: element.ends,
+        location: element.address,
+        state: '<a href="/actividad/"'+element.id+'>Ver actividad</a>',
+        attendees: window.act_orgs[element.id]
       })
     })
     window.calendarEvents = events 

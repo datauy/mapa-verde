@@ -152,7 +152,7 @@
     align-items: center;
     gap: 5px;
     padding-right: 10px;
-    .clear-filters {
+    &.clear-filters {
       padding: 0 10px;
     }
   }

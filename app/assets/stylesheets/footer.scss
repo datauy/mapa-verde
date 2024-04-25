@@ -66,6 +66,7 @@ footer {
   .inline {
     display: flex;
     gap: 12px;
+    align-items: center;
   }
   #text-module {
     display: flex;
@@ -115,12 +116,22 @@ footer {
     gap: 20px;
     flex: 1 1 0;
     .logos-frame {
+      align-items: center;
       img {
         width: 140px;
+        &.data-logo {
+          width: 120px;
+        }
+        &.fff-logo {
+          width: 130px;
+        }
+        &.um-logo {
+          width: 200px;
+        }
       }
     }
   }
-
+  
   #ask-frame{
     margin-top: 8px;
   }

@@ -1,7 +1,7 @@
 body {
   color: #000;
   font-family: "Inter";
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal; 
@@ -261,6 +261,6 @@ i.right {
 
 @media screen and (max-width: 600px) {
   #main-content {
-    padding: 5px;
+    padding: 0 30px;
   }
 }

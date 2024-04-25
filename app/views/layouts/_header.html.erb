@@ -1,22 +1,17 @@
 <header>
-  <%= image_tag 'logo_mapa_verde.svg', alt: "Logo Mapa Verde" %>
+  <%= link_to image_tag('logo_mapa_verde.svg', alt: "Logo Mapa Verde"), '/' %>
   <div class="menu-container">
       <!-- Hamburger icon -->
       <%= render 'layouts/menu'%>
-      <div class="hamb" onclick="openNav()"></div>
-  </div>
-  <div id="myNav" class="nav">
-    <div class="dropBar">
-      <h3 class="dropTitle">Apelatrón</h3>
-      <!-- Button to close -->
-      <a href="javascript:void(0)" class="closeMenu" onclick="closeNav()">&times;</a>
-    </div>
-    <!-- Menu content -->
-    <%= render 'layouts/menu'%>
+      <div class="hamb-wrapper" onclick="this.parentNode.classList.toggle('active')">
+        <div class="hamb"></div>
+      </div>
   </div>
   <script>
     function openNav() {
-      document.getElementById("myNav").style.height = "900px";
+      let nav = document.getElementById("myNav")
+      nav.style.display = 'block'
+      nav.style.height = "900px"
     }
     function closeNav() {
       document.getElementById("myNav").style.height = "0%";

@@ -5,7 +5,7 @@ ActiveAdmin.register Subject do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :icon
+  permit_params :name, :icon, :color
   #
   # or
   #
@@ -24,6 +24,7 @@ ActiveAdmin.register Subject do
         span image_tag(f.object.icon)
           a "Borrar", href: delete_image_admin_subject_path(image_id: f.object.icon.id), "data-confirm": "Confirme que desea eliminarla"
       end
+      f.input :color
     end
     f.actions
   end

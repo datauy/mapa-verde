@@ -2,7 +2,7 @@
 <div class="section">
   <h3>Organizaciones responsables</h3>
   <%= form.select :organization_ids, Organization.all.pluck(:name, :id), multiple: true %>
-  <div class="disclaimer"><i class="fa fa-circle-info"></i>¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", new_organization_path %>.</div>
+  <div class="disclaimer"><i class="fa fa-circle-info"></i>¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", new_organization_path, data: {turbo: false} %>.</div>
 </div>
 <div class="section where-when">
   <h3>Dónde y cuando</h3>

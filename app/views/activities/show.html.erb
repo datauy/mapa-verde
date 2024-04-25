@@ -1,8 +1,39 @@
+<% content_for(:image_section) { image_tag('red.png') } %>
 <div class="activity-item">
-  <h3 class="title"><%= @activity.title %></h3>
+  <div class="icons-wraper">
+    <%= icon_tag(@organizations) %>
+  </div>
+  <h1 class="title"><%= @activity.title %></h3>
+  <div class="location-info">
+    <i class="fas fa-calendar icon-tag"></i>
+    <span class="starts"><%= @activity.starts.strftime('%d/%m/%Y')%></span>
+    <i class="fas fa-location-dot icon-tag"></i>
+    <%= activity_address(@activity) %>
+  </div >
+  <p><%= @activity.description %></p>
   <% if @activity.image.attached? %>
     <%= image_tag @activity.image %>
-  <% else %>
-    <p><%= @activity.description %></p>
   <% end %>
+  <div class="subjects">
+    <div class="org-title">
+      <img class="icon" src="/images/subjects.svg"/>
+      <span>Temáticas</span>
+    </div>
+    <div class="icons-wraper">
+      <%= icon_tag(@subjects) %>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="org-title">
+      <img class="icon" src="/images/actions.svg"/>
+      <span>Acciones</span>
+    </div>
+    <div class="icons-wraper">
+      <%= icon_tag(@actions) %>
+    </div>
+  </div>
+  <div class="buttons-wrapper">
+    <%= @activity.info_link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información e inscripciones".html_safe, class: 'btn main-button', href: @activity.info_link, target: "_blank") : '' %>
+    <a class="btn act-tag" href="/contacto?oid=<%= @activity.id %>" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a>
+  </div>
 </div>

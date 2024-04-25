@@ -5,7 +5,7 @@ ActiveAdmin.register Activity do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, :enabled, subject_ids: [], operation_ids: [], organization_ids: []
+  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, :info_link, :enabled, subject_ids: [], operation_ids: [], organization_ids: []
   #
   # or
   #
@@ -38,8 +38,9 @@ ActiveAdmin.register Activity do
       f.input :location_id,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}
       f.input :starts, as: :date_time_picker
       f.input :ends, as: :date_time_picker
-      f.input :subjects, as: :searchable_select, input_html: { multiple: true }, label: "Otras actividades"
+      f.input :subjects, as: :searchable_select, input_html: { multiple: true }, label: "Temáticas"
       f.input :operations, as: :searchable_select, input_html: { multiple: true }, label: "Acciones"
+      f.input :info_link
       f.input :enabled
     end
     f.actions

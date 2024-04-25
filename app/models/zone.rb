@@ -4,6 +4,8 @@ class Zone < ApplicationRecord
   has_many :zone_relations, dependent: :delete_all
   has_many :organiaztions
   has_many :organiaztions, through: :zone_relations
+  has_many :activities
+  #has_many :activities, through: :zone_relations
 
   enum ztype: [
     'País',

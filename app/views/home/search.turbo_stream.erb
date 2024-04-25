@@ -107,7 +107,7 @@
             <div class="org-acts icons-wraper">
               <%= acts_tags(element[:activities]) %>
             </div>
-            <div class="row icon-tag right"><a class="btn act-tag" href="/contacto" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a></div>
+            <div class="row icon-tag right"><a class="btn act-tag" href="/contacto?oid=<%= element['id'] %>" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a></div>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
-<div class="activity-item">
-  <h3 class="title"><%= activity.title %></h3>
-  <% if activity.image.attached? %>
-    <%= image_tag activity.image %>
-  <% else %>
-    <p><%= activity.description %></p>
-  <% end %>
-</div>
+<a href="actividad/<%= activity.id %>" data-turbo="false">
+  <div class="activity-item">
+    <h3 class="title"><%= activity.title %></h3>
+    <% if activity.image.attached? %>
+      <%= image_tag activity.image %>
+    <% else %>
+      <p><%= activity.description %></p>
+    <% end %>
+  </div>
+</a>

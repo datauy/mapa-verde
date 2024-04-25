@@ -10,11 +10,11 @@ class Activity < ApplicationRecord
     has_many :operation_relations, dependent: :delete_all
     has_many :operations, through: :operation_relations
 
-    has_many :zone_relations, dependent: :delete_all
-    has_many :zones, through: :zone_relations
+    #has_many :zone_relations, dependent: :delete_all
+    #has_many :zones, through: :zone_relations
 
-    has_one :state, class_name: "Zone"
-    has_one :location, class_name: "Zone"
+    belongs_to :state, class_name: "Zone", optional: true
+    belongs_to :location, class_name: "Zone", optional: true
 
     after_create do
         SysMailer.with(activity: self).new_activity.deliver

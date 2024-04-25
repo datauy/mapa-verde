@@ -10,6 +10,28 @@ class ActivitiesController < ApplicationController
   end
   def show
     @activity = Activity.find(params[:id])
+    @organizations = []
+    @activity.organizations.each do |org|
+      @organizations.push({
+        name: org.name,
+        icon: org.logo.attached? ? url_for(org.logo) : '/images/logo-default.svg'
+      })
+    end
+    @subjects = []
+    @activity.subjects.each do |org|
+      @subjects.push({
+        name: org.name,
+        icon: org.icon.attached? ? url_for(org.icon) : '/images/icon_default.svg'
+      })
+    end
+    @actions = []
+    @activity.operations.each do |org|
+      @actions.push({
+        name: org.name,
+        icon: org.icon.attached? ? url_for(org.icon) : '/images/icon_default.svg'
+      })
+    end
+
   end
   def calendar
     @activities = Activity.where(enabled: true)

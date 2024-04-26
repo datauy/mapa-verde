@@ -1,49 +1,55 @@
-<div class="filters-top wrapper">
-  <div class="wrapper select-wrapper">
-    <div id="otype-trigger" class="select-filter" onclick="document.getElementById('otype').classList.toggle('active');">
-    <img class="icon" src="/images/type.svg"/>
-    <span>Tipo</span>
+<div id="filters">
+  <div class="filters-top wrapper">
+    <div class="wrapper select-wrapper">
+      <div id="otype-trigger" class="select-filter" onclick="document.getElementById('otype').classList.toggle('active');">
+      <img class="icon" src="/images/type.svg"/>
+      <span>Tipo</span>
+      </div>
+      <ul id="otype" class="select-options">
+        <%= search_options(@otype_options, 'otypes', 'map') %>
+      </ul>
+      <i class="fas fa-chevron-down right"></i>
     </div>
-    <ul id="otype" class="select-options">
-      <%= search_options(@otype_options, 'otypes', 'map') %>
-    </ul>
-    <i class="fas fa-chevron-down right"></i>
+    <div class="wrapper select-wrapper">
+      <div id="subject-trigger" class="select-filter" onclick="document.getElementById('subject').classList.toggle('active');">
+        <img class="icon" src="/images/subject.svg"/>
+        Temática
+      </div>
+      <ul id="subject" class="select-options">
+        <%= search_options(@subject_options, 'subjects', 'map') %>
+      </ul>
+      <i class="fas fa-chevron-down right"></i>
+    </div>
+    <div class="wrapper select-wrapper">
+      <div id="action-trigger" class="select-filter" onclick="document.getElementById('action').classList.toggle('active');">
+        <img class="icon" src="/images/action.svg"/>
+        Acciones
+      </div>
+      <ul id="action" class="select-options">
+        <%= search_options(@action_options, 'actions', 'map') %>
+      </ul>
+      <i class="fas fa-chevron-down right"></i>
+    </div>
+    <div class="wrapper select-wrapper">
+      <div id="zone-trigger" class="select-filter" onclick="document.getElementById('zone').classList.toggle('active');">
+        <img class="icon" src="/images/zone.svg"/>
+        Zonas
+      </div>
+      <ul id="zone" class="select-options">
+        <%= search_options(@zone_options, 'zones', 'map') %>
+      </ul>
+      <i class="fas fa-chevron-down right"></i>
+    </div>
   </div>
-  <div class="wrapper select-wrapper">
-    <div id="subject-trigger" class="select-filter" onclick="document.getElementById('subject').classList.toggle('active');">
-      <img class="icon" src="/images/subject.svg"/>
-      Temática
+  <div class="wrapper filters-bottom">
+    <div class="select-filter button clear-filters">
+      <img class="icon" src="/images/clear-filters.svg"/>
+      <div id="clear" class="button" onclick="Mapa.clearFilters()">Borrar filtros</div>
     </div>
-    <ul id="subject" class="select-options">
-      <%= search_options(@subject_options, 'subjects', 'map') %>
-    </ul>
-    <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper select-wrapper">
-    <div id="action-trigger" class="select-filter" onclick="document.getElementById('action').classList.toggle('active');">
-      <img class="icon" src="/images/action.svg"/>
-      Acciones
-    </div>
-    <ul id="action" class="select-options">
-      <%= search_options(@action_options, 'actions', 'map') %>
-    </ul>
-    <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper select-wrapper">
-    <div id="zone-trigger" class="select-filter" onclick="document.getElementById('zone').classList.toggle('active');">
-      <img class="icon" src="/images/zone.svg"/>
-      Zonas
-    </div>
-    <ul id="zone" class="select-options">
-      <%= search_options(@zone_options, 'zones', 'map') %>
-    </ul>
-    <i class="fas fa-chevron-down right"></i>
+    <div id="results" class="button">Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
   </div>
 </div>
-<div class="wrapper filters-bottom">
-  <div class="select-filter button clear-filters">
-    <img class="icon" src="/images/clear-filters.svg"/>
-    <div id="clear" class="button" onclick="Mapa.clearFilters()">Borrar filtros</div>
-  </div>
-  <div id="results" class="button">Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
+<div id="search">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="text" id="search-text" name="search" placeholder="Buscar..." data-controller="map" data-action="keyup->map#search" data-category="text"></input>
 </div>

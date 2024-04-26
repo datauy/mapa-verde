@@ -30,6 +30,10 @@ class HomeController < ApplicationController
     if params['zones'].present?
       orgs = orgs.joins(:zones).where(zones: params['zones'].split(','))
     end
+    if params['text'].present?
+      str = params['text'].downcase
+      orgs = orgs.where("name like :value or description like :value or volunteers_description like :value", value: "%#{str.strip.downcase}%")
+    end
     orgs.each do |o|
       org = o.as_json
       org.merge!(zones: o.zones.ids)

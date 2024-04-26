@@ -19,6 +19,7 @@ export default class extends Controller {
         'zones': [],
         'subjects': [],
         'actions': [],
+        'text': "",
         };
       window.mapa = L.map('map', {scrollWheelZoom: false}).setView([-34.897013, -56.171186], 13);
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -35,9 +36,12 @@ export default class extends Controller {
       'zones': [],
       'subjects': [],
       'actions': [],
-      };
-      this.search(null)
-      $('#filters li.active').toggleClass('active')
+      'text': "",
+    };
+    this.search(null)
+    document.querySelectorAll('#filters li.active').forEach(element => {
+      element.classList.toggle('active')
+    });
   }
   renderZones(org, initial = false) {
     this.total = data.length;
@@ -103,19 +107,31 @@ export default class extends Controller {
       //Handle filters
       let cat = event.target.dataset.category;
       let value = event.target.dataset.value;
-      if ( event.target.classList.contains('active') ) {
-        window.active_filters[cat].splice(window.active_filters[cat].indexOf(value), 1);
+      if ( cat == 'text' ) {
+        window.active_filters[cat] = document.getElementById('search-text').value
+        if (window.active_filters[cat].length < 3 )
+          return
       }
       else {
-        window.active_filters[cat].push(value);
+        if ( event.target.classList.contains('active') ) {
+          window.active_filters[cat].splice(window.active_filters[cat].indexOf(value), 1);
+        }
+        else {
+          window.active_filters[cat].push(value);
+        }
+        event.target.classList.toggle('active');
       }
-      event.target.classList.toggle('active');
     }
     // Create URL
     let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/search");
     Object.keys(window.active_filters).forEach( cat => {
       if ( window.active_filters[cat].length ) {
-        url.searchParams.append(cat, window.active_filters[cat].join(','));
+        if ( cat == 'text' ) {
+          url.searchParams.append(cat, window.active_filters[cat]);
+        }
+        else {
+          url.searchParams.append(cat, window.active_filters[cat].join(','));
+        }
       }
     });
     fetch(url.href, {

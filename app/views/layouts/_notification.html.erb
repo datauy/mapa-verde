@@ -1,5 +1,5 @@
 <div class="message-wrapper <%= "#{msg['mtype']}" %>">
-  <i class="fa-solid <%= msg['mtype'] == 'success' ? 'fa-circle-check' : fa-circle-exclamation %>"></i>
+  <i class="fa-solid <%= msg['mtype'] == 'success' ? 'fa-circle-check' : 'fa-circle-exclamation' %>"></i>
   <div class="message">
     <div class="message-title"><%= msg['title'] %></div>
     <div class="message-body"><%= msg['body'].present? ? msg['body'] : '' %></div>

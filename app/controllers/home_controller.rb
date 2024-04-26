@@ -49,14 +49,14 @@ class HomeController < ApplicationController
     Subject.all.each do |z|
       @subjects[z.id] = {
         name: z.name,
-        icon: z.icon.attached? ? z.icon.url : '/images/icon_default.svg'
+        icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
       }
     end
     logger.info("\n SUBJECTSS: \n#{subjs_ids}\n\n")
     Operation.find(actions_ids).each do |z|
       @actions[z.id] = {
         name: z.name,
-        icon: z.icon.attached? ? z.icon.url : '/images/icon_default.svg'
+        icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
       }
     end
     logger.info("\n ACTIONS: \n#{@actions}\n\n")

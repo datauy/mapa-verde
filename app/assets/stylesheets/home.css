@@ -294,7 +294,9 @@ input[type="radio"], input[type="checkbox"] {
 #acts_pagination p {
   text-align: center;
 }
-
+.activity-item-wraper {
+  width: min-content;
+}
 #resources #list,
 #acts_list {
   display: flex;
@@ -310,8 +312,7 @@ input[type="radio"], input[type="checkbox"] {
     flex-direction: column;
     border: 1px solid #DEDEDE;
     min-height: 150px;
-    min-width: 150px;
-    width: 25%;
+    min-width: 256px;
     h3 {
       font-family: "Work Sans";
       font-size: 20px;

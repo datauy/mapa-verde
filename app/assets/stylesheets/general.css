@@ -67,6 +67,20 @@ h5 {
   width: 20px;
   height: 20px;
 }
+.btn-pager {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  text-decoration: none;
+  color: #1F1F1F;
+  display: flex;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
 .message-wrapper {
   display: flex;
   padding: 16px;

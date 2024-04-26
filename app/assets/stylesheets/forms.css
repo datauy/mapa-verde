@@ -77,6 +77,15 @@
     background: #00AA47;
     padding: 8px 12px;
   }
+  .select-half .ss-main {
+    width: calc(50% - 4px);
+  }
+  .select-3 .ss-main {
+    width: calc(25% - 4px);
+  }
+  .select-3 #locations .ss-main {
+    width: 100%;
+  }
 }
 
 #new-activity {

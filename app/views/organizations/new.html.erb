@@ -7,9 +7,9 @@
 <%= form_with(model: @organization, url: create_organization_path, data: {turbo: false, controller: 'form'}, id: "organization-form") do |form| %>
 <div class="section">
   <h5>Nombre y tipo de organización</h5>
-  <div class="row">
+  <div class="row select-half">
     <%= form.text_field :name, placeholder: "Nombre de la organización", class: 'half' %>
-    <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización", class: 'half' %>
+    <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización", selected: '', class: 'half' %>
   </div>
   <div class="row column">
     <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
@@ -54,10 +54,10 @@
 </div>
 <div class="section general-info">
   <h5>Información general</h5>
-  <div class="row">
+  <div class="row select-3">
     <%= form.text_field :address, placeholder: "Dirección" %>
     <%= form.select :region, Organization.regions, include_blank: "Región" %>
-    <%= select_tag :state_id, options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), data: { action: 'change->form#select_state', target: 'form.stateId' } %>
+    <%= select_tag :state_id, options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), include_blank: "Departamento", data: { action: 'change->form#select_state', target: 'form.stateId' } %>
     <%= turbo_frame_tag "locations" do %>
       <%= form.select :location_id, [], include_blank: "Localidad" %>
     <% end %>

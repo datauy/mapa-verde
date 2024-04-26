@@ -22,6 +22,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Temática principal',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -30,6 +31,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Localidades de la actividad',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -38,16 +40,45 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Organizaciones involucradas',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
     }
     else if ( this.element.id == 'organization-form') {
       new SlimSelect({
+        select: "#organization_organization_type_id",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          placeholderText: 'Tipo de organización',
+          searchPlaceholder: 'Buscar',
+          allowDeselect: true   // allow deselecting (x) option
+        }
+      })
+      new SlimSelect({
+        select: "#organization_region",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          placeholderText: 'Región',
+          searchPlaceholder: 'Buscar',
+          allowDeselect: true   // allow deselecting (x) option
+        }
+      })
+      new SlimSelect({
+        select: "#state_id",   // this.element is the <select> tag
+        showSearch: true,       // show search field
+        settings: {
+          placeholderText: 'Departamento',
+          searchPlaceholder: 'Buscar',
+          allowDeselect: true   // allow deselecting (x) option
+        }
+      })
+      new SlimSelect({
         select: "#organization_zone_ids",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Zonas de trabajo',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -56,6 +87,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Temática principal',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -66,6 +98,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Tipo de contacto',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -74,6 +107,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Organización involucrada',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -82,6 +116,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Actividad involucrada',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -90,6 +125,7 @@ export default class extends Controller {
         showSearch: true,       // show search field
         settings: {
           placeholderText: 'Departamento',
+          searchPlaceholder: 'Buscar',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -113,6 +149,7 @@ export default class extends Controller {
           select: "#location_id",   // this.element is the <select> tag
           showSearch: true,       // show search field
           settings: {
+            searchPlaceholder: 'Buscar',
             allowDeselect: true   // allow deselecting (x) option
           }
         })

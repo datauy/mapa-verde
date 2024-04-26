@@ -10,7 +10,7 @@ class ResourcesController < ApplicationController
     @subjects = Subject.all.map {|z| {
       value: z.id,
       name: z.name,
-      icon: z.icon.attached? ? z.icon.url : '/images/icon_default.svg'
+      icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
     }}
     logger.info("\n\n\n#{}\n")
     @pagy, @resources = pagy(res, items: 6, page_param: :page)

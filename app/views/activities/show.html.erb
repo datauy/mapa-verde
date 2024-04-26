@@ -33,7 +33,7 @@
     </div>
   </div>
   <div class="buttons-wrapper">
-    <%= @activity.info_link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información e inscripciones".html_safe, class: 'btn main-button', href: @activity.info_link, target: "_blank") : '' %>
+    <%= @activity.info_link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información e inscripciones".html_safe, class: 'btn main-button', href: @activity.info_link, target: "_blank", data: {turbo: false}) : '' %>
     <a class="btn act-tag" href="/contacto?oid=<%= @activity.id %>" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a>
   </div>
 </div>

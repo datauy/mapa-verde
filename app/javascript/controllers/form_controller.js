@@ -21,6 +21,7 @@ export default class extends Controller {
         select: "#activity_subject_id",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Temática principal',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -28,6 +29,7 @@ export default class extends Controller {
         select: "#activity_zone_ids",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Localidades de la actividad',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -35,6 +37,7 @@ export default class extends Controller {
         select: "#activity_organization_ids",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Organizaciones involucradas',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -44,6 +47,7 @@ export default class extends Controller {
         select: "#organization_zone_ids",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Zonas de trabajo',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -51,6 +55,7 @@ export default class extends Controller {
         select: "#organization_subject_id",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Temática principal',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -60,6 +65,7 @@ export default class extends Controller {
         select: "#static_pages_contact_type",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Tipo de contacto',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -67,6 +73,7 @@ export default class extends Controller {
         select: "#static_pages_organization",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Organización involucrada',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -74,6 +81,7 @@ export default class extends Controller {
         select: "#static_pages_activity",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Actividad involucrada',
           allowDeselect: true   // allow deselecting (x) option
         }
       })
@@ -81,6 +89,7 @@ export default class extends Controller {
         select: "#state_id",   // this.element is the <select> tag
         showSearch: true,       // show search field
         settings: {
+          placeholderText: 'Departamento',
           allowDeselect: true   // allow deselecting (x) option
         }
       })

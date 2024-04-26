@@ -12,7 +12,6 @@ class ResourcesController < ApplicationController
       name: z.name,
       icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
     }}
-    logger.info("\n\n\n#{}\n")
     @pagy, @resources = pagy(res, items: 6, page_param: :page)
     respond_to do |format|
       format.html
@@ -23,5 +22,12 @@ class ResourcesController < ApplicationController
   end
   def show
     @resource = Resource.find(params[:id])
+    @subjects = []
+    @resource.subjects.each do |org|
+      @subjects.push({
+        name: org.name,
+        icon: org.icon.attached? ? url_for(org.icon) : '/images/icon_default.svg'
+      })
+    end
   end
 end

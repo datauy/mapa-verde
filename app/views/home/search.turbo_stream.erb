@@ -98,8 +98,8 @@
             </div>
             <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
             <div class="icons-wraper">
-              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url'], target: "_blank") : '' %>
-              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['donations'], target: "_blank") : '' %>
+              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url'], target: "_blank", data: {turbo: false}) : '' %>
+              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['donations'], target: "_blank", data: {turbo: false}) : '' %>
             </div>
           </div>
           <div class="activities">

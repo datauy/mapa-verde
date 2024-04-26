@@ -1,4 +1,14 @@
 <div class="activity-item">
   <h3 class="title"><%= @resource.title %></h3>
   <p><%= @resource.description.html_safe %></p>
+  <div class="subjects">
+    <div class="org-title">
+      <img class="icon" src="/images/subjects.svg"/>
+      <span>Temáticas</span>
+    </div>
+    <div class="icons-wraper">
+      <%= icon_tag(@subjects) %>
+    </div>
+  </div>
+  <%= @resource.link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información".html_safe, class: 'btn main-button', href: @resource.link, target: "_blank", data: {turbo: false}) : '' %>
 </div>

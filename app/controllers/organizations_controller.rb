@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
-      redirect_to root_path, notice: "Organización creada!"
+      redirect_to root_path, {mtype: 'success',title:"Organización creada!", body:" Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
     else
       render :new
     end

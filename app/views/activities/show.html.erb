@@ -7,7 +7,6 @@
   <div class="location-info">
     <i class="fas fa-calendar icon-tag"></i>
     <span class="starts"><%= @activity.starts.strftime('%d/%m/%Y')%></span>
-    <i class="fas fa-location-dot icon-tag"></i>
     <%= activity_address(@activity) %>
   </div >
   <p><%= @activity.description %></p>

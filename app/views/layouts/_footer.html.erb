@@ -3,7 +3,7 @@
     <div class="module">
       <div class="inline"><i class="fa-solid fa-share-from-square"></i><h2 id="share">Compartí este proyecto</h2></div>
       <p>Si te fue útil o le puede ser útil a alguien más, tu ayuda en difusión hace una enorme diferencia. ¡Gracias!</p>
-      <% share_msg = "Mapa Verde nuclea toda la información de iniciativas de jóvenes que trabajan por el ambiente en Uruguay, conocelas y sumate a la revolución verde." %>
+      <% share_msg = "Mapa Verde nuclea toda la información de iniciativas de jóvenes que trabajan por el ambiente en Uruguay, conocelas y sumate." %>
       <div class="inline">
         <a class="dropdown-item" href="https://mastodonshare.com/?text=<%= share_msg %>&url=<%= request.base_url %>" target="_blank">
           <i class="fa-brands fa-mastodon"></i>
@@ -95,7 +95,7 @@
           <%= image_tag("unicef.png", alt:"UNICEF Uruguay") %>
         </a>
         <a href="https://uy.usembassy.gov/es/" target="_blank">
-          <%= image_tag("usemb.png", alt:"Emabajada de los Estados Unidos en Uruguay") %>
+          <%= image_tag("usemb.png", alt:"Emabajada de los Estados Unidos en Uruguay", class: "use-logo") %>
         </a>
       </div>
       <div class="logos-frame">
@@ -111,8 +111,8 @@
       </div>
       <h3>Colaboran:</h3>
       <div class="logos-frame">
-        <a href="https://data.org.uy" target="_blank" class="data-logo">
-          <%= image_tag("data.png", alt:"DATA Uruguay") %>
+        <a href="https://data.org.uy" target="_blank">
+          <%= image_tag("data.png", alt:"DATA Uruguay", class: "data-logo") %>
         </a>
         <a href="https://inju.gub.uy" target="_blank">
           <%= image_tag("inju.png", alt:"INJU") %>

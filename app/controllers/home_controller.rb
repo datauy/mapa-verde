@@ -3,7 +3,6 @@ class HomeController < ApplicationController
     @otype_options = Organization.includes(:organization_type).distinct.pluck(:'organization_types.name', :'organization_types.id')
     @zone_options = Organization.includes(:zones).where.not(zones: nil).distinct.pluck(:'zones.name', :'zones.id')
     @subject_options = Organization.includes(:subjects).distinct.pluck(:'subjects.name', :'subjects.id')
-    logger.info "\nSUBJCTS\n#{@subject_options.inspect}\n\n"
     @action_options = Organization.includes(:operations).distinct.pluck(:'operations.name', :'operations.id')
     @total = Organization.all.count
     #self.search
@@ -17,7 +16,7 @@ class HomeController < ApplicationController
     @zones = {}
     @subjects = {}
     @actions = {}
-    orgs = Organization.includes(:organization_type)
+    orgs = Organization.includes(:organization_type).where(enabled: true)
     if params['otypes'].present?
       orgs = orgs.where(organization_type: params['otypes'].split(','))
     end

@@ -53,17 +53,16 @@ class HomeController < ApplicationController
     Subject.all.each do |z|
       @subjects[z.id] = {
         name: z.name,
-        icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
+        icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg',
+        color: z.color.present? ? z.color : '#00786C'
       }
     end
-    logger.info("\n SUBJECTSS: \n#{subjs_ids}\n\n")
     Operation.find(actions_ids).each do |z|
       @actions[z.id] = {
         name: z.name,
         icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
       }
     end
-    logger.info("\n ACTIONS: \n#{@actions}\n\n")
     @showing = orgs.count
     respond_to do |format|
       format.html

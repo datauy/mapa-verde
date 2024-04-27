@@ -56,7 +56,7 @@ export default class extends Controller {
     if ( org !== undefined ) {
       orgs = [data[org]];
     }
-    orgs.forEach(org => {
+    orgs.forEach((org, idx) => {
       var zonesData = [];
       org.zones.forEach(zone_id => {
         if ( zones[zone_id].geometry !== null ) {
@@ -64,13 +64,24 @@ export default class extends Controller {
           zonesData.push({ 
             "type": "Feature",
             'properties': {
-              "name": "Coors Field",
-              "popupContent": "This is where the Rockies play!"
+              orgId: idx
             }, "geometry": wkt.toJson() 
-          }); 
+          });
         }
       });
-      L.geoJSON(zonesData).addTo(window.currentLayer);
+      L.geoJSON(zonesData, {
+        fillColor: subjects[org.subject_id].color,
+        color: subjects[org.subject_id].color,
+        onEachFeature: (feature, layer) => {
+          layer.on({
+            click: (e) => {
+              let orgId = e.target.feature.properties.orgId
+              console.log('TARGET ORG:', e.target.feature.properties.orgId);
+              document.querySelector('#org-'+orgId+' .srv-header').click()
+            }            
+          })
+        }
+      }).addTo(window.currentLayer);
       if ( initial ) {
         L.geoJSON(zonesData).addTo(window.allLayers);
       }

@@ -120,6 +120,7 @@
 <script>
   window.data = <%= "#{@organizations.to_json}".html_safe %>;//JSON.parse(resources);
   window.zones = <%= "#{@zones.to_json}".html_safe %>;
+  window.subjects = <%= "#{@subjects.to_json}".html_safe %>;
   if (typeof(window.Mapa) !== 'undefined') {
     window.Mapa.renderZones();
   }

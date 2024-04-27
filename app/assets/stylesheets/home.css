@@ -33,6 +33,9 @@
           .logo-wraper {
             display: flex;
           }
+          .row {
+            width: calc(100% - 80px);
+          }
         }
         .srv-body {
           display: flex;
@@ -312,7 +315,7 @@ input[type="radio"], input[type="checkbox"] {
     flex-direction: column;
     border: 1px solid #DEDEDE;
     min-height: 150px;
-    min-width: 256px;
+    width: 256px;
     h3 {
       font-family: "Work Sans";
       font-size: 20px;

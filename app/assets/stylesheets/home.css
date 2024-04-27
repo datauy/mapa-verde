@@ -88,6 +88,9 @@
           &:visited {
             color:#123BA8;
           }
+          img {
+            width: 20px;
+          }
           span {
             font-family: Inter;
             font-size: 12px;

@@ -6,7 +6,7 @@
   <h1 class="title"><%= @activity.title %></h3>
   <div class="location-info">
     <i class="fas fa-calendar icon-tag"></i>
-    <span class="starts"><%= @activity.starts.strftime('%d/%m/%Y')%></span>
+    <span class="starts"><%= @activity.starts.present? ? @activity.starts.strftime('%d/%m/%Y') : '' %></span>
     <%= activity_address(@activity) %>
   </div >
   <p><%= @activity.description %></p>

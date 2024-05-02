@@ -175,10 +175,19 @@ export default class extends Controller {
     }
   }
   //
+  remove_error(event) {
+    console.log(event);
+    event.target.classList.remove('error')
+    event.target.parentNode.querySelector('.error-text').innerHTML = ''
+  }
+  //
   async validate(event) {
     const formData = await event.detail.formSubmission
     const { success, fetchResponse } = formData.result
-    if (success) return
+    if (success) {
+      window.scrollTo(0, document.querySelector('h2').offsetTop)
+      return
+    }
 
     const res = await fetchResponse.responseText
     const errors = JSON.parse(res)
@@ -191,6 +200,9 @@ export default class extends Controller {
         }
         else if ( errorContainer.parentNode.querySelector('.ss-main') != null ) {
           errorContainer.parentNode.querySelector('.ss-main').classList.add('error')
+        }
+        else if ( errorContainer.parentNode.querySelector('.flatpickr-input') != null ) {
+          errorContainer.parentNode.querySelector('.flatpickr-input').classList.add('error')
         }
       }
     })

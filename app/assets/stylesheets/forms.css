@@ -92,11 +92,11 @@
 #new-activity {
   .section {
     select {
-      width: inherit;
+      width: auto;
     }
   }
   #state_id {
-    width: inherit;
+    width: auto;
   }
   .ss-main {
     width: 100%;

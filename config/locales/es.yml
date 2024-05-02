@@ -50,3 +50,17 @@ es:
               blank: "Por favor, seleccione las zonas de acción de la organización"
             organization_type:
               required: "Por favor seleccione el tipo de organización"
+        activity:
+          attributes:
+            title:
+              blank: "Por favor, seleccione un título para la actividad"
+            description:
+              blank: "Debe introducir una descripción"
+            address:
+              blank: "Debe intruducir dirección o enlace de la actividad"
+            subject_id:
+              blank: "Debe seleccionar la temática principal para la actividad"
+            starts:
+              blank: "Debe introducir fecha y hora de inicio"
+            ends:
+              blank: "Debe introducir fecha y hora de finalización"

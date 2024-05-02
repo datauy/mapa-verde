@@ -1,34 +1,52 @@
-<%= form_with(model: @activity, url: create_activity_path,  data: {controller: "form"}, id: "new-activity") do |form| %>
+<% if @notice.present? %>
+  <%= render partial: '/layouts/notification', locals: {msg: @notice} %>
+<% end %>
+<%= form_with(model: @activity, url: create_activity_path,  data: {controller: "form", action: "turbo:submit-end->form#validate"}, id: "new-activity") do |form| %>
 <div class="section">
   <h3>Organizaciones responsables</h3>
   <%= form.select :organization_ids, Organization.all.pluck(:name, :id), multiple: true %>
   <div class="disclaimer"><i class="fa fa-circle-info"></i>¿No encontrás a una o más organizaciones? Si no están en el mapa, primero <%= link_to "sumá tu organización al mapa", new_organization_path, data: {turbo: false} %>.</div>
+  <h3>Otras organizaciones involucradas</h3>
+    <%= form.text_field :other_responsibles %>
 </div>
 <div class="section where-when">
   <h3>Dónde y cuando</h3>
   <div class="row">
-    <%= form.text_field :address, placeholder: "Dirección o enlace" %>
+    <div class="column half">
+      <%= form.text_field :address, placeholder: "Dirección o enlace", data: {controller: 'form', action: 'keyup->form#remove_error'} %>
+      <span data-form-target="errorContainer" data-error-type="address" role="alert" class="error-text"></span>
+    </div>
     <%= select_tag :'activity[state_id]', options_for_select(Zone.where(ztype: 1).order(:name).pluck(:name, :id)), data: { action: 'change->form#select_state', target: 'form.stateId' }, include_blank: "Departamento" %>
     <%= turbo_frame_tag "locations" do %>
       <%= form.select :location_id, [], include_blank: "Localidad" %>
     <% end %>
   </div>
   <div class="row">
-    <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio" %>
-    <%= form.datetime_field :ends, class: "ends", placeholder: "Fecha de finalización" %>
+    <div class="column half">
+      <%= form.datetime_field :starts, class: "starts", placeholder: "Fecha de inicio", data: {controller: 'form', action: 'change->form#remove_error'} %>
+      <span data-form-target="errorContainer" data-error-type="starts" role="alert" class="error-text"></span>
+    </div>
+    <div class="column half">
+      <%= form.datetime_field :ends, class: "ends", placeholder: "Fecha de finalización", data: {controller: 'form', action: 'change->form#remove_error'} %>
+      <span data-form-target="errorContainer" data-error-type="ends" role="alert" class="error-text"></span>
+    </div>
+    <%= form.text_field :info_link, placeholder: "Link para más información" %>
   </div>
 </div>
 <div class="section">
   <h3>Nombre de la actividad</h3>
-  <%= form.text_field :title, placeholder: "Nombre" %>
+  <%= form.text_field :title, placeholder: "Nombre", data: {controller: 'form', action: 'keyup->form#remove_error'} %>
+  <span data-form-target="errorContainer" data-error-type="title" role="alert" class="error-text"></span>
   <h3>Descripción general</h3>
-  <%= form.text_area :description, placeholder: "Descripción general de la actividad" %>
+  <%= form.text_area :description, placeholder: "Descripción general de la actividad", data: {controller: 'form', action: 'keyup->form#remove_error'} %>
+  <span data-form-target="errorContainer" data-error-type="description" role="alert" class="error-text"></span>
   <label class="input-file-label" for="activity_image"><i class="fas fa-image"></i><span>Subir imagen</span></label>
   <%= form.file_field :image, data: { action: 'change->form#select_image', target: 'form.image' }  %> <span id="image-name"></span>
 </div>
 <div class="section">
   <h3>Temáticas y acciones</h3>
-  <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal", selected: "" %>
+  <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal", selected: "", data: {controller: 'form', action: 'change->form#remove_error'} %>
+  <span data-form-target="errorContainer" data-error-type="subject_id" role="alert" class="error-text"></span>
   <h3>Otras temáticas</h3>
   <div class="row">
     <%= collection_check_boxes :activity, :subject_ids, Subject.all, :id, :name %>

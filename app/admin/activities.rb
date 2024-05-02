@@ -5,7 +5,7 @@ ActiveAdmin.register Activity do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, :info_link, :enabled, subject_ids: [], operation_ids: [], organization_ids: []
+  permit_params :title, :description, :image, :address, :starts, :ends, :state_id, :location_id, :info_link, :other_responsibles, :enabled, subject_ids: [], operation_ids: [], organization_ids: []
   #
   # or
   #
@@ -33,6 +33,7 @@ ActiveAdmin.register Activity do
         end
       end
       f.input :organizations, as: :searchable_select
+      f.input :other_responsibles
       f.input :address
       f.input :state_id, as: :select, collection: Zone.where(ztype: 1).order(:name).map{|s| [s.name, s.id]}
       f.input :location_id,  as: :select, collection: Zone.where(ztype: 3).order(:name).map{|s| [s.name, s.id]}

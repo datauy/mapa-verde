@@ -67,6 +67,7 @@ h5 {
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
+  width: 100%;
 }
 .column {
   display: flex;
@@ -74,7 +75,7 @@ h5 {
   gap: 10px;
 }
 .error {
-  border: 1px solid #F63B3B;
+  border: 1px solid #F63B3B !important;
 }
 .error-text {
   font-size: 12px;
@@ -140,6 +141,9 @@ h5 {
   i {
     align-self: baseline;
   }
+  .fa-xmark {
+    cursor: pointer;
+  }
 }
 .toggle-content {
   display: none;
@@ -159,6 +163,7 @@ h5 {
   color: #FFF;
   border: none;
   font-size: 16px;
+  cursor: pointer;
 }
 .org-title {
   color: #1F1F1F;

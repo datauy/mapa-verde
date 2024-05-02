@@ -3,6 +3,7 @@
   <div class="icons-wraper">
     <%= icon_tag(@organizations) %>
   </div>
+  <span><%= @activity.other_responsibles.present? ? @activity.other_responsibles : '' %></span>
   <h1 class="title"><%= @activity.title %></h3>
   <div class="location-info">
     <i class="fas fa-calendar icon-tag"></i>

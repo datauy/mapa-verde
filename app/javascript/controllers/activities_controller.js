@@ -39,8 +39,6 @@ export default class extends Controller {
     });
     var events = []; 
     window.data.forEach(element => {
-      console.log("ACTIVIDAD", element)
-      let attend = []
       events.push({
         id: element.id,
         calendarId: element.subject_id,
@@ -51,7 +49,7 @@ export default class extends Controller {
         start: element.starts,
         end: element.ends,
         location: element.address,
-        state: '<a href="/actividad/"'+element.id+'>Ver actividad</a>',
+        state: '<a href="/actividad/'+element.id+'">Ver actividad</a>',
         attendees: window.act_orgs[element.id]
       })
     })

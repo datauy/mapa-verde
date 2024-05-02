@@ -46,16 +46,10 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(activity_params)
     if @activity.save
       @activity = Activity.new
-      @message = "Se ha creado la actividad, estamos revisando los detalles para su publicación, gracias. Cualquier inconveniente no dude en contactarse al correo..."
+      @notice = {"mtype" => "success", "title" => "Se ha creado la actividad!", "body" => "Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
     else
-      logger.info(@activity.errors.inspect)
       @message = "Ha habido un error en la creación de la actividad, por favor contacte a..."
-    end
-    respond_to do |format|
-      format.html
-      format.turbo_stream {
-        logger.info "\n\nACTIVITIES CREATE TURBO\n\n"
-      }
+      render json: @activity.errors.to_json, status: :unprocessable_entity
     end
   end
 
@@ -67,6 +61,6 @@ class ActivitiesController < ApplicationController
     params["activity"]["organization_ids"].reject!{|a| a==""}
     params["activity"]["subject_ids"].reject!{|a| a==""}
     params["activity"]["operation_ids"].reject!{|a| a==""}
-    params.require(:activity).permit(:title, :description, :address, :starts, :ends, :subject_id, :image, :state_id, :location_id, organization_ids: [], subject_ids: [], operation_ids: [])
+    params.require(:activity).permit(:title, :description, :address, :starts, :ends, :subject_id, :image, :state_id, :location_id, :info_link, :other_responsibles, organization_ids: [], subject_ids: [], operation_ids: [])
   end
 end

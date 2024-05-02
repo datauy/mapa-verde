@@ -16,6 +16,14 @@ class Activity < ApplicationRecord
     belongs_to :state, class_name: "Zone", optional: true
     belongs_to :location, class_name: "Zone", optional: true
 
+    #Validations
+    validates :address, presence: true
+    validates :title, presence: true
+    validates :description, presence: true
+    validates :subject_id, presence: true
+    validates :starts, presence: true
+    validates :ends, presence: true
+
     after_create do
         SysMailer.with(activity: self).new_activity.deliver
     end

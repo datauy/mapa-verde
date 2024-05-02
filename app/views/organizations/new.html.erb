@@ -4,15 +4,22 @@
     ¡Únete al Mapa Verde y comparte tu iniciativa! Si eres parte de una organización, emprendimiento, red o iniciativa ambiental juvenil, o tienes una idea para promover la acción ambiental entre jóvenes, ¡cuéntanos! Completa el formulario a continuación para postular tu iniciativa y formar parte de la plataforma:
 </p>
 <h2>Completá este formulario</h2>
-<%= form_with(model: @organization, url: create_organization_path, data: {turbo: false, controller: 'form'}, id: "organization-form") do |form| %>
+<%= form_with(model: @organization, url: create_organization_path, data: {controller: 'form', action: "turbo:submit-end->form#validate"}, id: "organization-form") do |form| %>
 <div class="section">
   <h5>Nombre y tipo de organización</h5>
-  <div class="row select-half">
-    <%= form.text_field :name, placeholder: "Nombre de la organización", class: 'half' %>
-    <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización", selected: '', class: 'half' %>
+  <div class="row">
+    <div class="half column">
+      <%= form.text_field :name, placeholder: "Nombre de la organización" %>
+      <span data-form-target="errorContainer" data-error-type="name" role="alert" class="error-text"></span>
+    </div>
+    <div class="half column">
+      <%= form.select :organization_type_id, OrganizationType.all.pluck(:name, :id), include_blank: "Tipo de organización", selected: '' %>
+      <span data-form-target="errorContainer" data-error-type="organization_type" role="alert" class="error-text"></span>
+    </div>
   </div>
-  <div class="row column">
+  <div class="column">
     <%= form.select :subject_id, Subject.all.pluck(:name, :id), include_blank: "Temática principal" %>
+    <span data-form-target="errorContainer" data-error-type="subject" role="alert" class="error-text"></span>
     <label class="input-file-label" for="organization_logo"><i class="fas fa-image"></i><span>Subir logo</span></label>
     <%= form.file_field :logo, data: { action: 'change->form#select_image', target: 'form.file' } %> <span id="image-name"></span>
   </div>
@@ -29,27 +36,24 @@
     <%= collection_check_boxes :organization, :operation_ids, Operation.all, :id, :name %>
   </div>
 </div>
-<div class="section">
+<div class="section inline">
   <h5>Contacto</h5>
   <div class="row">
-    <%= form.text_field :website, placeholder: "Sitio web", class: 'half' %>
-    <%= form.text_field :phone, placeholder: "Teléfono", class: 'half' %>
-  </div>
-  <div class="row">
-    <%= form.text_field :whatsapp, placeholder: "Whatsapp", class: 'half' %>
-    <%= form.email_field :email, placeholder: "Email", class: 'half' %>
-  </div>
-  <div class="row">
-    <%= form.text_field :instagram, placeholder: "Instagram", class: 'half' %>
-    <%= form.text_field :tiktok, placeholder: "Tiktok", class: 'half' %>
-  </div>
-  <div class="row">
-    <%= form.text_field :twitter, placeholder: "Twitter", class: 'half' %>
-    <%= form.text_field :snapchat, placeholder: "Sanpchat", class: 'half' %>
-  </div>
-  <div class="row">
-    <%= form.text_field :facebook, placeholder: "Facebook", class: 'half' %>
-    <%= form.text_field :other_network, placeholder: "Otras", class: 'half' %>
+    <div class="half column">
+      <%= form.text_field :website, placeholder: "Sitio web" %>
+      <%= form.text_field :whatsapp, placeholder: "Whatsapp" %>
+      <%= form.text_field :instagram, placeholder: "Instagram" %>
+      <%= form.text_field :twitter, placeholder: "Twitter" %>
+      <%= form.text_field :facebook, placeholder: "Facebook" %>
+    </div>
+    <div class="half column">
+      <%= form.text_field :phone, placeholder: "Teléfono" %>
+      <%= form.email_field :email, placeholder: "Email" %>
+      <span data-form-target="errorContainer" data-error-type="email" role="alert" class="error-text"></span>
+      <%= form.text_field :tiktok, placeholder: "Tiktok" %>
+      <%= form.text_field :snapchat, placeholder: "Sanpchat" %>
+      <%= form.text_field :other_network, placeholder: "Otras" %>
+    </div>
   </div>
 </div>
 <div class="section general-info">
@@ -64,11 +68,13 @@
   </div>
   <div class="row">
     <%= form.text_area :description,  placeholder: "Descripción general de la organización" %>
+    <span data-form-target="errorContainer" data-error-type="description" role="alert" class="error-text"></span>
   </div>
 </div>
 <div class="section">
   <h5>Zonas de trabajo de la organización</h5>
   <%= form.select :zone_ids, zone_search_options(Zone.all), id: "zones", multiple: true %>
+  <span data-form-target="errorContainer" data-error-type="zones" role="alert" class="error-text"></span>
 </div>
 <div class="section volunteers">
   <h5>Oportunidades de voluntariado</h5>

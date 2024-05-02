@@ -3,7 +3,7 @@ import flatpickr from "flatpickr"
 import SlimSelect from "slim-select"
 // Connects to data-controller="form"
 export default class extends Controller {
-  static targets = ["stateId", "image", "contactType"]
+  static targets = ["stateId", "image", "contactType", "errorContainer"]
   connect() {
     console.log("ELEM", this.element);
     if ( this.element.id == 'new-activity') {
@@ -173,6 +173,29 @@ export default class extends Controller {
     else if ( this.stateIdTarget.value == 2 ) {
       document.getElementById('actid').style.display = 'block'
     }
+  }
+  //
+  async validate(event) {
+    const formData = await event.detail.formSubmission
+    const { success, fetchResponse } = formData.result
+    if (success) return
+
+    const res = await fetchResponse.responseText
+    const errors = JSON.parse(res)
+
+    this.errorContainerTargets.forEach((errorContainer) => {
+      if ( errors[errorContainer.dataset.errorType] != undefined ) {
+        errorContainer.innerHTML = '<i class="fa fa-circle-exclamation"></i>'+errors[errorContainer.dataset.errorType][0]
+        if ( errorContainer.parentNode.querySelector('input') != null ) {
+          errorContainer.parentNode.querySelector('input').classList.add('error')
+        }
+        else if ( errorContainer.parentNode.querySelector('.ss-main') != null ) {
+          errorContainer.parentNode.querySelector('.ss-main').classList.add('error')
+        }
+      }
+    })
+    window.scrollTo(0, document.querySelector('.error').offsetTop)
+
   }
   //
   delay(milliseconds){

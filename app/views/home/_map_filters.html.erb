@@ -42,9 +42,9 @@
     </div>
   </div>
   <div class="wrapper filters-bottom">
-    <div class="select-filter button clear-filters">
+    <div class="select-filter button clear-filters" onclick="Mapa.clearFilters()">
       <img class="icon" src="/images/clear-filters.svg"/>
-      <div id="clear" class="button" onclick="Mapa.clearFilters()">Borrar filtros</div>
+      <span>Borrar filtros</span>
     </div>
     <div id="results" class="button">Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
   </div>

@@ -1,3 +1,10 @@
+*, *:before, *:after {
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
+	-ms-box-sizing: border-box !important;
+	box-sizing: border-box !important;
+}
+
 body {
   color: #000;
   font-family: "Inter";
@@ -50,15 +57,32 @@ h5 {
   line-height: 22px;
   margin: 10px 0;
 }
+#main-content {
+  max-width: 1200px;
+  padding: 50px 120px;
+  margin: auto;
+}
 .row {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
-  &.column {
-    flex-direction: column;
-    align-items: inherit;
-  }
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.error {
+  border: 1px solid #F63B3B;
+}
+.error-text {
+  font-size: 12px;
+  line-height: 16px;
+  color: #F63B3B;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 .half {
   width: 50% !important;
@@ -211,11 +235,6 @@ img {
   img {
     width: 100%;
   }
-}
-#main-content {
-  max-width: 960px;
-  padding: 50px 120px;
-  margin: auto;
 }
 .buttons {
   display: flex;

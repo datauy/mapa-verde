@@ -157,9 +157,11 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
-    padding-right: 10px;
+    padding: 10px;
+    width: max-content;
     &.clear-filters {
       padding: 0 10px;
+      width: max-content;
     }
   }
   .select-options {
@@ -196,7 +198,7 @@
   background: #00AA47;
   border-bottom: 1px solid #DEDEDE;
   color: #FFF;
-  height: 16px;
+  height: 44px;
   display: block;
   align-items: center;
   border: none;
@@ -244,7 +246,7 @@
   font-size: 19px;
 }
 
-input[type="text"] {
+#search-text {
   height: 44px;
   padding: 0 10px 0 44px;
   border: 2px solid #00AA47;

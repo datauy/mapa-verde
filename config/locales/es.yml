@@ -33,3 +33,20 @@ es:
   time:
     formats:
       long: "%B %d, %Y"
+  activerecord:
+    errors:
+      models:
+        organization:
+          attributes:
+            name:
+              blank: "Por favor, seleccione el nombre de la organización"
+            description:
+              blank: "Debe introducir una descripción"
+            subject:
+              required: "Debe seleccionar la temática principal de la organización"
+            email:
+              blank: "Debe intruducir un correo para comunicarse con la organización"
+            zones:
+              blank: "Por favor, seleccione las zonas de acción de la organización"
+            organization_type:
+              required: "Por favor seleccione el tipo de organización"

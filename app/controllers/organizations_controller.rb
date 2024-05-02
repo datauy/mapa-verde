@@ -8,9 +8,10 @@ class OrganizationsController < ApplicationController
     @organization = Organization.new(organization_params)
 
     if @organization.save
-      redirect_to root_path, {mtype: 'success',title:"Organización creada!", body:" Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
+      redirect_to root_path, notice: {mtype: 'success',title:"Organización creada!", body:" Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
     else
-      render :new
+      render json: @organization.errors.to_json, status: :unprocessable_entity
+      #render :new
     end
   end
   def state_locations

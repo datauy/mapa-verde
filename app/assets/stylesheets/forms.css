@@ -8,7 +8,7 @@
   margin-bottom: 20px;
   font-size: 16px;
   .half {
-    width: calc(50% - 40px) !important;
+    width: calc(50% - 5px) !important;
   }
   select {
     border-radius: 4px;
@@ -24,6 +24,7 @@
   select {
     font-size: 16px;
     line-height: 22px;
+    width: 100%;
   }
   input[type="checkbox"] {
     margin: 0;

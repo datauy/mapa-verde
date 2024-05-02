@@ -28,7 +28,21 @@ class Organization < ApplicationRecord
 		'Región Metropolitana',
 		'Región Noreste'
   ]
+
+  #Validations
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :zones, presence: true
+  validates :description, presence: true
+  validates :organization_type, presence: true
+  validates :subject, presence: true
+
+
   after_create do
-    SysMailer.with(organization: self).new_organization.deliver
+    begin
+      SysMailer.with(organization: self).new_organization.deliver
+    rescue StandardError => e
+      loger.info("\n\nERROR IN SENDMAIL\n#{e.inspect}")
+    end
   end
 end

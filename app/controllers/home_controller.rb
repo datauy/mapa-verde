@@ -4,11 +4,11 @@ class HomeController < ApplicationController
     @zone_options = Organization.includes(:zones).where.not(zones: nil).distinct.pluck(:'zones.name', :'zones.id')
     @subject_options = Organization.includes(:subjects).distinct.pluck(:'subjects.name', :'subjects.id')
     @action_options = Organization.includes(:operations).distinct.pluck(:'operations.name', :'operations.id')
-    @total = Organization.all.count
+    @total = Organization.where(enabled: true).count
     #self.search
   end
   def search
-    @total = Organization.all.count
+    @total = Organization.where(enabled: true).count
     @organizations = []
     zone_ids = []
     subjs_ids = []

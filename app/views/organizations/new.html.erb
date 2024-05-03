@@ -48,8 +48,10 @@
     </div>
     <div class="half column">
       <%= form.text_field :phone, placeholder: "Teléfono" %>
+      <div>
       <%= form.email_field :email, placeholder: "Email", action: 'keyup->form#remove_error' %>
       <span data-form-target="errorContainer" data-error-type="email" role="alert" class="error-text"></span>
+      </div>
       <%= form.text_field :tiktok, placeholder: "Tiktok" %>
       <%= form.text_field :snapchat, placeholder: "Snapchat" %>
       <%= form.text_field :other_network, placeholder: "Otras" %>

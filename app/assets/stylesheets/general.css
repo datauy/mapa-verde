@@ -220,19 +220,32 @@ img {
     width: 20px;
   }
 }
-.title {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #000;
-  font-family: "Work Sans";
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 36px;
-}
 .title-section {
   margin-bottom: 50px;
+  .title {
+    display: inline-block;
+    color: #000;
+    font-family: "Work Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    .title-first {
+      float: left;
+      margin-right: 5px;
+      margin-top: 4px;
+    }
+    h1 {
+      width: max-content;
+      float: left;
+      margin: 0;
+    }
+    .title-last {
+      float: left;
+      margin-top: 3px;
+      margin-left: 2px;
+    }
+  }
 }
 .section-image {
   width: 100%;

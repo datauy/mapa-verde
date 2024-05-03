@@ -31,7 +31,7 @@ export default class extends Controller {
       })
     });
 
-    calendar = new Calendar('#calendar', {
+    this.calendar = new Calendar('#calendar', {
       defaultView: 'month',
       //todo: calendars con colores por categoría
       calendars: calendars,
@@ -54,18 +54,18 @@ export default class extends Controller {
       })
     })
     window.calendarEvents = events 
-    calendar.createEvents(events)
+    this.calendar.createEvents(events)
     let date = calendar.getDate()
     console.log(date);
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
   nextMonth() {
-    calendar.next();
+    this.calendar.next();
     let date = calendar.getDate()
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
   prevMonth() {
-    calendar.prev();
+    this.calendar.prev();
     let date = calendar.getDate()
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }

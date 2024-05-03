@@ -116,7 +116,6 @@ footer {
     gap: 20px;
     flex: 1 1 0;
     .logos-frame {
-      align-items: center;
       img {
         width: 140px;
         &.data-logo {
@@ -138,14 +137,7 @@ footer {
   #ask-frame{
     margin-top: 8px;
   }
-
-  .logos-frame {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    padding: 0px;
-    gap: 20px;
-  }
+  
   .active .logos-frame,
   .active .logos-frame .toggle-content {
     flex-direction: column;
@@ -157,6 +149,7 @@ footer {
     margin-top: 36px;
     .logos-frame {
       justify-content: space-between;
+      align-items: start;
     }
     h3 {
       margin-bottom: 16px;

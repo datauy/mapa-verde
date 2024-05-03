@@ -35,3 +35,6 @@
 .toastui-calendar-section-button {
   display: none;
 }
+.toastui-calendar-weekday-event {
+  width: min-content;
+}

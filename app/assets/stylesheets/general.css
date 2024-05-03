@@ -13,6 +13,7 @@ body {
   font-weight: 400;
   line-height: normal; 
   margin: 0;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -261,6 +262,14 @@ img {
   gap: 10px;
   margin: 20px 0;
 }
+.logos-frame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 20px;
+}
+
 .right {
   justify-content: right;
 }
@@ -314,6 +323,20 @@ i.right {
   top: calc(50% - 6px);
 }
 
+/*         STATIC PAGES          */
+.about img {
+  width: 200px;
+  margin: 0 20px 20px 0;
+  &.um-logo {
+    width: 286px;
+  }
+  &.use-logo {
+    width: 158px;
+  }
+  &.data-logo {
+    width: 172px;
+  }
+}
 @media screen and (max-width: 600px) {
   #main-content {
     padding: 0 30px;

@@ -1,5 +1,5 @@
 <% content_for(:image_section) { image_tag('mundo.png') } %>
-<div class="main-content">
+<div class="main-content about">
   <h1>Sobre el proyecto</h1>
   <p  class="title-desc">
     El proyecto Mapa Verde inaugura un espacio necesario y estratégico de colaboración interinstitucional, formación y participación juvenil en temas de desarrollo ambientalmente sostenible en Uruguay. Es una plataforma de información y comunicación, que conecta a iniciativas juveniles ambientales entre ellas y con el resto de la sociedad.
@@ -15,17 +15,22 @@
   </p>
   <h2>¿Quiénes somos?</h2>
     <h3>Presenta</h3>
+      <div class="logos-frame">
         <a href="https://um.edu.uy/facultad-de-comunicacion" target="_blank">
-          <%= image_tag("um_color.png", alt:"Facultad de Comunicación de la Universidad de Montevideo") %>
-        </a>      
+          <%= image_tag("um_color.png", alt:"Facultad de Comunicación de la Universidad de Montevideo", class:"um-logo") %>
+        </a>
+      </div>
     <h3>Impulsan:</h3>
+      <div class="logos-frame">
         <a href="https://www.unicef.org/uruguay/" target="_blank">
           <%= image_tag("unicef_color.png", alt:"UNICEF Uruguay") %>
         </a>
         <a href="https://uy.usembassy.gov/es/" target="_blank">
-          <%= image_tag("usemb_color.png", alt:"Emabajada de los Estados Unidos en Uruguay") %>
+          <%= image_tag("usemb_color.png", alt:"Emabajada de los Estados Unidos en Uruguay", class: "use-logo") %>
         </a>
-    <h3>Consejo Consultor</h3>  
+      </div>
+    <h3>Consejo Consultor</h3> 
+      <div class="logos-frame"> 
         <a href="https://www.instagram.com/fridaysforfutureuy/" target="_blank">
           <%= image_tag("fff_color.png", alt:"Fridays for Future Uruguay") %>
         </a>
@@ -35,13 +40,16 @@
         <a href="https://www.instagram.com/ecocity_uy/" target="_blank">
           <%= image_tag("ecocity_color.png", alt:"EcoCity") %>
         </a>
+      </div>
     <h3>Colaboran:</h3>
+      <div class="logos-frame">
         <a href="https://data.org.uy" target="_blank">
-          <%= image_tag("data_color.png", alt:"DATA Uruguay") %>
+          <%= image_tag("data_color.png", alt:"DATA Uruguay", class: "data-logo") %>
         </a>
         <a href="https://inju.gub.uy" target="_blank">
           <%= image_tag("inju_color.png", alt:"INJU") %>
         </a>
+      </div>
     <h3>Consejo Asesor:</h3>
         <ul>
             <li>Adriana Loeff, Mag., experta en periodismo y video documental</li>

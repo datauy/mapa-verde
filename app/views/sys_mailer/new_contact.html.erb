@@ -1,7 +1,14 @@
 <h1>Hola, Mapa Verde admin!</h1>
 <p>Se generó un nuevo comentario<br>
 </p>
-<p>
-  <%= @contact.inspect %>
-</p>
+<ul>
+  <li><b>Tipo: <%= @contact['contact_type'] %></b></li>
+  <li><b>Organización: <%= @contact['organization'] %></b></li>
+  <li><b>Actividad: <%= @contact['activity'] %></b></li>
+  <li><b>Nombre: <%= @contact['name'] %></b></li>
+  <li><b>Departamento: <%= @contact['state_id'] %></b></li>
+  <li><b>Email: <%= @contact['email'] %></b></li>
+  <li><b>Teléfono: <%= @contact['phone'] %></b></li>
+  <li><b>Mensaje: <%= @contact['message'] %></b></li>
+</ul>
 <p>Si recibiste este correo por equivocación podes ignorarlo</p>

@@ -10,5 +10,5 @@
       <%= icon_tag(@subjects) %>
     </div>
   </div>
-  <%= @resource.link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información".html_safe, class: 'btn main-button', href: @resource.link, target: "_blank", data: {turbo: false}) : '' %>
+  <%= @resource.link.present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Accedé al recurso".html_safe, class: 'btn main-button', href: @resource.link, target: "_blank", data: {turbo: false}) : '' %>
 </div>

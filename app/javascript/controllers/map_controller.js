@@ -64,7 +64,7 @@ export default class extends Controller {
           zonesData.push({ 
             "type": "Feature",
             'properties': {
-              orgId: idx
+              zoneId: zone_id
             }, "geometry": wkt.toJson() 
           });
         }
@@ -75,9 +75,9 @@ export default class extends Controller {
         onEachFeature: (feature, layer) => {
           layer.on({
             click: (e) => {
-              let orgId = e.target.feature.properties.orgId
-              console.log('TARGET ORG:', e.target.feature.properties.orgId);
-              document.querySelector('#org-'+orgId+' .srv-header').click()
+              let zoneId = e.target.feature.properties.zoneId
+              console.log('TARGET ORG:', e.target.feature.properties.zoneId);
+              document.querySelector('li[data-value="'+zoneId+'"]').click()
             }            
           })
         }

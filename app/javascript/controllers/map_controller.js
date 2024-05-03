@@ -76,7 +76,6 @@ export default class extends Controller {
           layer.on({
             click: (e) => {
               let zoneId = e.target.feature.properties.zoneId
-              console.log('TARGET ORG:', e.target.feature.properties.zoneId);
               document.querySelector('li[data-value="'+zoneId+'"]').click()
             }            
           })

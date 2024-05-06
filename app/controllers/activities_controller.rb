@@ -9,7 +9,11 @@ class ActivitiesController < ApplicationController
     end
   end
   def show
-    @activity = Activity.find(params[:id])
+    @activity = Activity.where(id: params[:id], enabled: true).first
+    if @activity.nil?
+      redirect_to root_path, notice: {mtype: 'error',title:"No existe la actividad", body:"La actividad a la que estás intentando acceder no está disponible"}
+      return
+    end
     @organizations = []
     @activity.organizations.each do |org|
       @organizations.push({

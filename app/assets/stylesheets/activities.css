@@ -36,5 +36,5 @@
   display: none;
 }
 .toastui-calendar-weekday-event {
-  width: min-content;
+  /*width: min-content;*/
 }

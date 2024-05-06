@@ -55,18 +55,18 @@ export default class extends Controller {
     })
     window.calendarEvents = events 
     this.calendar.createEvents(events)
-    let date = calendar.getDate()
+    let date = this.calendar.getDate()
     console.log(date);
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
   nextMonth() {
     this.calendar.next();
-    let date = calendar.getDate()
+    let date = this.calendar.getDate()
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
   prevMonth() {
     this.calendar.prev();
-    let date = calendar.getDate()
+    let date = this.calendar.getDate()
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
 }

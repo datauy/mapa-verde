@@ -49,34 +49,34 @@
             </div>
             <div class="icons-wraper">
               <% if element['website'] != '' %>
-                <div class="row icon-tag"><i class="fas fa-link"></i><span><%= link_to element['website'], element['website'] %></span></div>
+                <div class="icon-tag"><i class="fas fa-link"></i><span><%= link_to element['website'], element['website'] %></span></div>
               <% end %>
               <% if element['phone'] != '' %>
-                <div class="row icon-tag"><i class="fas fa-phone"></i><span><%= link_to element['phone'], "tel:#{element['phone']}" %></span></div>
+                <div class="icon-tag"><i class="fas fa-phone"></i><span><%= link_to element['phone'], "tel:#{element['phone']}" %></span></div>
               <% end %>
               <% if element['whatsapp'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-whatsapp"></i><span><%= link_to element['whatsapp'], "https://api.whatsapp.com/send?phone=#{element['whatsapp']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-whatsapp"></i><span><%= link_to element['whatsapp'], "https://api.whatsapp.com/send?phone=#{element['whatsapp']}"%></span></div>
               <% end %>
               <% if element['email'] != '' %>
-                <div class="row icon-tag"><i class="fas fa-envelope"></i><span><%= link_to element['email'], "mailto:#{element['email']}"%></span></div>
+                <div class="icon-tag"><i class="fas fa-envelope"></i><span><%= link_to element['email'], "mailto:#{element['email']}"%></span></div>
               <% end %>
               <% if element['instagram'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-instagram"></i><span><%= link_to element['instagram'], "https://www.instagram.com/#{element['instagram']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-instagram"></i><span><%= link_to element['instagram'], "https://www.instagram.com/#{element['instagram']}"%></span></div>
                 <% end %>
               <% if element['twitter'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-x-twitter"></i><span><%= link_to element['twitter'], "https://twitter.com/#{element['twitter']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-x-twitter"></i><span><%= link_to element['twitter'], "https://twitter.com/#{element['twitter']}"%></span></div>
               <% end %>
               <% if element['facebook'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-facebook"></i><span><%= link_to element['facebook'], "https://www.facebook.com/#{element['facebook']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-facebook"></i><span><%= link_to element['facebook'], "https://www.facebook.com/#{element['facebook']}"%></span></div>
               <% end %>
               <% if element['tiktok'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-tiktok"></i><span><%= link_to element['tiktok'], "https://www.tiktok.com/@#{element['tiktok']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-tiktok"></i><span><%= link_to element['tiktok'], "https://www.tiktok.com/@#{element['tiktok']}"%></span></div>
               <% end %>
               <% if element['snapchat'] != '' %>
-                <div class="row icon-tag"><i class="fa-brands fa-snapchat"></i><span><%= link_to element['snapchat'], "https://www.snapchat.com/add/#{element['snapchat']}"%></span></div>
+                <div class="icon-tag"><i class="fa-brands fa-snapchat"></i><span><%= link_to element['snapchat'], "https://www.snapchat.com/add/#{element['snapchat']}"%></span></div>
               <% end %>
               <% if element['other_network'] != '' %>
-                <div class="row icon-tag"><i class="fa-solid fa-share-nodes"></i><span><%= element['other_network']%></span></div>
+                <div class="icon-tag"><i class="fa-solid fa-share-nodes"></i><span><%= element['other_network']%></span></div>
               <% end %>
             </div>
           </div>
@@ -86,11 +86,11 @@
               <span>Información</span>
             </div>
             <div class="icons-wraper">
-              <div class="row icon-tag"><i class="fas fa-location-dot icon-tag"></i><span><%= "#{element['address']}"%></span></div>
+              <div class="icon-tag"><i class="fas fa-location-dot icon-tag"></i><span><%= "#{element['address']}"%></span></div>
               <% element[:zones].each do |z| %>
-                <div class="row icon-tag"><i class="fas fa-map-location-dot icon-tag"></i><span><%= "#{@zones[z].name}"%></span></div>
+                <div class="icon-tag"><i class="fas fa-map-location-dot icon-tag"></i><span><%= "#{@zones[z].name}"%></span></div>
               <% end %>
-              <div class="row icon-tag"><i class="fas fa-map icon-tag"></i><span><%= "#{element['region']}"%></span></div>
+              <div class="icon-tag"><i class="fas fa-map icon-tag"></i><span><%= "#{element['region']}"%></span></div>
             </div>
             <div class="row"><p><%= element['description'].html_safe %></p></div>
           </div>

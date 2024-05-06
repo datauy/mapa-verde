@@ -40,7 +40,7 @@ class HomeController < ApplicationController
       org.merge!(actions: o.operations.ids)
       org.merge!(organization_type: o.organization_type.name)
       org.merge!(logo: o.logo.attached? ? url_for(o.logo) : '/images/logo_mapa_verde.svg')
-      org.merge!(activities: o.activities.order(starts: :desc))
+      org.merge!(activities: o.activities.where(enabled: true).order(starts: :desc))
       zone_ids = zone_ids | o.zones.ids
       actions_ids = actions_ids | o.operations.ids
       #logger.debug org.inspect

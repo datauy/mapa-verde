@@ -25,6 +25,8 @@ module MapaVerde
     # config.eager_load_paths << Rails.root.join("extras")
     config.active_storage.variant_processor = :mini_magick
     config.i18n.default_locale = :es
+    config.time_zone = 'America/Montevideo'
+    config.active_record.default_timezone = :local
   end
   Rails.configuration.to_prepare do
     require_relative '../lib/assets/ransackable_attachment'

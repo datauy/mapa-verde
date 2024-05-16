@@ -9,11 +9,11 @@
 </div>
 <div id="calendar"></div>
 <div class="main-content">
-  <h2>Próximas actividades</h2>
+  <h2>Actividades del mes</h2>
     <p  class="desc">
         Estás en el Calendario del Mapa Verde. Aquí encuentras un listado de  actividades relacionadas con la acción ambiental juvenil: desde eventos organizados por las iniciativas ambientales juveniles que forman parte de nuestra plataforma, hasta actividades convocadas por el equipo del Mapa Verde y sus socios, así como otros eventos de interés para jóvenes comprometidos con el ambiente. Explora nuestro calendario para mantenerte al tanto de las oportunidades de participación y aprendizaje.
     </p>
-  <%= turbo_frame_tag "acts_list", src: activities_list_url(format: :turbo_stream) do %>
+  <%= turbo_frame_tag "acts_list", src: activities_list_url(format: :turbo_stream, starts: Date.today.at_beginning_of_month, ends: Date.today.end_of_month) do %>
     <% 3.times do %>
       <%= render "/layouts/article_placeholder" %>
     <% end %>
@@ -24,7 +24,7 @@
     </p>
 </div>
 <script>
-  window.data = <%= "#{@activities.to_json}".html_safe %>;//JSON.parse(resources);
+  window.data = <%= "#{@activities.to_json}".html_safe %>;
   window.act_orgs = <%= "#{@organizations.to_json}".html_safe %>;
   window.subjects = <%= "#{@subjects.to_json}".html_safe %>;
 </script>

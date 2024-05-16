@@ -62,11 +62,38 @@ export default class extends Controller {
   nextMonth() {
     this.calendar.next();
     let date = this.calendar.getDate()
+    console.log('NEXT', date);
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
+    this.getCalendarMonthActivities()
   }
   prevMonth() {
     this.calendar.prev();
     let date = this.calendar.getDate()
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
+    this.getCalendarMonthActivities()
+  }
+  getCalendarMonthActivities() {
+    let url = new URL(window.location.protocol+"//"+window.location.hostname+(window.location.port.length !== 0 ? ":"+window.location.port : '')+"/activities-list")
+    let current_month = this.calendar.getDate().getMonth() + 1
+    let current_year = this.calendar.getDate().getFullYear()
+    if ( current_month == 12 ) {
+      current_month = 0
+      current_year = current_year + 1
+    }
+    var starts = current_year+'-'+current_month+'-1'
+    url.searchParams.append('starts', starts)
+    let ends_obj = new Date(current_year, current_month)
+    ends_obj.setHours(-1);
+    url.searchParams.append('ends', current_year+'-' + (ends_obj.getMonth() + 1) + '-' + ends_obj.getDate() )
+    fetch(url.href, {
+      method: "GET",
+      headers: {
+        Accept: "text/vnd.turbo-stream.html"
+      }
+    })
+    .then(r => r.text())
+    .then(html => {
+      Turbo.renderStreamMessage(html)
+    })
   }
 }

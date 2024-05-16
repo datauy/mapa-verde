@@ -1,11 +1,17 @@
 class ActivitiesController < ApplicationController
   def list
-    @pagy_acts, @activities = pagy(Activity.where('starts >= ?', Date.today).where(enabled: true).order(:starts), items: 3, page_param: :page_acts)
+    @starts = Date.today
+    if params['starts'].present?
+      @starts = params['starts']
+    end
+    @ends = (Date.today + 365)
+    if params['ends'].present?
+      @ends = params['ends']
+    end
+    @pagy_acts, @activities = pagy(Activity.where('(starts >= :starts and starts <= :ends) or (ends >= :starts and ends <= :ends)', starts: @starts, ends: @ends).where(enabled: true).order(:starts), items: 3, page_param: :page_acts)
     respond_to do |format|
       format.html
-      format.turbo_stream {
-        logger.info "\n\nACTIVITIES TURBO\n\n"
-      }
+      format.turbo_stream
     end
   end
   def show

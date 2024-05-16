@@ -8,11 +8,20 @@
   </div>
 <!-- update the pagination turbo_frame with the current pagination offset -->
 <%= turbo_stream.update "acts_pagination" do %>
+  <% 
+  page_params = {}
+  if @starts.present?
+    page_params[:starts] = @starts
+  end
+  if @ends.present?
+    page_params[:ends] = @ends
+  end
+  %>
   <% if @pagy_acts.prev %>
-    <%= link_to "< Anterior", activities_list_url(page_acts: @pagy_acts.prev), data: { turbo_stream: true }, class: "btn-pager previous" %>
+    <%= link_to "< Anterior", activities_list_url( {page_acts: @pagy_acts.prev}.merge(page_params) ), data: { turbo_stream: true }, class: "btn-pager previous" %>
   <% end %>
   <% if @pagy_acts.next %>
-    <%= link_to "Siguiente >", activities_list_url(page_acts: @pagy_acts.next), data: { turbo_stream: true }, class: "btn-pager next" %>
+    <%= link_to "Siguiente >", activities_list_url( {page_acts: @pagy_acts.next}.merge(page_params) ), data: { turbo_stream: true }, class: "btn-pager next" %>
   <% end %> 
   <p class="text-center mt-8 text-gray-500"><%== pagy_info @pagy_acts %></p>
 <% end %> 

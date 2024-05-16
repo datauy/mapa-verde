@@ -303,7 +303,7 @@ input[type="radio"], input[type="checkbox"] {
   text-align: center;
 }
 .activity-item-wraper {
-  width: min-content;
+  width: calc(33.33% - 14px);
 }
 #resources #list,
 #acts_list {
@@ -320,7 +320,6 @@ input[type="radio"], input[type="checkbox"] {
     flex-direction: column;
     border: 1px solid #DEDEDE;
     min-height: 150px;
-    width: 256px;
     h3 {
       font-family: "Work Sans";
       font-size: 20px;

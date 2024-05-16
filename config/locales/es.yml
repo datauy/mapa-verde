@@ -30,6 +30,21 @@
 en:
   hello: "Hello world"
 es:
+  date:
+    month_names: [
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "setiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
   time:
     formats:
       long: "%B %d, %Y"

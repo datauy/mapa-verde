@@ -21,7 +21,10 @@ class HomeController < ApplicationController
       orgs = orgs.where(organization_type: params['otypes'].split(','))
     end
     if params['subjects'].present?
-      orgs = orgs.joins(:subjects).where(subjects: params['subjects'].split(','))
+      subs = params['subjects'].split(',')
+      orgs = orgs.joins(:subjects)
+      orgs = orgs.where(subject_id: subs)
+      orgs = orgs.or(orgs.where(subjects: subs))
     end
     if params['actions'].present?
       orgs = orgs.joins(:operations).where(operations: params['actions'].split(','))

@@ -8,7 +8,13 @@ class ActivitiesController < ApplicationController
     if params['ends'].present?
       @ends = params['ends']
     end
-    @pagy_acts, @activities = pagy(Activity.where('(starts >= :starts and starts <= :ends) or (ends >= :starts and ends <= :ends)', starts: @starts, ends: @ends).where(enabled: true).order(:starts), items: 3, page_param: :page_acts)
+    @pagy_acts, @activities = pagy(
+      Activity.where('(starts >= :starts and starts <= :ends) or (ends >= :starts and ends <= :ends)', starts: @starts, ends: @ends).where(enabled: true).order(:starts),
+      items: 3,
+      page_param: :page_acts,
+      link_extra: 'data-turbo-stream=true',
+      request_path: '/activities-list',
+      )
     respond_to do |format|
       format.html
       format.turbo_stream

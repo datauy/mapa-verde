@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @otype_options = Organization.includes(:organization_type).distinct.pluck(:'organization_types.name', :'organization_types.id')
-    @zone_options = Organization.includes(:zones).where.not(zones: nil).distinct.pluck(:'zones.name', :'zones.id')
-    @subject_options = Organization.includes(:subjects).distinct.pluck(:'subjects.name', :'subjects.id')
-    @action_options = Organization.includes(:operations).distinct.pluck(:'operations.name', :'operations.id')
+    @otype_options = Organization.where(enabled: true).includes(:organization_type).where.not('organization_types.id': nil).distinct.pluck(:'organization_types.name', :'organization_types.id')
+    @zone_options = Organization.where(enabled: true).includes(:zones).where.not(zones: nil).distinct.pluck(:'zones.name', :'zones.id')
+    @subject_options = Organization.where(enabled: true).includes(:subjects).where.not('subjects.id': nil).distinct.pluck(:'subjects.name', :'subjects.id')
+    @action_options = Organization.where(enabled: true).includes(:operations).where.not('operations.id': nil).distinct.pluck(:'operations.name', :'operations.id')
     @total = Organization.where(enabled: true).count
     #self.search
   end
@@ -20,12 +20,6 @@ class HomeController < ApplicationController
     if params['otypes'].present?
       orgs = orgs.where(organization_type: params['otypes'].split(','))
     end
-    if params['subjects'].present?
-      subs = params['subjects'].split(',')
-      orgs = orgs.joins(:subjects)
-      orgs = orgs.where(subject_id: subs)
-      orgs = orgs.or(orgs.where(subjects: subs))
-    end
     if params['actions'].present?
       orgs = orgs.joins(:operations).where(operations: params['actions'].split(','))
     end
@@ -35,6 +29,15 @@ class HomeController < ApplicationController
     if params['text'].present?
       str = params['text'].downcase
       orgs = orgs.where("name like :value or description like :value or volunteers_description like :value", value: "%#{str.strip.downcase}%")
+    end
+    if params['subjects'].present?
+      subs = params['subjects'].split(',')
+      orgs2 = orgs.dup
+      orgs = orgs.where(subject_id: subs).order!(:name)
+      orgs += orgs2.joins(:subjects).where(subjects: subs).order!(:name)
+    end
+    if !orgs.kind_of?(Array)
+      orgs.order!(:name)
     end
     orgs.each do |o|
       org = o.as_json

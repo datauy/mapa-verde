@@ -247,6 +247,9 @@ img {
       margin-left: 2px;
     }
   }
+  .main-button {
+    background: #00AA47;
+  }
 }
 .section-image {
   width: 100%;

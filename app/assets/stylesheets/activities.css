@@ -38,3 +38,9 @@
 .toastui-calendar-weekday-event {
   /*width: min-content;*/
 }
+.toastui-calendar-template-popupDetailDate {
+  font-weight: initial;
+}
+.toastui-calendar-floating-layer * {
+  word-break: break-word;
+}

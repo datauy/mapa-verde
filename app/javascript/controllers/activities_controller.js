@@ -35,7 +35,12 @@ export default class extends Controller {
       defaultView: 'month',
       //todo: calendars con colores por categoría
       calendars: calendars,
-      useDetailPopup: true
+      useDetailPopup: true,
+      template: {
+        milestone: function(schedule) {
+            return '<span style="color:red;"><i class="fa fa-flag"></i> ' + schedule.title + '</span>';
+        },
+      }
     });
     var events = []; 
     window.data.forEach(element => {
@@ -48,7 +53,7 @@ export default class extends Controller {
         //dueDateClass: '',
         start: element.starts,
         end: element.ends,
-        location: element.address,
+        location: element.address.startsWith('http') ? '<a target="_blank" href="'+element.address+'">Online</a>' : element.address,
         state: '<a href="/actividad/'+element.id+'">Ver actividad</a>',
         attendees: window.act_orgs[element.id]
       })

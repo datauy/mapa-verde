@@ -18,23 +18,24 @@ class HomeController < ApplicationController
     @actions = {}
     orgs = Organization.includes(:organization_type).where(enabled: true)
     if params['otypes'].present?
-      orgs = orgs.where(organization_type: params['otypes'].split(','))
+      orgs = orgs.where(organization_type: params['otypes'].split(',')).distinct
     end
     if params['actions'].present?
-      orgs = orgs.joins(:operations).where(operations: params['actions'].split(','))
+      orgs = orgs.joins(:operations).where(operations: params['actions'].split(',')).distinct
     end
     if params['zones'].present?
-      orgs = orgs.joins(:zones).where(zones: params['zones'].split(','))
+      orgs = orgs.joins(:zones).where(zones: params['zones'].split(',')).distinct
     end
     if params['text'].present?
-      str = params['text'].downcase
-      orgs = orgs.where("name like :value or description like :value or volunteers_description like :value", value: "%#{str.strip.downcase}%")
+      orgs = orgs.where("lower(organizations.name) like :value or lower(organizations.description) like :value or lower(organizations.volunteers_description) like :value", value: "%#{params['text'].strip.downcase}%").distinct
     end
     if params['subjects'].present?
       subs = params['subjects'].split(',')
       orgs2 = orgs.dup
-      orgs = orgs.where(subject_id: subs).order!(:name)
-      orgs += orgs2.joins(:subjects).where(subjects: subs).order!(:name)
+      orgs = orgs.where(subject_id: subs)
+      orgs_ids = orgs.ids
+      orgs = orgs.order!(:name)
+      orgs += orgs2.joins(:subjects).where(subjects: subs).where.not(id: orgs_ids).distinct.order!(:name)
     end
     if !orgs.kind_of?(Array)
       orgs.order!(:name)

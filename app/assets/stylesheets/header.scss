@@ -132,13 +132,23 @@ header {
       display: none;
     }
   }
-
-  @media screen and (max-width: 900px) {
-    .hamb-wrapper {
-      display: block !important;
-    }
-    .menu-container .menu {
-      display: none;
-    }
+}
+@media screen and (min-width: 900px) {
+  header {
+    position: fixed;
+    max-width: 100%;
+    padding: 20px 10%;
+    background: #FFF;
+  }
+  .section-image {
+    margin-top: 102px;
+  }
+}
+@media screen and (max-width: 900px) {
+  .hamb-wrapper {
+    display: block !important;
+  }
+  .menu-container .menu {
+    display: none;
   }
 }

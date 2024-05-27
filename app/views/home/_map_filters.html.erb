@@ -1,55 +1,51 @@
 <div id="filters">
-  <div class="filters-top wrapper">
-    <div class="wrapper select-wrapper" onclick="document.getElementById('otype').classList.toggle('active');">
-      <div id="otype-trigger" class="select-filter">
-      <img class="icon" src="/images/type.svg"/>
-      <span>Tipo</span>
-      </div>
-      <ul id="otype" class="select-options">
-        <%= search_options(@otype_options, 'otypes', 'map') %>
-      </ul>
-      <i class="fas fa-chevron-down right"></i>
+  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('otype')">
+    <div id="otype-trigger" class="select-filter">
+    <img class="icon" src="/images/type.svg"/>
+    <span>Tipo</span>
     </div>
-    <div class="wrapper select-wrapper" onclick="document.getElementById('subject').classList.toggle('active');">
-      <div id="subject-trigger" class="select-filter">
-        <img class="icon" src="/images/subject.svg"/>
-        Temática
-      </div>
-      <ul id="subject" class="select-options">
-        <%= search_options(@subject_options, 'subjects', 'map') %>
-      </ul>
-      <i class="fas fa-chevron-down right"></i>
-    </div>
-    <div class="wrapper select-wrapper" onclick="document.getElementById('action').classList.toggle('active');">
-      <div id="action-trigger" class="select-filter">
-        <img class="icon" src="/images/action.svg"/>
-        Acciones
-      </div>
-      <ul id="action" class="select-options">
-        <%= search_options(@action_options, 'actions', 'map') %>
-      </ul>
-      <i class="fas fa-chevron-down right"></i>
-    </div>
-    <div class="wrapper select-wrapper" onclick="document.getElementById('zone').classList.toggle('active');">
-      <div id="zone-trigger" class="select-filter">
-        <img class="icon" src="/images/zone.svg"/>
-        Zonas
-      </div>
-      <ul id="zone" class="select-options">
-        <%= search_options(@zone_options, 'zones', 'map') %>
-      </ul>
-      <i class="fas fa-chevron-down right"></i>
-    </div>
+    <ul id="otype" class="select-options">
+      <%= search_options(@otype_options, 'otypes', 'map') %>
+    </ul>
+    <i class="fas fa-chevron-down right"></i>
   </div>
-  <div class="wrapper filters-bottom">
-    <div class="select-filter button clear-filters" onclick="Mapa.clearFilters()">
-      <img class="icon" src="/images/clear-filters.svg"/>
-      <span>Borrar filtros</span>
-      <div id="results" >Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
+  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('subject')">
+    <div id="subject-trigger" class="select-filter">
+      <img class="icon" src="/images/subject.svg"/>
+      Temática
     </div>
+    <ul id="subject" class="select-options">
+      <%= search_options(@subject_options, 'subjects', 'map') %>
+    </ul>
+    <i class="fas fa-chevron-down right"></i>
   </div>
-</div>
-<div id="search">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="text" id="search-text" name="search" placeholder="Buscar..." data-controller="map" data-action="keyup->map#search" data-category="text"></input>
+  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('action')">
+    <div id="action-trigger" class="select-filter">
+      <img class="icon" src="/images/action.svg"/>
+      Acciones
+    </div>
+    <ul id="action" class="select-options">
+      <%= search_options(@action_options, 'actions', 'map') %>
+    </ul>
+    <i class="fas fa-chevron-down right"></i>
+  </div>
+  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('zone')">
+    <div id="zone-trigger" class="select-filter">
+      <img class="icon" src="/images/zone.svg"/>
+      Zonas
+    </div>
+    <ul id="zone" class="select-options">
+      <%= search_options(@zone_options, 'zones', 'map') %>
+    </ul>
+    <i class="fas fa-chevron-down right"></i>
+  </div>
+  <div class="select-filter button clear-filters" onclick="Mapa.clearFilters()">
+    <img class="icon" src="/images/clear-filters.svg"/>
+    <span>Borrar filtros</span>
+    <div id="results" >Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
+  </div>
+  <div id="search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" id="search-text" name="search" placeholder="Buscar..." data-controller="map" data-action="keyup->map#search" data-category="text"></input>
+  </div>
 </div>

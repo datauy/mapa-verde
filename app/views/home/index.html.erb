@@ -17,8 +17,8 @@
 </div>
 <div class="backdrop"></div>
 <div id="mapa-section"  data-controller="map">
+  <%= render partial: 'map_filters' %>
   <div id="map-wrapper">
-    <%= render partial: 'map_filters' %>
     <div id="orgs-list">
       <%= turbo_frame_tag "orgs_list", src: search_url(format: :turbo_stream)%>
     </div>

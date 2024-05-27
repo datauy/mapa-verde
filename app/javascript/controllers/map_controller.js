@@ -96,13 +96,16 @@ export default class extends Controller {
     if ( !srv.classList.contains('active') ) {
       document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
       srv.classList.add("active");
-      var position = srv.offsetTop - document.getElementById('org-0').offsetTop;
-      document.getElementById('list').scrollTo(0, position);
+      let position = srv.offsetTop - document.getElementById('org-0').offsetTop;
+      let list = document.getElementById('list')
+      list.style.height = srv.offsetHeight+"px"
+      list.scrollTo(0, position)
       //document.getElementById('srv-'+id).scrollIntoView({behavior: 'smooth'});
     }
     else {
       document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
       orgId = undefined;
+      list.style.height = "calc(100vh - 500px)"
     }
     this.renderZones(orgId);
   }
@@ -111,6 +114,14 @@ export default class extends Controller {
     //console.log("CHANGE MAP");
     //frame.src = "/search.turbo_stream";
     //frame.reload(); // there is no need to reload
+  }
+  toggleSearchSelect(elem_id) {
+    console.log("SEARCH SELECT", elem_id);
+    //clear all 
+    document.querySelectorAll('.select-wrapper ul:not(#'+elem_id+')').forEach( ul => {
+      ul.classList.remove('active')
+    });
+    document.getElementById(elem_id).classList.toggle('active')
   }
   search(event) {
     if ( event !== null ) {

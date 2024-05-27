@@ -137,13 +137,14 @@
   z-index: 400;
 }
 #filters {
-  position: absolute;
-  top: 15px;
-  left: 10px;
   z-index: 402;
-  max-width: calc(100% - 54px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
   .select-wrapper {
-    margin: 5px;
+    margin: 0px;
     background: #00AA47;
     border-bottom: 1px solid #DEDEDE;
     color: #FFF;
@@ -175,12 +176,14 @@
     margin: 0;
     z-index: 402;
     position: relative;
+    width: min-content;
     &.active {
       display: block;
     }
     li {
       padding-right: 30px;
       color: #00AA47;
+      width: 100%;
     }
     label {
       height: 28px;
@@ -234,9 +237,7 @@
   max-width: 94px;
 }
 #search {
-  position: absolute;
-  top: 440px;
-  left: 15px;
+  position: relative;
   z-index: 401;
 }
 #search i,
@@ -267,7 +268,7 @@ input[type="radio"], input[type="checkbox"] {
   margin-left: 16px;
 }
 #list {
-  max-height: calc(100vh - 500px);
+  height: calc(100vh - 500px);
   overflow-y: scroll;
   h3 {
     margin: 0;

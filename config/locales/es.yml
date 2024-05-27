@@ -48,6 +48,7 @@ es:
   time:
     formats:
       long: "%B %d, %Y"
+      short: "%d/%M/%Y"
   activerecord:
     errors:
       models:

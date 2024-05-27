@@ -12,7 +12,7 @@
       <%= search_icon_options(@subjects, 'subjects', 'resources') %>
   </ul>
   <div id="resources">
-      <%= turbo_frame_tag "list", src: resources_url(format: :turbo_stream)%>
+      <%= turbo_frame_tag "resources-list", src: resources_url(format: :turbo_stream)%>
       <%= turbo_frame_tag "pagination" %>
   </div>
 </div>

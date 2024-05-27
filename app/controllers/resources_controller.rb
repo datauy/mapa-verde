@@ -3,9 +3,9 @@ class ResourcesController < ApplicationController
     @active_filters = []
     if params['subjects'].present?
       @active_filters = params['subjects'].split(',')
-      res = Resource.includes(:subjects).where('subjects.id': @active_filters).order(:created_at)
+      res = Resource.includes(:subjects).where('subjects.id': @active_filters).order(weight: 'ASC', created_at: 'DESC')
     else
-      res = Resource.all.order(:created_at)
+      res = Resource.all.order(weight: 'ASC', created_at: 'DESC')
     end
     @subjects = Subject.all.map {|z| {
       value: z.id,
@@ -15,9 +15,7 @@ class ResourcesController < ApplicationController
     @pagy, @resources = pagy(res, items: 6, page_param: :page)
     respond_to do |format|
       format.html
-      format.turbo_stream {
-        logger.info "\n\RESOURCES TURBO\n\n"
-      }
+      format.turbo_stream
     end
   end
   def show

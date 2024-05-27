@@ -5,7 +5,7 @@ ActiveAdmin.register Resource do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :description, :link, :summary, subject_ids:[]
+  permit_params :title, :description, :link, :summary, :weight, subject_ids:[]
   #
   # or
   #
@@ -21,7 +21,23 @@ ActiveAdmin.register Resource do
       f.input :description, as: :ckeditor
       f.input :subjects
       f.input :link
+      f.input :weight
     end
     f.actions
+  end
+  #
+  #
+  #
+  index do
+    selectable_column
+    id_column
+    column :title
+    column :summary
+    column :description
+    column :subjects
+    column :link
+    column :weight
+    column :created_at
+    actions
   end
 end

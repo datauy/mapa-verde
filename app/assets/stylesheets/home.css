@@ -291,16 +291,11 @@ input[type="radio"], input[type="checkbox"] {
   background: #fff;
   width: 420px;
   max-width: 100%;
- }
+}
  #no-results i {
    position: absolute;
    right: 16px;
- }
- @media (max-width: 782px) {
-   #filters .filters-bottom {
-     display: grid;
-    }
-  }
+}
   
   /* ACTIVITIES*/
 #acts_pagination p {
@@ -310,7 +305,7 @@ input[type="radio"], input[type="checkbox"] {
   width: 100%;
   height: 100%;
 }
-#resources #list,
+#resources-list,
 #acts_list {
   display: grid;
   justify-content: space-between;
@@ -340,5 +335,14 @@ input[type="radio"], input[type="checkbox"] {
   }
   a {
     text-decoration: none;
+  }
+}
+@media (max-width: 782px) {
+  #filters .filters-bottom {
+    display: grid;
+  }
+  #resources-list,
+  #acts_list {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

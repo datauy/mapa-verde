@@ -24,7 +24,6 @@ module ApplicationHelper
   def icon_tag(elements)
     res = ''
     elements.each do |element|
-      logger.info "\n\n#{element.inspect}\n\n"
       res += content_tag :div, class: "icon-tag" do
         concat element[:icon].present? ? image_tag(element[:icon]) : image_tag('/images/icon_default.svg', class: "icon-default")
         concat content_tag :span, element[:name]

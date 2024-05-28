@@ -69,6 +69,7 @@ h5 {
   flex-wrap: wrap;
   align-items: center;
   width: 100%;
+  position: relative;
 }
 .column {
   display: flex;

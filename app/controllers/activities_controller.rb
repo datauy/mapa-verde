@@ -51,7 +51,10 @@ class ActivitiesController < ApplicationController
   end
   def calendar
     @activities = Activity.includes(:organizations).where(enabled: true)
-    @organizations = @activities.map{|a| {a.id => a.organizations.pluck(:name)}}.first
+    @organizations = {}
+    @activities.each do |a|
+      @organizations[a.id] = a.organizations.pluck(:name) + [a.other_responsibles]
+    end
     @subjects = Subject.all
   end
   def new

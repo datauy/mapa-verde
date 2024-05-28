@@ -31,6 +31,10 @@
         background: none;
         border: none;
         .srv-header {
+          i {
+            rotate: 180deg;
+            translate: 0 2px;
+          }
           .sub-header {
             display: block;
           }
@@ -167,6 +171,7 @@
     &.clear-filters {
       padding: 0 10px;
       width: max-content;
+      margin: 0;
     }
   }
   .select-options {

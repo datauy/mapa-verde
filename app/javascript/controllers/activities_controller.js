@@ -36,11 +36,12 @@ export default class extends Controller {
       //todo: calendars con colores por categoría
       calendars: calendars,
       useDetailPopup: true,
+      isReadOnly: true,
       template: {
-        milestone: function(schedule) {
-            return '<span style="color:red;"><i class="fa fa-flag"></i> ' + schedule.title + '</span>';
+        monthGridHeaderExceed: function(hiddenEvents) {
+          return `<span>${hiddenEvents} más</span>`;
         },
-      }
+      },
     });
     var events = []; 
     window.data.forEach(element => {

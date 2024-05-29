@@ -22,7 +22,7 @@ export default class extends Controller {
       "Noviembre",
       "Diciembre"
     ]
-    var calendars = [];
+    var calendars = [{ id: 0, name: 'Actividades pasadas', backgroundColor: '#b0b0b0' }];
     window.subjects.forEach(element => {
       calendars.push({
         id: element.id,
@@ -43,11 +43,16 @@ export default class extends Controller {
         },
       },
     });
-    var events = []; 
+    var events = [];
+    let today = new Date().getTime()
     window.data.forEach(element => {
+      let subject = element.subject_id
+      if ( new Date(element.ends).getTime() <= today ) {
+        subject = 0
+      }
       events.push({
         id: element.id,
-        calendarId: element.subject_id,
+        calendarId: subject,
         title: element.title,
         body: '<p>'+element.description+'</p>',
         //category: 'time',

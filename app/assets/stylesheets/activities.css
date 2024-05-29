@@ -45,3 +45,8 @@
 .toastui-calendar-floating-layer * {
   word-break: break-word;
 }
+@media screen and (max-width: 900px) {
+  .toastui-calendar-template-time {
+    display: none;
+  }
+}

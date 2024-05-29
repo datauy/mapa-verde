@@ -288,7 +288,9 @@ img {
     }
   }
 }
-
+.text-center {
+  text-align: center;
+}
 .logos-frame {
   display: flex;
   flex-direction: row;

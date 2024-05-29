@@ -55,6 +55,7 @@
         gap: 10px;
         width: 100%;
         justify-content: left;
+        padding-right: 34px;
       }
       .srv-header {
         display: flex;

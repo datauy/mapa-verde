@@ -6,11 +6,6 @@
 <% end %>
 <!-- update the pagination turbo_frame with the current pagination offset -->
 <%= turbo_stream.update "pagination" do %>
-  <% if @pagy.prev %>
-    <%= link_to "Anterior", resources_url(page: @pagy.prev), data: { turbo_stream: true }, class: "bg-white rounded px-6 py-3 border border-black shadow" %>
-  <% end %>
-  <% if @pagy.next %>
-    <%= link_to "Siguiente", resources_url(page: @pagy.next), data: { turbo_stream: true }, class: "bg-white rounded px-6 py-3 border border-black shadow" %>
-  <% end %> 
+  <%== pagy_nav(@pagy, class: "btn-pager" ) if @pagy.pages > 1 %>
   <p class="text-center mt-8 text-gray-500"><%== pagy_info @pagy %></p>
 <% end %> 

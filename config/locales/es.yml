@@ -32,6 +32,7 @@ en:
 es:
   date:
     month_names: [
+      "",
       "enero",
       "febrero",
       "marzo",

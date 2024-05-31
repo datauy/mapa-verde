@@ -37,7 +37,6 @@ class Organization < ApplicationRecord
   validates :organization_type, presence: true
   validates :subject, presence: true
 
-
   after_create do
     begin
       SysMailer.with(organization: self).new_organization.deliver

@@ -130,8 +130,6 @@ export default class extends Controller {
       let value = event.target.dataset.value;
       if ( cat == 'text' ) {
         window.active_filters[cat] = document.getElementById('search-text').value
-        if (window.active_filters[cat].length < 3 )
-          return
       }
       else {
         if ( event.target.classList.contains('active') ) {
@@ -148,7 +146,8 @@ export default class extends Controller {
     Object.keys(window.active_filters).forEach( cat => {
       if ( window.active_filters[cat].length ) {
         if ( cat == 'text' ) {
-          url.searchParams.append(cat, window.active_filters[cat]);
+          if (window.active_filters[cat].length > 2 )
+            url.searchParams.append(cat, window.active_filters[cat]);
         }
         else {
           url.searchParams.append(cat, window.active_filters[cat].join(','));

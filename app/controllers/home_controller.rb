@@ -16,18 +16,49 @@ class HomeController < ApplicationController
     @zones = {}
     @subjects = {}
     @actions = {}
-    orgs = Organization.includes(:organization_type).where(enabled: true)
+    orgs = Organization.where(enabled: true)
+    if params['text'].present?
+      orgs_init = orgs.includes(:subjects).includes(:operations).includes(:organization_type).includes(:zones)
+      orgs = orgs_init.where("lower(organizations.name) like :value or lower(organizations.description) like :value or lower(organizations.volunteers_description) like :value", value: "%#{params['text'].strip.downcase}%")
+      #Search text in taxonomies
+      #Subjects
+      op = Subject.where("lower(name) like :value", value: "%#{params['text'].strip.downcase}%")
+      if op.length > 0
+        #orgs.includes(:subjects)
+        #orgs2 = orgs.dup
+        orgs = orgs.or(orgs_init.where('subjects.id': op.ids))
+      end
+      #Actions
+      op = Operation.where("lower(name) like :value", value: "%#{params['text'].strip.downcase}%")
+      if op.length > 0
+        #orgs.includes(:operations)
+        #orgs2 = orgs.dup
+        orgs = orgs.or(orgs_init.where('operations.id': op.ids))
+      end
+      #Actions
+      op = OrganizationType.where("lower(name) like :value", value: "%#{params['text'].strip.downcase}%")
+      if op.length > 0
+        #orgs.includes(:organization_types)
+        #orgs2 = orgs.dup
+        orgs = orgs.or(orgs_init.where('organization_types.id': op.ids))
+      end
+      #Actions
+      op = Zone.where("lower(name) like :value", value: "%#{params['text'].strip.downcase}%")
+      if op.length > 0
+        logger.debug "\n\nENTRA A ZONES\n#{op.ids}\n\n"
+        #orgs.includes(:zones)
+        #orgs2 = orgs.dup
+        orgs = orgs.or(orgs_init.where('zones.id': op.ids))
+      end
+    end
     if params['otypes'].present?
-      orgs = orgs.where(organization_type: params['otypes'].split(',')).distinct
+      orgs = orgs.where(organization_type: params['otypes'].split(','))
     end
     if params['actions'].present?
-      orgs = orgs.joins(:operations).where(operations: params['actions'].split(',')).distinct
+      orgs = orgs.joins(:operations).where(operations: params['actions'].split(','))
     end
     if params['zones'].present?
-      orgs = orgs.joins(:zones).where(zones: params['zones'].split(',')).distinct
-    end
-    if params['text'].present?
-      orgs = orgs.where("lower(organizations.name) like :value or lower(organizations.description) like :value or lower(organizations.volunteers_description) like :value", value: "%#{params['text'].strip.downcase}%").distinct
+      orgs = orgs.joins(:zones).where(zones: params['zones'].split(','))
     end
     if params['subjects'].present?
       subs = params['subjects'].split(',')
@@ -38,7 +69,7 @@ class HomeController < ApplicationController
       orgs += orgs2.joins(:subjects).where(subjects: subs).where.not(id: orgs_ids).distinct.order!(:name)
     end
     if !orgs.kind_of?(Array)
-      orgs.order!(:name)
+      orgs.distinct.order!(:name)
     end
     orgs.each do |o|
       org = o.as_json

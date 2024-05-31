@@ -2,123 +2,129 @@
 <%= @showing %>
 <% end %>
 <%= turbo_stream.update("orgs_list") do %>
-<ul id="list">
-  <% @organizations.each_with_index do |element, eid| %>
-    <li class="org" id="<%= "org-#{eid}" %>">
-      <div class="org-element">  
-        <div class="srv-header" onclick="Mapa.toggleDesc(<%= eid %>)" >
-          <div class="logo-wraper">
-            <% if element[:logo].present? %>
-              <img src="<%= element[:logo] %>" class="org-logo" />
-            <% else %>
-              <img src="/images/default_logo.svg" class="org-logo" />
-            <% end %>
-          </div>
-          <div class="row">
-            <h3><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
-            <h4 class="sub-header"><%= "#{element[:organization_type]}" %></h4>
-            <i class="fas fa-chevron-down right"></i>
-          </div>
-        </div>
-        <div class="srv-body">
-          <div class="subjects">
-            <div class="org-title">
-              <img class="icon" src="images/subjects.svg"/>
-              <span>Temáticas</span>
-            </div>
-            <div class="icons-wraper">
-              <%= icon_tag([@subjects[element['subject_id']]]) %>
-              <% element[:subjects].each do |subj| %>
-                <%= icon_tag([@subjects[subj]]) %>
+<% if @showing == 0  %>
+  <div id="no-results" >
+    <%= render partial: '/layouts/notification', locals: { msg: { mtype: 'error', title: "No hay resultados", body: "Prueba cambiando los filtros seleccionados"}.stringify_keys } %>
+  </div>
+<% else %>
+  <ul id="list">
+    <% @organizations.each_with_index do |element, eid| %>
+      <li class="org" id="<%= "org-#{eid}" %>">
+        <div class="org-element">  
+          <div class="srv-header" onclick="Mapa.toggleDesc(<%= eid %>)" >
+            <div class="logo-wraper">
+              <% if element[:logo].present? %>
+                <img src="<%= element[:logo] %>" class="org-logo" />
+              <% else %>
+                <img src="/images/default_logo.svg" class="org-logo" />
               <% end %>
+            </div>
+            <div class="row">
+              <h3><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
+              <h4 class="sub-header"><%= "#{element[:organization_type]}" %></h4>
+              <i class="fas fa-chevron-down right"></i>
             </div>
           </div>
-          <div class="actions">
-            <div class="org-title">
-              <img class="icon" src="images/actions.svg"/>
-              <span>Acciones</span>
-            </div>
-            <div class="icons-wraper">
-              <% element[:actions].each do |act| %>
-                <%= icon_tag([@actions[act]]) %>
-              <% end %>
-            </div>
-          </div>
-          <div class="contact">
-            <div class="org-title">
-              <i class="fa-solid fa-comments"></i>
-              <span>Contacto</span>
-            </div>
-            <div class="icons-wraper">
-              <% if element['website'] != '' %>
-                <div class="icon-tag"><i class="fas fa-link"></i><span><%= link_to element['website'], element['website'] %></span></div>
-              <% end %>
-              <% if element['phone'] != '' %>
-                <div class="icon-tag"><i class="fas fa-phone"></i><span><%= link_to element['phone'], "tel:#{element['phone']}" %></span></div>
-              <% end %>
-              <% if element['whatsapp'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-whatsapp"></i><span><%= link_to element['whatsapp'], "https://api.whatsapp.com/send?phone=#{element['whatsapp']}"%></span></div>
-              <% end %>
-              <% if element['email'] != '' %>
-                <div class="icon-tag"><i class="fas fa-envelope"></i><span><%= link_to element['email'], "mailto:#{element['email']}"%></span></div>
-              <% end %>
-              <% if element['instagram'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-instagram"></i><span><%= link_to element['instagram'], "https://www.instagram.com/#{element['instagram']}"%></span></div>
+          <div class="srv-body">
+            <div class="subjects">
+              <div class="org-title">
+                <img class="icon" src="images/subjects.svg"/>
+                <span>Temáticas</span>
+              </div>
+              <div class="icons-wraper">
+                <%= icon_tag([@subjects[element['subject_id']]]) %>
+                <% element[:subjects].each do |subj| %>
+                  <%= icon_tag([@subjects[subj]]) %>
                 <% end %>
-              <% if element['twitter'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-x-twitter"></i><span><%= link_to element['twitter'], "https://twitter.com/#{element['twitter']}"%></span></div>
-              <% end %>
-              <% if element['facebook'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-facebook"></i><span><%= link_to element['facebook'], "https://www.facebook.com/#{element['facebook']}"%></span></div>
-              <% end %>
-              <% if element['tiktok'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-tiktok"></i><span><%= link_to element['tiktok'], "https://www.tiktok.com/@#{element['tiktok']}"%></span></div>
-              <% end %>
-              <% if element['snapchat'] != '' %>
-                <div class="icon-tag"><i class="fa-brands fa-snapchat"></i><span><%= link_to element['snapchat'], "https://www.snapchat.com/add/#{element['snapchat']}"%></span></div>
-              <% end %>
-              <% if element['other_network'] != '' %>
-                <div class="icon-tag"><i class="fa-solid fa-share-nodes"></i><span><%= element['other_network']%></span></div>
-              <% end %>
+              </div>
             </div>
-          </div>
-          <div class="information">
-            <div class="org-title">
-              <i class="fa-solid fa-circle-info"></i>
-              <span>Información</span>
+            <div class="actions">
+              <div class="org-title">
+                <img class="icon" src="images/actions.svg"/>
+                <span>Acciones</span>
+              </div>
+              <div class="icons-wraper">
+                <% element[:actions].each do |act| %>
+                  <%= icon_tag([@actions[act]]) %>
+                <% end %>
+              </div>
             </div>
-            <div class="icons-wraper">
-              <div class="icon-tag"><i class="fas fa-location-dot icon-tag"></i><span><%= "#{element['address']}"%></span></div>
-              <% element[:zones].each do |z| %>
-                <div class="icon-tag"><i class="fas fa-map-location-dot icon-tag"></i><span><%= "#{@zones[z].name}"%></span></div>
-              <% end %>
-              <div class="icon-tag"><i class="fas fa-map icon-tag"></i><span><%= "#{element['region']}"%></span></div>
+            <div class="contact">
+              <div class="org-title">
+                <i class="fa-solid fa-comments"></i>
+                <span>Contacto</span>
+              </div>
+              <div class="icons-wraper">
+                <% if element['website'] != '' %>
+                  <div class="icon-tag"><i class="fas fa-link"></i><span><%= link_to element['website'], element['website'] %></span></div>
+                <% end %>
+                <% if element['phone'] != '' %>
+                  <div class="icon-tag"><i class="fas fa-phone"></i><span><%= link_to element['phone'], "tel:#{element['phone']}" %></span></div>
+                <% end %>
+                <% if element['whatsapp'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-whatsapp"></i><span><%= link_to element['whatsapp'], "https://api.whatsapp.com/send?phone=#{element['whatsapp']}"%></span></div>
+                <% end %>
+                <% if element['email'] != '' %>
+                  <div class="icon-tag"><i class="fas fa-envelope"></i><span><%= link_to element['email'], "mailto:#{element['email']}"%></span></div>
+                <% end %>
+                <% if element['instagram'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-instagram"></i><span><%= link_to element['instagram'], "https://www.instagram.com/#{element['instagram']}"%></span></div>
+                  <% end %>
+                <% if element['twitter'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-x-twitter"></i><span><%= link_to element['twitter'], "https://twitter.com/#{element['twitter']}"%></span></div>
+                <% end %>
+                <% if element['facebook'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-facebook"></i><span><%= link_to element['facebook'], "https://www.facebook.com/#{element['facebook']}"%></span></div>
+                <% end %>
+                <% if element['tiktok'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-tiktok"></i><span><%= link_to element['tiktok'], "https://www.tiktok.com/@#{element['tiktok']}"%></span></div>
+                <% end %>
+                <% if element['snapchat'] != '' %>
+                  <div class="icon-tag"><i class="fa-brands fa-snapchat"></i><span><%= link_to element['snapchat'], "https://www.snapchat.com/add/#{element['snapchat']}"%></span></div>
+                <% end %>
+                <% if element['other_network'] != '' %>
+                  <div class="icon-tag"><i class="fa-solid fa-share-nodes"></i><span><%= element['other_network']%></span></div>
+                <% end %>
+              </div>
             </div>
-            <div class="row"><p><%= element['description'].html_safe %></p></div>
-          </div>
-          <div class="volunteers">
-            <div class="org-title">
-              <img class="icon" src="images/volunteers.svg"/>
-              <span>Voluntariado y colaboración</span>
+            <div class="information">
+              <div class="org-title">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Información</span>
+              </div>
+              <div class="icons-wraper">
+                <div class="icon-tag"><i class="fas fa-location-dot icon-tag"></i><span><%= "#{element['address']}"%></span></div>
+                <% element[:zones].each do |z| %>
+                  <div class="icon-tag"><i class="fas fa-map-location-dot icon-tag"></i><span><%= "#{@zones[z].name}"%></span></div>
+                <% end %>
+                <div class="icon-tag"><i class="fas fa-map icon-tag"></i><span><%= "#{element['region']}"%></span></div>
+              </div>
+              <div class="row"><p><%= element['description'].html_safe %></p></div>
             </div>
-            <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
-            <div class="icons-wraper">
-              <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url'], target: "_blank", data: {turbo: false}) : '' %>
-              <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['donations'], target: "_blank", data: {turbo: false}) : '' %>
+            <div class="volunteers">
+              <div class="org-title">
+                <img class="icon" src="images/volunteers.svg"/>
+                <span>Voluntariado y colaboración</span>
+              </div>
+              <div class="row"><p><%= element['volunteers_description'].html_safe %></p></div>
+              <div class="icons-wraper">
+                <%= element['volunteers_url'].present? ? content_tag(:a, "<i class='fa-solid fa-external-link'></i> Más información y contacto para voluntariado".html_safe, class: 'btn main-button', href: element['volunteers_url'], target: "_blank", data: {turbo: false}) : '' %>
+                <%= element['donations'].present? ? content_tag(:a, "<i class='fa-solid fa-hand-holding-dollar'></i> Donaciones".html_safe, class: 'btn main-button', href: element['donations'], target: "_blank", data: {turbo: false}) : '' %>
+              </div>
             </div>
-          </div>
-          <div class="activities">
-            <div class="row icon-tag"><img src="/images/activities.svg" class="icon"><span>Actividades</span></div>
-            <div class="org-acts icons-wraper">
-              <%= acts_tags(element[:activities]) %>
+            <div class="activities">
+              <div class="row icon-tag"><img src="/images/activities.svg" class="icon"><span>Actividades</span></div>
+              <div class="org-acts icons-wraper">
+                <%= acts_tags(element[:activities]) %>
+              </div>
+              <div class="row icon-tag right"><a class="btn act-tag" href="/contacto?oid=<%= element['id'] %>" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a></div>
             </div>
-            <div class="row icon-tag right"><a class="btn act-tag" href="/contacto?oid=<%= element['id'] %>" data-turbo="false"><i class="fas fa-warning icon-tag"></i><span>Reporte o correción de información</span></a></div>
           </div>
         </div>
-      </div>
-    </li>
-  <% end %>
-</ul>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <script>
   window.data = <%= "#{@organizations.to_json}".html_safe %>;//JSON.parse(resources);
   window.zones = <%= "#{@zones.to_json}".html_safe %>;

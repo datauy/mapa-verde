@@ -1,4 +1,9 @@
 class Activity < ApplicationRecord
+    after_validation :set_slug, only: [:create, :update]
+    private
+    def set_slug
+        self.slug = title.to_s.parameterize
+    end
     has_one_attached :image
 
     has_many :activity_organizations, dependent: :delete_all

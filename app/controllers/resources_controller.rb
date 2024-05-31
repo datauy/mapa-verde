@@ -19,7 +19,11 @@ class ResourcesController < ApplicationController
     end
   end
   def show
-    @resource = Resource.find(params[:id])
+    if params[:id].is_number?
+      @resource = Resource.find(params[:id])
+    else
+      @resource = Resource.where(slug: params[:id]).first
+    end
     @subjects = []
     @resource.subjects.each do |org|
       @subjects.push({

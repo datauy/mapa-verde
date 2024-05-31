@@ -21,7 +21,11 @@ class ActivitiesController < ApplicationController
     end
   end
   def show
-    @activity = Activity.where(id: params[:id], enabled: true).first
+    if params[:id].is_number?
+      @activity = Activity.where(id: params[:id], enabled: true).first
+    else
+      @activity = Activity.where(slug: params[:id], enabled: true).first
+    end
     if @activity.nil?
       redirect_to root_path, notice: {mtype: 'error',title:"No existe la actividad", body:"La actividad a la que estás intentando acceder no está disponible"}
       return
@@ -61,7 +65,6 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
   def create
-    logger.info "CREATE: #{activity_params.inspect}"
     @activity = Activity.new(activity_params)
     if @activity.save
       @activity = Activity.new

@@ -1,5 +1,5 @@
 <div class="activity-item">
-  <%= link_to resource_path(id: resource.id), data:{turbo: false} do %>
+  <%= link_to resource_path(id: resource.slug), data:{turbo: false} do %>
     <h3 class="title"><%= resource.title %></h3>
     <p><%= resource.summary.present? ? resource.summary.html_safe : 'Ver recurso' %></p>
   <% end %>

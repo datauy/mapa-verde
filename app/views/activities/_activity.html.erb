@@ -1,5 +1,5 @@
 <div class="activity-item-wraper">
-  <a href="actividad/<%= activity.id %>" data-turbo="false" class="activity-item">
+  <a href="actividad/<%= activity.slug %>" data-turbo="false" class="activity-item">
     <h3 class="title"><%= activity.title %></h3>
     <% if activity.image.attached? %>
       <%= image_tag activity.image %>

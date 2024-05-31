@@ -60,7 +60,7 @@ export default class extends Controller {
         start: element.starts,
         end: element.ends,
         location: element.address.startsWith('http') ? '<a target="_blank" href="'+element.address+'">Online</a>' : element.address,
-        state: '<a href="/actividad/'+element.id+'">Ver actividad</a>',
+        state: '<a href="/actividad/'+element.slug+'">Ver actividad</a>',
         attendees: window.act_orgs[element.id]
       })
     })

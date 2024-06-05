@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
       name: z.name,
       icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg'
     }}
-    @pagy, @resources = pagy(res, items: 6, page_param: :page)
+    @pagy, @resources = pagy(res, items: 6, page_param: :page, link_extra: 'data-turbo-stream=true', request_path: '/recursos')
     respond_to do |format|
       format.html
       format.turbo_stream

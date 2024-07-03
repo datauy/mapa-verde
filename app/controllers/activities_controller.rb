@@ -59,7 +59,12 @@ class ActivitiesController < ApplicationController
     @activities.each do |a|
       @organizations[a.id] = a.organizations.pluck(:name) + [a.other_responsibles]
     end
-    @subjects = Subject.all
+    @subjects = Subject.all.map {|z| {
+      id: z.id,
+      name: z.name,
+      icon: z.icon.attached? ? url_for(z.icon) : '/images/icon_default.svg',
+      color: z.color
+    }}
   end
   def new
     @activity = Activity.new

@@ -42,7 +42,8 @@
   textarea {
     padding: 10px 16px;
     height: 80px;
-    width: 100%;
+    min-width: 100%;
+    min-height: 44px;
   }
   &.general-info {
     input[type="text"],
@@ -66,6 +67,7 @@
     opacity: 0;
     position: absolute;
     z-index: -1;
+    width: 0;
   }
   .ss-main {
     padding: 10px 16px;

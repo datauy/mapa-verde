@@ -40,6 +40,9 @@
                     <a class="social-link" href="https://www.facebook.com/mapaverdeuy" target="_blank">
                       <i class="fa-brands fa-facebook"></i>
                     </a>
+                    <a class="social-link" href="https://uy.linkedin.com/company/mapaverdeuy" target="_blank">
+                      <i class="fa-brands fa-linkedin"></i>
+                    </a>
                 </div>
             </div>
             <h2>Accesibilidad</h2>
@@ -120,14 +123,116 @@
       </div>        
     </div>
   </div>
-  <div class="carousel">
-    <h3>Conocé otros proyectos de DATA:</h3>
-    <div class="logos-frame">
-      <%= image_tag("atuservicio.png", alt:"Imagen cambiar") %>
-      <%= image_tag("dondereciclo.png", alt:"Imagen cambiar") %>
-      <%= image_tag("datysoc.png", alt:"Imagen cambiar") %>
-    </div>
+  <div class="carousel slider-container">
+    <h2>Conocé otros proyectos de DATA:</h2>
+    <div id="data-projects" class="slides"></div>
+    <div id="slider-controls"></div>
   </div>
+  <script>
+      function getJSON(url, callback) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', url, true);
+          xhr.responseType = 'json';
+          xhr.onload = function() {
+            var status = xhr.status;
+            if (status === 200) {
+              callback(null, xhr.response);
+            } else {
+              callback(status, xhr.response);
+            }
+          };
+          xhr.send();
+      };
+      function fadeOut(el) {
+        var fadeTarget = el;
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.1;
+            } else {
+              document.querySelector(".slides").append(el);
+              el.style.opacity = 1;
+              clearInterval(fadeEffect);
+            }
+
+        }, 260);
+      }
+      function fadeIn(el) { 
+        
+        //setInterval(show(el), 200);
+      } 
+      var intervalID = 0;    
+      function show(body) {  
+          opacity = Number(window.getComputedStyle(body).getPropertyValue("opacity")); 
+          if (opacity < 1) { 
+              opacity = opacity + 0.1; 
+              body.style.opacity = opacity 
+          } else { 
+              clearInterval(intervalID); 
+          } 
+      } 
+      function goToSlide(clicked) {
+        var pos = clicked.target.xdata;
+        current_slides = document.querySelector(".slide").length;
+        for (var i = pos; i < current_slides; i++) {
+          document.querySelector(".slides").append( document.getElementById("slide-"+i) );
+        }
+        for (var i = 0; i < pos; i++) {
+          document.querySelector(".slides").append( document.getElementById("slide-"+i) );
+        }
+        document.querySelector("#slider-controls a").classList.remove("active");
+        clicked.target.className = "active";
+      }
+      getJSON("http://admin.data.org.uy/api/project-footer?project_id=7", function(err, data){
+          var container = document.getElementById("data-projects");
+          var controls = document.getElementById("slider-controls");
+          i=0;
+          data.forEach(function(project){
+            var a = document.createElement("a");
+            a.target = "_blank";
+            a.id = "slide-"+i;
+            a.href = project.link;
+            a.alt = project.name;
+            a.className = "slide";
+            var element = document.createElement("img");
+            element.setAttribute("src", project.icon);
+            a.appendChild(element);
+            container.appendChild(a);
+            var b = document.createElement("a");
+            b.xdata = i;
+            b.id = "control-slide-"+i;
+            b.onclick=goToSlide;
+            controls.appendChild(b);
+            if ( i == 0 ) {
+              b.className = "active";
+            }
+            i++;
+          });
+      });
+      var pause = 3100;
+      setInterval(function() {
+        let not_hovered = document.querySelector(".slides > a:not(.hovered)")
+        if (not_hovered != null ) {
+          fadeOut(not_hovered);
+          //bottom controls
+          var slide = document.querySelector(".slides > a");
+          let pagers = document.querySelectorAll("#slider-controls a");
+          for (i = 0; i < pagers.length; i++){
+            pagers[i].classList.remove("active");
+          }
+          document.querySelector("#control-"+slide.id).classList.add("active");
+        }
+      }, pause);
+      //Pause on hover
+      document.querySelector(".slider-container").addEventListener('mouseover', function(){
+        document.querySelector(".slides a").classList.add("hovered");
+      });
+      document.querySelector(".slider-container").addEventListener('mouseout', function(){
+        document.querySelector(".slides a").classList.remove("hovered");
+      });
+  </script>
   <hr>
   <div id="credits">
       <%= image_tag("Shape.png", alt:"Imagen cambiar") %>

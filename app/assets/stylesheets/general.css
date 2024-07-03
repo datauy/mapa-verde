@@ -4,7 +4,9 @@
 	-ms-box-sizing: border-box !important;
 	box-sizing: border-box !important;
 }
-
+textarea::placeholder {
+  font-family: "Inter";
+}
 body {
   color: #000;
   font-family: "Inter";

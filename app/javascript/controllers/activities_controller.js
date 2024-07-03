@@ -41,7 +41,27 @@ export default class extends Controller {
         monthGridHeaderExceed: function(hiddenEvents) {
           return `<span>${hiddenEvents} más</span>`;
         },
+        popupDetailDate: function(event) {
+          console.log('popupDetailDate', event);
+          let starts = event.start.toDate()
+          let ends = event.end.toDate()
+          let start = starts.toLocaleDateString('es');
+          let end = ends.toLocaleDateString('es');
+          const formatter = new Intl.DateTimeFormat('es-UY', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+          const formatter_time = new Intl.DateTimeFormat('es-UY', {hour: '2-digit', minute: '2-digit' });
+          let dates = '';
+          if ( start == end ) {
+            dates = formatter.format(starts)+' - '+formatter_time.format(ends)+' hs.';
+          }
+          else {
+            dates = formatter.format(starts)+' hs. - '+ formatter.format(ends)+' hs.';
+          }
+          return dates;
+        }
       },
+      month: {
+        dayNames: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sáb'], // Translate the required language.
+      }
     });
     var events = [];
     let today = new Date().getTime()
@@ -67,7 +87,6 @@ export default class extends Controller {
     window.calendarEvents = events 
     this.calendar.createEvents(events)
     let date = this.calendar.getDate()
-    console.log(date);
     this.titleTarget.innerHTML = this.months[date.getMonth()]+' '+date.getFullYear()
   }
   nextMonth() {

@@ -129,6 +129,7 @@
     <div id="slider-controls"></div>
   </div>
   <script>
+    var slide_started = false;
       function getJSON(url, callback) {
           var xhr = new XMLHttpRequest();
           xhr.open('GET', url, true);
@@ -143,22 +144,7 @@
           };
           xhr.send();
       };
-      function fadeOut(el) {
-        var fadeTarget = el;
-        var fadeEffect = setInterval(function () {
-            if (!fadeTarget.style.opacity) {
-                fadeTarget.style.opacity = 1;
-            }
-            if (fadeTarget.style.opacity > 0) {
-                fadeTarget.style.opacity -= 0.1;
-            } else {
-              document.querySelector(".slides").append(el);
-              el.style.opacity = 1;
-              clearInterval(fadeEffect);
-            }
-
-        }, 260);
-      }
+      
       function fadeIn(el) { 
         
         //setInterval(show(el), 200);
@@ -170,7 +156,7 @@
               opacity = opacity + 0.1; 
               body.style.opacity = opacity 
           } else { 
-              clearInterval(intervalID); 
+              clearInterval(intervalID);
           } 
       } 
       function goToSlide(clicked) {
@@ -185,53 +171,85 @@
         document.querySelector("#slider-controls a").classList.remove("active");
         clicked.target.className = "active";
       }
-      getJSON("http://admin.data.org.uy/api/project-footer?project_id=7", function(err, data){
-          var container = document.getElementById("data-projects");
-          var controls = document.getElementById("slider-controls");
-          i=0;
-          data.forEach(function(project){
-            var a = document.createElement("a");
-            a.target = "_blank";
-            a.id = "slide-"+i;
-            a.href = project.link;
-            a.alt = project.name;
-            a.className = "slide";
-            var element = document.createElement("img");
-            element.setAttribute("src", project.icon);
-            a.appendChild(element);
-            container.appendChild(a);
-            var b = document.createElement("a");
-            b.xdata = i;
-            b.id = "control-slide-"+i;
-            b.onclick=goToSlide;
-            controls.appendChild(b);
-            if ( i == 0 ) {
-              b.className = "active";
-            }
-            i++;
-          });
-      });
-      var pause = 3100;
-      setInterval(function() {
-        let not_hovered = document.querySelector(".slides > a:not(.hovered)")
-        if (not_hovered != null ) {
-          fadeOut(not_hovered);
-          //bottom controls
-          var slide = document.querySelector(".slides > a");
-          let pagers = document.querySelectorAll("#slider-controls a");
-          for (i = 0; i < pagers.length; i++){
-            pagers[i].classList.remove("active");
+      getJSON("https://admin.data.org.uy/api/project-footer?project_id=7", function(err, data){
+        var container = document.getElementById("data-projects");
+        var controls = document.getElementById("slider-controls");
+        i=0;
+        data.forEach(function(project){
+          var a = document.createElement("a");
+          a.target = "_blank";
+          a.id = "slide-"+i;
+          a.href = project.link;
+          a.alt = project.name;
+          a.className = "slide";
+          var element = document.createElement("img");
+          element.setAttribute("src", project.icon);
+          a.appendChild(element);
+          container.appendChild(a);
+          var b = document.createElement("a");
+          b.xdata = i;
+          b.id = "control-slide-"+i;
+          b.onclick=goToSlide;
+          controls.appendChild(b);
+          if ( i == 0 ) {
+            b.className = "active";
           }
-          document.querySelector("#control-"+slide.id).classList.add("active");
-        }
-      }, pause);
+          i++;
+        });
+        change_slide(true);
+      });
       //Pause on hover
       document.querySelector(".slider-container").addEventListener('mouseover', function(){
-        document.querySelector(".slides a").classList.add("hovered");
+        //slide_started = true;
+        document.querySelector(".slides").classList.add("hovered");
       });
       document.querySelector(".slider-container").addEventListener('mouseout', function(){
-        document.querySelector(".slides a").classList.remove("hovered");
+        //slide_started = false;
+        document.querySelector(".slides").classList.remove("hovered");
       });
+      function change_slide() {
+        if (!slide_started) {
+          let not_hovered = document.querySelectorAll(".slides:not(.hovered) > a")[0];
+          if (not_hovered != null ) {
+            slide_started = true;
+            fadeOut(not_hovered);
+          }
+          else {
+            slide_started = false;
+            sleep(500).then(() => {
+              change_slide();
+            });
+          }
+        }
+      }
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      function fadeOut(el) {
+        var fadeTarget = el;
+        var fadeEffect = setInterval(function () {
+            if (!fadeTarget.style.opacity) {
+                fadeTarget.style.opacity = 1;
+            }
+            if (fadeTarget.style.opacity > 0) {
+                fadeTarget.style.opacity -= 0.04;
+            } else {
+              slide_started = false;
+              document.querySelector(".slides").append(el);
+              el.style.opacity = 1;
+              change_slide();
+              clearInterval(fadeEffect);
+                  //bottom controls
+              var slide = document.querySelector(".slides > a");
+              let pagers = document.querySelectorAll("#slider-controls a");
+              for (i = 0; i < pagers.length; i++){
+                pagers[i].classList.remove("active");
+              }
+              document.querySelector("#control-"+slide.id).classList.add("active");
+            }
+
+        }, 60);
+      }
   </script>
   <hr>
   <div id="credits">

@@ -63,6 +63,8 @@
         width: 100%;
         cursor: pointer;
         gap: 10px;
+        background: none;
+        border: none;
         i {
           margin-left: auto;
         }

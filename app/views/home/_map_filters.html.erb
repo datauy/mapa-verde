@@ -1,5 +1,5 @@
 <div id="filters">
-  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('otype')">
+  <button aria-expanded="false" class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('otype', this)"  aria-label="Tipo">
     <div id="otype-trigger" class="select-filter">
     <img class="icon" src="/images/type.svg"/>
     <span>Tipo</span>
@@ -8,8 +8,8 @@
       <%= search_options(@otype_options, 'otypes', 'map') %>
     </ul>
     <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('subject')">
+  </button>
+  <button aria-expanded="false" class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('subject', this)" aria-label="Temática">
     <div id="subject-trigger" class="select-filter">
       <img class="icon" src="/images/subject.svg"/>
       Temática
@@ -18,8 +18,8 @@
       <%= search_options(@subject_options, 'subjects', 'map') %>
     </ul>
     <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('action')">
+  </button>
+  <button aria-expanded="false" class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('action', this)" aria-label="Acciones">
     <div id="action-trigger" class="select-filter">
       <img class="icon" src="/images/action.svg"/>
       Acciones
@@ -28,8 +28,8 @@
       <%= search_options(@action_options, 'actions', 'map') %>
     </ul>
     <i class="fas fa-chevron-down right"></i>
-  </div>
-  <div class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('zone')">
+  </button>
+  <button aria-expanded="false" class="wrapper select-wrapper" onclick="Mapa.toggleSearchSelect('zone', this)" aria-label="Zonas">
     <div id="zone-trigger" class="select-filter">
       <img class="icon" src="/images/zone.svg"/>
       Zonas
@@ -38,7 +38,7 @@
       <%= search_options(@zone_options, 'zones', 'map') %>
     </ul>
     <i class="fas fa-chevron-down right"></i>
-  </div>
+  </button>
   <div id="search">
     <i class="fa-solid fa-magnifying-glass"></i>
     <input type="text" id="search-text" name="search" placeholder="Buscar..." data-controller="map" data-action="keyup->map#search" data-category="text"></input>

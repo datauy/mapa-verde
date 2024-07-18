@@ -94,8 +94,13 @@ export default class extends Controller {
   toggleDesc(orgId) {
     var srv = document.getElementById('org-'+orgId);
     if ( !srv.classList.contains('active') ) {
-      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
+      let active = document.querySelector('.org.active')
+      if ( active ) {
+        active.classList.remove('active')
+        active.querySelector('button').setAttribute('aria-expanded', false)
+      }
       srv.classList.add("active");
+      document.getElementById('org-'+orgId+'-button').setAttribute('aria-expanded', true)
       let position = srv.offsetTop - document.getElementById('org-0').offsetTop;
       let list = document.getElementById('list')
       list.style.height = srv.offsetHeight+"px"
@@ -103,7 +108,8 @@ export default class extends Controller {
       //document.getElementById('srv-'+id).scrollIntoView({behavior: 'smooth'});
     }
     else {
-      document.querySelectorAll('.org').forEach(i => i.classList.remove('active'))
+      srv.classList.remove('active')
+      srv.querySelector('button').setAttribute('aria-expanded', false)
       orgId = undefined;
       list.style.height = "calc(100vh - 500px)"
     }
@@ -115,13 +121,13 @@ export default class extends Controller {
     //frame.src = "/search.turbo_stream";
     //frame.reload(); // there is no need to reload
   }
-  toggleSearchSelect(elem_id) {
-    console.log("SEARCH SELECT", elem_id);
+  toggleSearchSelect(elem_id, button) {
     //clear all 
     document.querySelectorAll('.select-wrapper ul:not(#'+elem_id+')').forEach( ul => {
       ul.classList.remove('active')
     });
     document.getElementById(elem_id).classList.toggle('active')
+    button.setAttribute('aria-expanded', true)
   }
   search(event) {
     if ( event !== null ) {

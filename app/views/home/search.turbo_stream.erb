@@ -3,15 +3,15 @@
 <% end %>
 <%= turbo_stream.update("orgs_list") do %>
 <% if @showing == 0  %>
-  <div id="no-results" >
+  <div id="no-results" aria-label="Listado de Organizaciones">
     <%= render partial: '/layouts/notification', locals: { msg: { mtype: 'error', title: "No hay resultados", body: "Prueba cambiando los filtros seleccionados"}.stringify_keys } %>
   </div>
 <% else %>
-  <ul id="list">
+  <ul id="list" role="navigation" aria-label="Listado de Organizaciones">
     <% @organizations.each_with_index do |element, eid| %>
       <li class="org" id="<%= "org-#{eid}" %>">
         <div class="org-element">  
-          <div class="srv-header" onclick="Mapa.toggleDesc(<%= eid %>)" >
+          <button class="srv-header" id="<%= "org-#{eid}-button" %>" aria-expanded="false" onclick="Mapa.toggleDesc(<%= eid %>)" >
             <div class="logo-wraper">
               <% if element[:logo].present? %>
                 <img src="<%= element[:logo] %>" class="org-logo" />
@@ -20,12 +20,12 @@
               <% end %>
             </div>
             <div class="row">
-              <h3><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
+              <h3 id="<%= "org-#{eid}-name" %>"><%= element['name'] %><%= image_tag @subjects[element['subject_id']][:icon], class: 'icon' %></h3>
               <h4 class="sub-header"><%= "#{element[:organization_type]}" %></h4>
               <i class="fas fa-chevron-down right"></i>
             </div>
-          </div>
-          <div class="srv-body">
+          </button>
+          <div class="srv-body" role="region" aria-describedby="<%= "org-#{eid}-name" %>">
             <div class="subjects">
               <div class="org-title">
                 <img class="icon" src="images/subjects.svg"/>

@@ -7,7 +7,15 @@
 <%= form_with scope: :static_pages, url: contact_path, method: :post, class: "container", data: {turbo: false, controller: 'form'}, id: "contact-form" do |form| %>
   <div class="section">
     <h3>Tipo de contacto</h3>
-    <%= form.select :contact_type, [["General", 0], ["Reporte sobre organización", 1], ["Reporte sobre evento", 2]], selected: params['oid'].present? ? 1 : params['actid'].present? ? 2 : 0, data: { action: 'change->form#contact_type', target: 'form.contactType'} %>
+    <%= form.select :contact_type, [
+        ["General", "General"],
+        ["Reporte sobre organización", "Reporte sobre organización"],
+        ["Reporte sobre evento", "Reporte sobre evento"],
+        ["Reporte sobre accesibilidad", "Reporte sobre accesibilidad"]
+      ], 
+      selected: params['oid'].present? ? "Reporte sobre organización" : params['actid'].present? ? "Reporte sobre evento" : params['subject'].present? ? "Reporte sobre accesibilidad" : 0,
+      data: { action: 'change->form#contact_type', target: 'form.contactType'} 
+    %>
     <%= form.select :organization, Organization.all.pluck(:name, :id), include_blank: "Organización vinculada al reporte (si corresponde)", id: "oid", class: "toggle-content", selected: params['oid'].present? ? params['oid'] : '' %>
     <%= form.select :activity, Activity.all.pluck(:title, :id), include_blank: "Actividad vinculada al reporte (si corresponde)", id: "actid", class: "toggle-content", selected: params['actid'].present? ? params['actid'] : '' %>
   </div>

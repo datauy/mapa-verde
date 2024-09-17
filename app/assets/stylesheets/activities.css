@@ -7,6 +7,12 @@
     margin: 0;
     padding: 10px 0;
   }
+  h3 {
+    margin-bottom: 0;
+  }
+  h4 {
+    margin-top: 0;
+  }
   .location-info {
     display: flex;
     gap: 10px;

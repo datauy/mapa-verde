@@ -13,7 +13,7 @@
     <button data-action="click->activities#nextMonth">></button>
   </div>
 </div>
-<div id="calendar"></div>
+<div id="calendar" aria-hidden="true"></div>
 <div class="main-content">
   <h2>Actividades del mes</h2>
   <%= turbo_frame_tag "acts_list", src: activities_list_url(format: :turbo_stream, starts: Date.today.at_beginning_of_month, ends: Date.today.end_of_month) do %>

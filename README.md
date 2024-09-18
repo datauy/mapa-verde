@@ -9,6 +9,8 @@ Muestra organizaciones de jóvenes trabajando en temas de Ambiente a nivel nacio
 - Rails 7.1.3
 
 ## Instalación
-rails g active_admin:install
-rails active_storage:install
-rails db:migrate
+rails g active_admin:install  
+rails active_storage:install  
+rails db:migrate  
+./bin/importmap pin leaflet  
+./bin/importmap pin wicket  

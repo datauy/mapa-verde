@@ -127,7 +127,7 @@ export default class extends Controller {
       ul.classList.remove('active')
     });
     document.getElementById(elem_id).classList.toggle('active')
-    button.setAttribute('aria-expanded', true)
+    button.getAttribute('aria-expanded') == "true" ? button.setAttribute('aria-expanded', false) : button.setAttribute('aria-expanded', true)
   }
   search(event) {
     if ( event !== null ) {

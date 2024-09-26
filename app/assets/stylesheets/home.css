@@ -161,7 +161,6 @@
     border: none;
     width: 120px;
     position: relative;
-    cursor: pointer;
   }
   .select-filter {
     height: 44px;
@@ -185,6 +184,7 @@
     z-index: 402;
     position: relative;
     width: min-content;
+    min-width: 100%;
     &.active {
       display: block;
     }
@@ -219,6 +219,7 @@
   border: none;
   width: 120px;
   margin: 5px;
+  cursor: pointer;
 }
 
 #servicio-trigger {

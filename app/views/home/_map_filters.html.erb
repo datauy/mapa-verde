@@ -43,9 +43,9 @@
     <i class="fa-solid fa-magnifying-glass"></i>
     <input type="text" id="search-text" name="search" placeholder="Buscar..." data-controller="map" data-action="keyup->map#search" data-category="text"></input>
   </div>
-  <div class="select-filter button clear-filters" onclick="Mapa.clearFilters()">
+  <button aria-expanded="false" aria-label="Borrar filtros" class="select-filter button clear-filters" onclick="Mapa.clearFilters()">
     <img class="icon" src="/images/clear-filters.svg"/>
     <span>Borrar filtros</span>
     <div id="results" >Mostrando <%= turbo_frame_tag "showing" %> de <%= @total %></div>
-  </div>
+  </button>
 </div>

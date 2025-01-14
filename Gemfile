@@ -51,6 +51,7 @@ gem "image_processing"
 gem 'activeadmin-searchable_select'
 gem 'active_admin_datetimepicker'
 gem 'pagy'
+gem "recaptcha"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

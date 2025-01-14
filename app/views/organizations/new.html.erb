@@ -87,5 +87,13 @@
   </div>
 </div>
 
+<div class="recaptcha-wrapper">
+  <% if @show_checkbox_recaptcha %>
+    <%= recaptcha_tags(site_key: Rails.application.credentials.recaptcha.site_key) %>
+  <% else %>
+    <%= recaptcha_v3(action: 'create_organization') %>
+  <% end %>
+</div>
+
   <%= form.submit "Enviar", class: "input-file-label" %>
 <% end %>

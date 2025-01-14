@@ -33,5 +33,12 @@
     </div>
     <span class="form-help">Máximo de 500 caracteres</span>
   </div>
+  <div class="recaptcha-wrapper">
+    <% if @show_checkbox_recaptcha %>
+      <%= recaptcha_tags(site_key: Rails.application.credentials.recaptcha.site_key) %>
+    <% else %>
+      <%= recaptcha_v3(action: 'contact') %>
+    <% end %>
+  </div>
   <%= form.submit "Enviar", class: "input-file-label" %>
 <% end %>

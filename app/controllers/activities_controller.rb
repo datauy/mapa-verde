@@ -71,12 +71,19 @@ class ActivitiesController < ApplicationController
   end
   def create
     @activity = Activity.new(activity_params)
-    if @activity.save
+    success = verify_recaptcha(action: 'create_activity', minimum_score: 0.8)
+    checkbox_success = verify_recaptcha(model: @organization, site_key: Rails.application.credentials.recaptcha.site_key) unless success
+    if success || checkbox_success
+      @activity.save
       @activity = Activity.new
       @notice = {"mtype" => "success", "title" => "Se ha creado la actividad!", "body" => "Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
     else
-      @message = "Ha habido un error en la creación de la actividad, por favor contacte a..."
-      render json: @activity.errors.to_json, status: :unprocessable_entity
+      if !success
+        @show_checkbox_recaptcha = true
+        Rails.logger.warn("Post not saved because of a recaptcha score of #{recaptcha_reply['score']}")
+        @message = "Ha habido un error en la creación de la actividad, por favor contacte a..."
+        render json: @activity.errors.to_json, status: :unprocessable_entity
+      end
     end
   end
 

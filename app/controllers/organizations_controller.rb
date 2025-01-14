@@ -11,12 +11,13 @@ class OrganizationsController < ApplicationController
     checkbox_success = verify_recaptcha(model: @organization, site_key: Rails.application.credentials.recaptcha.site_key) unless success
     if success || checkbox_success
       @organization.save
-       redirect_to root_path, notice: {mtype: 'success',title:"Organización creada!", body:" Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
-     else
+      redirect_to root_path, notice: {mtype: 'success',title:"Organización creada!", body:" Te estaremos comunicando su aprobación en cuanto revisemos la información, gracias"}
+    else
       if !success
         @show_checkbox_recaptcha = true
         Rails.logger.warn("Post not saved because of a recaptcha score of #{recaptcha_reply['score']}")
       end
+      render json: @organization.errors.to_json, status: :unprocessable_entity
     end
   end
   def state_locations

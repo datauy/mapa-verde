@@ -4,7 +4,7 @@
 <% if notice.present? %>
   <%= render partial: '/layouts/notification', locals: {msg: notice} %>
 <% end %>
-<%= form_with scope: :static_pages, url: contact_path, method: :post, class: "container", data: {turbo: false, controller: 'form'}, id: "contact-form" do |form| %>
+<%= form_with scope: :static_pages, url: contact_path, class: "container", data: {controller: 'form', action: 'turbo:submit-end->form#validate'}, id: "contact-form" do |form| %>
   <div class="section">
     <h3>Tipo de contacto</h3>
     <%= form.select :contact_type, [
